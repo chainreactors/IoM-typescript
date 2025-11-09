@@ -1,201 +1,178 @@
-# C2 Platform Shared gRPC Client
+# IoM-typescript
 
-## 概述
+IoM-typescript 是 Malice Network 的官方 TypeScript/JavaScript SDK。
 
-`iom-typescript` 是一个共享的 gRPC 客户端包，用于 C2 平台的 IoM-gui (VSCode 扩展) 和 iom-webui (Next.js 应用) 项目。
+## 核心功能
 
-## 包结构
-
-```
-packages/iom-typescript/
-├── package.json          # 包配置文件
-├── tsconfig.json         # TypeScript 配置
-├── src/
-│   ├── index.ts          # 主导出文件
-│   ├── client.ts         # gRPC 客户端类
-│   └── proto/            # 生成的 protobuf 类型
-├── proto/                # 原始 proto 文件
-└── scripts/
-    └── generate-proto.js # proto 生成脚本
-```
+- **双环境支持** - 浏览器 (gRPC-Web) 和 Node.js (gRPC)
+- **类型安全** - 完整的 TypeScript 类型定义
+- **动态 API** - 自动转发所有 gRPC 方法
+- **会话管理** - 便捷的会话操作封装
+- **错误处理** - 统一的错误处理机制
 
 ## 安装
 
-### 在工作区内引用
+```bash
+npm install iom-typescript
+```
 
-在消费端的 `package.json` 中添加依赖：
+## 快速开始
 
-```jsonc
-{
-  "dependencies": {
-    "iom-typescript": "workspace:*"
+### 浏览器环境 (gRPC-Web)
+
+```typescript
+import { GrpcClient } from 'iom-typescript';
+
+const client = new GrpcClient({
+  baseUrl: 'http://localhost:8080/grpc'
+});
+
+// 获取会话列表
+const sessions = await client.getSessions({});
+
+// 使用会话
+import { Session } from 'iom-typescript';
+const session = new Session(client, 'session-id');
+await session.ls({ path: '/' });
+```
+
+### Node.js 环境
+
+```typescript
+import { GrpcClient } from 'iom-typescript/client.node';
+import { parseAuthFile } from 'iom-typescript';
+
+// 从认证文件加载
+const client = GrpcClient.fromAuthFile('./admin.auth');
+
+// 获取基本信息
+const basic = await client.getBasic({});
+console.log(`服务器版本: ${basic.version}`);
+```
+
+## 基础用法
+
+### 1. 连接服务器
+
+```typescript
+import { GrpcClient, parseAuthFile } from 'iom-typescript';
+
+// 方式一：使用认证文件（推荐）
+const config = parseAuthFile('./admin.auth');
+const client = GrpcClient.fromAuthFile('./admin.auth');
+
+// 方式二：手动配置
+const client = new GrpcClient({
+  baseUrl: 'https://localhost:5004/grpc',
+  defaultHeaders: {
+    'Authorization': 'Bearer token'
+  }
+});
+```
+
+### 2. 会话管理
+
+```typescript
+import { SessionManager } from 'iom-typescript';
+
+// 创建会话管理器
+const manager = new SessionManager(client);
+
+// 获取所有会话
+await manager.updateSessions();
+const sessions = manager.getSessions();
+
+// 获取特定会话
+const session = manager.getSession('session-id');
+```
+
+### 3. 执行任务
+
+```typescript
+import { Session } from 'iom-typescript';
+
+const session = new Session(client, 'session-id');
+
+// 文件系统操作
+await session.ls({ path: '/' });
+await session.pwd({});
+
+// 进程管理
+await session.ps({});
+
+// 命令执行
+await session.execute({
+  path: '/bin/bash',
+  args: ['-c', 'ls -la']
+});
+```
+
+## 项目结构
+
+```
+iom-typescript/
+├── src/
+│   ├── index.ts              # 主导出文件（浏览器）
+│   ├── client.ts             # gRPC-Web 客户端
+│   ├── client.node.ts        # Node.js gRPC 客户端
+│   ├── config.ts             # 配置解析
+│   ├── session.ts            # 会话封装
+│   ├── manager.ts            # 管理器
+│   ├── utils/
+│   │   └── spite-handler.ts  # 错误处理
+│   └── generated/            # 生成的 protobuf 代码
+│       ├── web/              # 浏览器版本
+│       └── node/             # Node.js 版本
+├── proto/                    # protobuf 定义文件
+├── dist/                     # 编译输出
+├── package.json
+├── tsconfig.json
+└── buf.gen.yaml             # protobuf 生成配置
+```
+
+## 错误处理
+
+```typescript
+import {
+  SpiteError,
+  MaleficError,
+  TaskError,
+  extractError
+} from 'iom-typescript';
+
+try {
+  const result = await session.ls({ path: '/' });
+  const output = extractOutput(result);
+  console.log(output);
+} catch (error) {
+  if (error instanceof TaskError) {
+    console.error('任务执行失败:', error.message);
   }
 }
 ```
 
-工作区安装完成后即可直接 `import`。
-
-### 单独构建
+## 开发
 
 ```bash
-npm run build --workspace iom-typescript
-```
+# 安装依赖
+npm install
 
-## 基本用法
-
-### 1. 创建客户端实例
-
-```typescript
-import { GrpcClient, AuthConfig } from 'iom-typescript';
-
-const client = new GrpcClient({
-    onLog: (message: string) => console.log(message),
-    timeout: 10,
-    maxMessageSize: 50 * 1024 * 1024 // 50MB
-});
-```
-
-### 2. 连接到服务器
-
-```typescript
-const config: AuthConfig = {
-    operator: 'admin',
-    host: 'localhost',
-    port: 31337,
-    type: 'mtls',
-    ca: 'base64_encoded_ca_cert',
-    cert: 'base64_encoded_client_cert',
-    key: 'base64_encoded_client_key'
-};
-
-try {
-    await client.connect(config, 'config_file_name');
-    console.log('连接成功');
-} catch (error) {
-    console.error('连接失败:', error);
-}
-```
-
-### 3. 使用 RPC 调用
-
-```typescript
-if (client.isConnected()) {
-    const rpc = client.getRpc();
-    
-    // 使用 malice 客户端
-    rpc.malice.getSessions(Empty, (error, response) => {
-        if (error) {
-            console.error('RPC 调用失败:', error);
-        } else {
-            console.log('Sessions:', response);
-        }
-    });
-    
-    // 使用 listener 客户端
-    rpc.listener.getListeners(Empty, (error, response) => {
-        if (error) {
-            console.error('RPC 调用失败:', error);
-        } else {
-            console.log('Listeners:', response);
-        }
-    });
-}
-```
-
-### 4. 断开连接
-
-```typescript
-client.disconnect();
-```
-
-## 在 IoM-gui (VSCode Extension) 中的用法
-
-```typescript
-// src/grpc/client.ts
-import { GrpcClient as SharedGrpcClient, AuthConfig } from 'iom-typescript';
-
-export class GrpcClient {
-    private sharedClient: SharedGrpcClient;
-
-    constructor(outputChannel: vscode.OutputChannel) {
-        this.sharedClient = new SharedGrpcClient({
-            onLog: (message: string) => outputChannel.appendLine(message)
-        });
-    }
-
-    async connect(config: AuthConfig, authFile: string) {
-        return this.sharedClient.connect(config, authFile);
-    }
-
-    getRpc() {
-        return this.sharedClient.getRpc();
-    }
-}
-```
-
-## 在 iom-webui (Next.js) 中的用法
-
-```typescript
-// components/grpc-connection.tsx
-'use client';
-import { GrpcClient, AuthConfig } from 'iom-typescript';
-
-export default function GrpcConnection() {
-    const [client, setClient] = useState<GrpcClient | null>(null);
-
-    useEffect(() => {
-        const grpcClient = new GrpcClient({
-            onLog: (message) => console.log(message)
-        });
-        setClient(grpcClient);
-        
-        return () => grpcClient.disconnect();
-    }, []);
-
-    // ... 组件逻辑
-}
-```
-
-## 可用的类型
-
-包导出所有必要的 protobuf 生成类型：
-
-- `Session`, `Sessions`
-- `Pipeline`, `Pipelines` 
-- `Listener`, `Listeners`
-- `Artifact`, `Artifacts`
-- `Website`, `Websites`
-- `Task`, `Tasks`
-- `Context`, `Contexts`
-- `Cert`, `Certs`
-- `MaliceRPCClient`, `ListenerRPCClient`
-- `AuthConfig`
-- `Empty`
-- 等等...
-
-## 更新 Proto 文件
-
-1. 更新 `proto/` 目录中的 `.proto` 文件
-2. 运行生成脚本：
-```bash
+# 生成 protobuf 代码
 npm run proto
-```
-3. 重新构建包：
-```bash
+
+# 构建
 npm run build
+
+# 类型检查
+npm run type-check
 ```
 
-## 配置选项
+## 相关链接
 
-`GrpcClientConfig` 接口支持以下选项：
+- [Malice Network](https://github.com/chainreactors/malice-network)
+- [文档](https://chainreactors.github.io/wiki/IoM/)
+- [Issues](https://github.com/chainreactors/malice-network/issues)
 
-- `onLog?: (message: string) => void` - 日志回调函数
-- `timeout?: number` - 连接超时时间（秒），默认 10 秒
-- `maxMessageSize?: number` - 最大消息大小，默认 50MB
+## License
 
-## 注意事项
-
-1. 确保 gRPC 服务器支持 mTLS 认证
-2. CA、证书和私钥需要是 base64 编码的字符串
-3. 服务器必须配置正确的 SSL/TLS 设置
-4. 在生产环境中使用适当的证书验证
+MIT
