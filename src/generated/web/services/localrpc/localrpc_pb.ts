@@ -231,3 +231,109 @@ export class ExecuteLuaResponse extends Message<ExecuteLuaResponse> {
   }
 }
 
+/**
+ * GetHistoryRequest contains the task ID to query
+ *
+ * @generated from message services.localrpc.GetHistoryRequest
+ */
+export class GetHistoryRequest extends Message<GetHistoryRequest> {
+  /**
+   * Task ID to retrieve history for
+   *
+   * @generated from field: uint32 task_id = 1;
+   */
+  taskId = 0;
+
+  /**
+   * Session ID context
+   *
+   * @generated from field: string session_id = 2;
+   */
+  sessionId = "";
+
+  constructor(data?: PartialMessage<GetHistoryRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "services.localrpc.GetHistoryRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "task_id", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 2, name: "session_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetHistoryRequest {
+    return new GetHistoryRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetHistoryRequest {
+    return new GetHistoryRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetHistoryRequest {
+    return new GetHistoryRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetHistoryRequest | PlainMessage<GetHistoryRequest> | undefined, b: GetHistoryRequest | PlainMessage<GetHistoryRequest> | undefined): boolean {
+    return proto3.util.equals(GetHistoryRequest, a, b);
+  }
+}
+
+/**
+ * GetHistoryResponse contains the rendered history data
+ *
+ * @generated from message services.localrpc.GetHistoryResponse
+ */
+export class GetHistoryResponse extends Message<GetHistoryResponse> {
+  /**
+   * Rendered output for the task
+   *
+   * @generated from field: string output = 1;
+   */
+  output = "";
+
+  /**
+   * Error message if retrieval failed
+   *
+   * @generated from field: string error = 2;
+   */
+  error = "";
+
+  /**
+   * Whether the operation was successful
+   *
+   * @generated from field: bool success = 3;
+   */
+  success = false;
+
+  constructor(data?: PartialMessage<GetHistoryResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "services.localrpc.GetHistoryResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "output", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "error", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "success", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetHistoryResponse {
+    return new GetHistoryResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetHistoryResponse {
+    return new GetHistoryResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetHistoryResponse {
+    return new GetHistoryResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetHistoryResponse | PlainMessage<GetHistoryResponse> | undefined, b: GetHistoryResponse | PlainMessage<GetHistoryResponse> | undefined): boolean {
+    return proto3.util.equals(GetHistoryResponse, a, b);
+  }
+}
+

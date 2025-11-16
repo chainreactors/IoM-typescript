@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { ExecuteCommandRequest, ExecuteCommandResponse, ExecuteLuaRequest, ExecuteLuaResponse } from "./localrpc_pb.js";
+import { ExecuteCommandRequest, ExecuteCommandResponse, ExecuteLuaRequest, ExecuteLuaResponse, GetHistoryRequest, GetHistoryResponse } from "./localrpc_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -38,6 +38,17 @@ export const CommandService = {
       name: "ExecuteLua",
       I: ExecuteLuaRequest,
       O: ExecuteLuaResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * GetHistory retrieves rendered history data for a specific task
+     *
+     * @generated from rpc services.localrpc.CommandService.GetHistory
+     */
+    getHistory: {
+      name: "GetHistory",
+      I: GetHistoryRequest,
+      O: GetHistoryResponse,
       kind: MethodKind.Unary,
     },
   }

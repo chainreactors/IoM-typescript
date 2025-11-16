@@ -59,3 +59,30 @@ export const ExecuteLuaResponse = /*@__PURE__*/ proto3.makeMessageType(
   ],
 );
 
+/**
+ * GetHistoryRequest contains the task ID to query
+ *
+ * @generated from message services.localrpc.GetHistoryRequest
+ */
+export const GetHistoryRequest = /*@__PURE__*/ proto3.makeMessageType(
+  "services.localrpc.GetHistoryRequest",
+  () => [
+    { no: 1, name: "task_id", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 2, name: "session_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ],
+);
+
+/**
+ * GetHistoryResponse contains the rendered history data
+ *
+ * @generated from message services.localrpc.GetHistoryResponse
+ */
+export const GetHistoryResponse = /*@__PURE__*/ proto3.makeMessageType(
+  "services.localrpc.GetHistoryResponse",
+  () => [
+    { no: 1, name: "output", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "error", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "success", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ],
+);
+
