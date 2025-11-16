@@ -14,9 +14,9 @@
     "./package.json": "./package.json"
   },
   "scripts": {
-    "build": "tsc -b tsconfig.json",
-    "proto": "buf generate --template buf.gen.yaml && node -e \"const fs = require('fs'); const pkg = JSON.stringify({type:'module'}, null, 2); fs.mkdirSync('generated/node', {recursive:true}); fs.mkdirSync('generated/web', {recursive:true}); fs.writeFileSync('generated/node/package.json', pkg); fs.writeFileSync('generated/web/package.json', pkg);\"",
-    "proto:web": "buf generate --template buf.gen.yaml && node -e \"const fs = require('fs'); const pkg = JSON.stringify({type:'module'}, null, 2); fs.mkdirSync('generated/node', {recursive:true}); fs.mkdirSync('generated/web', {recursive:true}); fs.writeFileSync('generated/node/package.json', pkg); fs.writeFileSync('generated/web/package.json', pkg);\"",
+    "build": "tsc -b tsconfig.json && node -e \"const fs = require('fs'); const path = require('path'); const pkg = JSON.stringify({type:'module'}, null, 2); const nodeDir = path.join('dist', 'generated', 'node'); const webDir = path.join('dist', 'generated', 'web'); fs.mkdirSync(nodeDir, {recursive:true}); fs.mkdirSync(webDir, {recursive:true}); fs.writeFileSync(path.join(nodeDir, 'package.json'), pkg); fs.writeFileSync(path.join(webDir, 'package.json'), pkg);\"",
+    "proto": "buf generate --template buf.gen.yaml && node -e \"const fs = require('fs'); const path = require('path'); const pkg = JSON.stringify({type:'module'}, null, 2); const nodeDir = path.join('src', 'generated', 'node'); const webDir = path.join('src', 'generated', 'web'); fs.mkdirSync(nodeDir, {recursive:true}); fs.mkdirSync(webDir, {recursive:true}); fs.writeFileSync(path.join(nodeDir, 'package.json'), pkg); fs.writeFileSync(path.join(webDir, 'package.json'), pkg);\"",
+    "proto:web": "buf generate --template buf.gen.yaml && node -e \"const fs = require('fs'); const path = require('path'); const pkg = JSON.stringify({type:'module'}, null, 2); const nodeDir = path.join('src', 'generated', 'node'); const webDir = path.join('src', 'generated', 'web'); fs.mkdirSync(nodeDir, {recursive:true}); fs.mkdirSync(webDir, {recursive:true}); fs.writeFileSync(path.join(nodeDir, 'package.json'), pkg); fs.writeFileSync(path.join(webDir, 'package.json'), pkg);\"",
     "proto:all": "npm run proto && npm run proto:web",
     "clean": "node -e \"require('fs').rmSync('dist', {recursive:true, force:true}); require('fs').rmSync('tsconfig.tsbuildinfo', {force:true})\"",
     "prebuild": "npm run clean",
