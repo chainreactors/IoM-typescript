@@ -4828,6 +4828,11 @@ export class Context extends Message<Context> {
    */
   nonce = "";
 
+  /**
+   * @generated from field: int64 created_at = 10;
+   */
+  createdAt = protoInt64.zero;
+
   constructor(data?: PartialMessage<Context>) {
     super();
     proto3.util.initPartial(data, this);
@@ -4845,6 +4850,7 @@ export class Context extends Message<Context> {
     { no: 7, name: "value", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
     { no: 8, name: "content", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
     { no: 9, name: "nonce", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 10, name: "created_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Context {
