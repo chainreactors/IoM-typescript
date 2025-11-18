@@ -231,8 +231,6 @@ export class Session extends Message<Session> {
   addons: Addon[] = [];
 
   /**
-   * Age 密钥对
-   *
    * @generated from field: clientpb.KeyPair key_pair = 32;
    */
   keyPair?: KeyPair;
@@ -1690,6 +1688,16 @@ export class Task extends Message<Task> {
    */
   timeout = false;
 
+  /**
+   * @generated from field: int64 created_at = 13;
+   */
+  createdAt = protoInt64.zero;
+
+  /**
+   * @generated from field: int64 finished_at = 14;
+   */
+  finishedAt = protoInt64.zero;
+
   constructor(data?: PartialMessage<Task>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1710,6 +1718,8 @@ export class Task extends Message<Task> {
     { no: 10, name: "callby", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 11, name: "finished", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
     { no: 12, name: "timeout", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 13, name: "created_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 14, name: "finished_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Task {
@@ -2909,8 +2919,6 @@ export class Pipeline extends Message<Pipeline> {
   certName = "";
 
   /**
-   * Age 安全配置
-   *
    * @generated from field: clientpb.Secure secure = 12;
    */
   secure?: Secure;
@@ -4833,6 +4841,11 @@ export class Context extends Message<Context> {
    */
   createdAt = protoInt64.zero;
 
+  /**
+   * @generated from field: int64 updated_at = 11;
+   */
+  updatedAt = protoInt64.zero;
+
   constructor(data?: PartialMessage<Context>) {
     super();
     proto3.util.initPartial(data, this);
@@ -4851,6 +4864,7 @@ export class Context extends Message<Context> {
     { no: 8, name: "content", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
     { no: 9, name: "nonce", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 10, name: "created_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 11, name: "updated_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Context {
@@ -4912,15 +4926,11 @@ export class Contexts extends Message<Contexts> {
  */
 export class KeyPair extends Message<KeyPair> {
   /**
-   * 公钥
-   *
    * @generated from field: string public_key = 1;
    */
   publicKey = "";
 
   /**
-   * 私钥
-   *
    * @generated from field: string private_key = 2;
    */
   privateKey = "";
@@ -4959,22 +4969,16 @@ export class KeyPair extends Message<KeyPair> {
  */
 export class Secure extends Message<Secure> {
   /**
-   * 是否启用安全模式
-   *
    * @generated from field: bool enable = 1;
    */
   enable = false;
 
   /**
-   * server密钥对
-   *
    * @generated from field: clientpb.KeyPair server_keypair = 2;
    */
   serverKeypair?: KeyPair;
 
   /**
-   * implant密钥对
-   *
    * @generated from field: clientpb.KeyPair implant_keypair = 3;
    */
   implantKeypair?: KeyPair;

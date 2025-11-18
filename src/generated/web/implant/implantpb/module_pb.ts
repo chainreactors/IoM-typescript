@@ -78,8 +78,6 @@ export class Register extends Message<Register> {
   sysinfo?: SysInfo;
 
   /**
-   * implant的公钥，用于server加密数据
-   *
    * @generated from field: modulepb.Secure secure = 12;
    */
   secure?: Secure;
@@ -142,8 +140,6 @@ export class Secure extends Message<Secure> {
   type = "";
 
   /**
-   * implant的公钥，用于server加密数据
-   *
    * @generated from field: string public_key = 4;
    */
   publicKey = "";
@@ -180,35 +176,25 @@ export class Secure extends Message<Secure> {
 }
 
 /**
- * Age 密钥交换相关消息
- *
  * @generated from message modulepb.KeyExchangeRequest
  */
 export class KeyExchangeRequest extends Message<KeyExchangeRequest> {
   /**
-   * 临时公钥 (Age X25519)
-   *
    * @generated from field: string public_key = 1;
    */
   publicKey = "";
 
   /**
-   * 对临时公钥的签名
-   *
    * @generated from field: bytes signature = 2;
    */
   signature = new Uint8Array(0);
 
   /**
-   * 时间戳
-   *
    * @generated from field: uint64 timestamp = 3;
    */
   timestamp = protoInt64.zero;
 
   /**
-   * 随机数
-   *
    * @generated from field: string nonce = 4;
    */
   nonce = "";
@@ -249,8 +235,6 @@ export class KeyExchangeRequest extends Message<KeyExchangeRequest> {
  */
 export class KeyExchangeResponse extends Message<KeyExchangeResponse> {
   /**
-   * Server 临时公钥
-   *
    * @generated from field: string public_key = 1;
    */
   publicKey = "";
@@ -3022,36 +3006,26 @@ export class WmiMethodRequest extends Message<WmiMethodRequest> {
  */
 export class RunAsRequest extends Message<RunAsRequest> {
   /**
-   * 需要执行的用户名
-   *
    * @generated from field: string username = 1;
    */
   username = "";
 
   /**
-   * 用户所属域
-   *
    * @generated from field: string domain = 2;
    */
   domain = "";
 
   /**
-   * 用户密码
-   *
    * @generated from field: string password = 3;
    */
   password = "";
 
   /**
-   * 程序路径
-   *
    * @generated from field: string program = 4;
    */
   program = "";
 
   /**
-   * 程序参数（可选）
-   *
    * @generated from field: string args = 5;
    */
   args = "";
@@ -3062,8 +3036,6 @@ export class RunAsRequest extends Message<RunAsRequest> {
   useProfile = false;
 
   /**
-   * 是否仅使用网络凭据 (可选，默认 false)
-   *
    * @generated from field: bool netonly = 7;
    */
   netonly = false;
@@ -3609,36 +3581,26 @@ export class PtyRequest extends Message<PtyRequest> {
  */
 export class PtyResponse extends Message<PtyResponse> {
   /**
-   * 会话ID
-   *
    * @generated from field: string session_id = 1;
    */
   sessionId = "";
 
   /**
-   * 输出数据（二进制）
-   *
    * @generated from field: bytes output_data = 2;
    */
   outputData = new Uint8Array(0);
 
   /**
-   * 输出数据（文本）
-   *
    * @generated from field: string output_text = 3;
    */
   outputText = "";
 
   /**
-   * 错误信息
-   *
    * @generated from field: string error = 4;
    */
   error = "";
 
   /**
-   * 会话是否仍然活跃
-   *
    * @generated from field: bool session_active = 5;
    */
   sessionActive = false;

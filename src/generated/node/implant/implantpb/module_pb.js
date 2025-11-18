@@ -45,8 +45,6 @@ export const Secure = /*@__PURE__*/ proto3.makeMessageType(
 );
 
 /**
- * Age 密钥交换相关消息
- *
  * @generated from message modulepb.KeyExchangeRequest
  */
 export const KeyExchangeRequest = /*@__PURE__*/ proto3.makeMessageType(

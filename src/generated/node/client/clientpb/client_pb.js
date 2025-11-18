@@ -403,6 +403,8 @@ export const Task = /*@__PURE__*/ proto3.makeMessageType(
     { no: 10, name: "callby", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 11, name: "finished", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
     { no: 12, name: "timeout", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 13, name: "created_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 14, name: "finished_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
   ],
 );
 
@@ -1108,6 +1110,7 @@ export const Context = /*@__PURE__*/ proto3.makeMessageType(
     { no: 8, name: "content", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
     { no: 9, name: "nonce", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 10, name: "created_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 11, name: "updated_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
   ],
 );
 

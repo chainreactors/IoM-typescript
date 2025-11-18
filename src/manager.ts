@@ -1,11 +1,11 @@
 /**
- * Manager - 统一的服务端状态维护器
+ * Manager - Unified server status maintainer
  */
 
 import { SessionManager } from './session';
 
 /**
- * Manager 类 - 维护所有服务端状态
+ * Manager class - Maintains all server status
  */
 export class Manager {
   public sessions: SessionManager;

@@ -4,9 +4,8 @@
 
 import type { GrpcClient } from './client';
 
-/**
- * Session 信息
- */
+/* *
+ * Session Information */
 export interface SessionInfo {
   sessionId: string;
   name?: string;
@@ -34,14 +33,14 @@ export class Session {
 
         const propStr = String(prop);
 
-        // sync_ 前缀: 自动等待 Task 完成，返回 TaskContext
+        // sync_ prefix: automatically wait for task completion, return TaskContext
         if (propStr.startsWith('sync_')) {
           const actualMethod = propStr.substring(5);
           const method = (this.client as any)[actualMethod];
 
           if (typeof method === 'function') {
             return async (request: any = {}, options: any = {}) => {
-              // 创建 Headers 对象并添加 session_id (后端期望 session_id 而不是 session-id)
+              // Create Headers object and add session_id (backend expects session_id, not session-id)
               const headers = new Headers(options.headers || {});
               headers.set('session_id', this.sessionInfo.sessionId);
 
@@ -50,7 +49,7 @@ export class Session {
               if (task && typeof task === 'object' && 'taskId' in task) {
                 const waitMethod = (this.client as any)['waitTaskFinish'];
                 if (waitMethod) {
-                  // 返回完整的 TaskContext，让调用者使用 Spite Handler 处理
+                  // Return complete TaskContext, let caller use Spite Handler to process
                   const taskContext = await waitMethod.call(this.client,
                     { taskId: task.taskId, sessionId: task.sessionId || this.sessionInfo.sessionId },
                     { headers }
@@ -63,11 +62,11 @@ export class Session {
           }
         }
 
-        // 普通方法: 注入 session_id
+        // Normal method: inject session_id
         const method = (this.client as any)[propStr];
         if (typeof method === 'function') {
           return async (request: any = {}, options: any = {}) => {
-            // 创建 Headers 对象并添加 session_id (后端期望 session_id 而不是 session-id)
+            // Create Headers object and add session_id (backend expects session_id, not session-id)
             const headers = new Headers(options.headers || {});
             headers.set('session_id', this.sessionInfo.sessionId);
 
@@ -100,7 +99,7 @@ export class SessionManager {
   }
 
   /**
-   * 更新 sessions 列表
+   * Update sessions list
    */
   updateSessions(sessions: SessionInfo[]) {
     sessions.forEach(info => {
