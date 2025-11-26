@@ -51,6 +51,9 @@ export {
 // Manager exports
 export { Manager } from './manager';
 
+// Note: Node.js specific exports (GrpcClientNode) should be imported from 'iom-typescript/client.node'
+// to avoid bundling Node.js code in browser environments
+
 // Utils exports
 export {
   parseTaskContext,
@@ -72,6 +75,26 @@ export type { CallOptions, PromiseClient } from '@connectrpc/connect';
 // Re-export service definitions
 export { MaliceRPC } from './generated/web/services/clientrpc/service_connect';
 export { ListenerRPC } from './generated/web/services/listenerrpc/service_connect';
+
+// Alias for backward compatibility
+export { MaliceRPC as MaliceRPCClient } from './generated/web/services/clientrpc/service_connect';
+
+// Re-export protobuf classes (can be used as both types and values)
+export {
+  Listener,
+  Pipeline,
+  Profile,
+  Website,
+  Websites,
+  WebContent,
+  WebContents,
+  REMAgent,
+  REMAgents,
+  BuildConfig,
+  DockerBuildConfig,
+  GithubActionBuildConfig,
+  SaasBuildConfig,
+} from './generated/web/client/clientpb/client_pb';
 
 // Re-export commonly used protobuf types
 export type {
@@ -106,7 +129,6 @@ export type {
   Contexts,
 
   // Profile types
-  Profile,
   Profiles,
 
   // Listener types
@@ -141,8 +163,7 @@ export type {
   // License types
   LicenseInfo,
 
-  // Build types
-  GithubActionBuildConfig,
+  // Build types (classes exported above)
 
   // Encode types
   DLL2Shellcode,

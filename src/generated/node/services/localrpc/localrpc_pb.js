@@ -86,3 +86,55 @@ export const GetHistoryResponse = /*@__PURE__*/ proto3.makeMessageType(
   ],
 );
 
+/**
+ * GetSchemasRequest contains the cobra group to query
+ *
+ * @generated from message services.localrpc.GetSchemasRequest
+ */
+export const GetSchemasRequest = /*@__PURE__*/ proto3.makeMessageType(
+  "services.localrpc.GetSchemasRequest",
+  () => [
+    { no: 1, name: "group", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ],
+);
+
+/**
+ * GetSchemasResponse contains the JSON schemas for commands
+ *
+ * @generated from message services.localrpc.GetSchemasResponse
+ */
+export const GetSchemasResponse = /*@__PURE__*/ proto3.makeMessageType(
+  "services.localrpc.GetSchemasResponse",
+  () => [
+    { no: 1, name: "schemas_json", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "error", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "success", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ],
+);
+
+/**
+ * GetGroupsRequest contains the request for getting all groups
+ *
+ * Empty request - returns all available groups
+ *
+ * @generated from message services.localrpc.GetGroupsRequest
+ */
+export const GetGroupsRequest = /*@__PURE__*/ proto3.makeMessageType(
+  "services.localrpc.GetGroupsRequest",
+  [],
+);
+
+/**
+ * GetGroupsResponse contains information about all available groups
+ *
+ * @generated from message services.localrpc.GetGroupsResponse
+ */
+export const GetGroupsResponse = /*@__PURE__*/ proto3.makeMessageType(
+  "services.localrpc.GetGroupsResponse",
+  () => [
+    { no: 1, name: "groups", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
+    { no: 2, name: "error", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "success", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ],
+);
+

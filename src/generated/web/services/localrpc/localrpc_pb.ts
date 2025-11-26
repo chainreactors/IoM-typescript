@@ -337,3 +337,197 @@ export class GetHistoryResponse extends Message<GetHistoryResponse> {
   }
 }
 
+/**
+ * GetSchemasRequest contains the cobra group to query
+ *
+ * @generated from message services.localrpc.GetSchemasRequest
+ */
+export class GetSchemasRequest extends Message<GetSchemasRequest> {
+  /**
+   * Cobra command group to retrieve schemas for
+   * Examples: "implant", "execute", "sys", "file", "pivot"
+   * Required field
+   *
+   * @generated from field: string group = 1;
+   */
+  group = "";
+
+  constructor(data?: PartialMessage<GetSchemasRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "services.localrpc.GetSchemasRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "group", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetSchemasRequest {
+    return new GetSchemasRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetSchemasRequest {
+    return new GetSchemasRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetSchemasRequest {
+    return new GetSchemasRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetSchemasRequest | PlainMessage<GetSchemasRequest> | undefined, b: GetSchemasRequest | PlainMessage<GetSchemasRequest> | undefined): boolean {
+    return proto3.util.equals(GetSchemasRequest, a, b);
+  }
+}
+
+/**
+ * GetSchemasResponse contains the JSON schemas for commands
+ *
+ * @generated from message services.localrpc.GetSchemasResponse
+ */
+export class GetSchemasResponse extends Message<GetSchemasResponse> {
+  /**
+   * JSON string containing schemas for commands in the specified group
+   * Format: { "group_name": { "command_name": schema } }
+   *
+   * @generated from field: string schemas_json = 1;
+   */
+  schemasJson = "";
+
+  /**
+   * Error message if retrieval failed
+   *
+   * @generated from field: string error = 2;
+   */
+  error = "";
+
+  /**
+   * Whether the operation was successful
+   *
+   * @generated from field: bool success = 3;
+   */
+  success = false;
+
+  constructor(data?: PartialMessage<GetSchemasResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "services.localrpc.GetSchemasResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "schemas_json", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "error", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "success", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetSchemasResponse {
+    return new GetSchemasResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetSchemasResponse {
+    return new GetSchemasResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetSchemasResponse {
+    return new GetSchemasResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetSchemasResponse | PlainMessage<GetSchemasResponse> | undefined, b: GetSchemasResponse | PlainMessage<GetSchemasResponse> | undefined): boolean {
+    return proto3.util.equals(GetSchemasResponse, a, b);
+  }
+}
+
+/**
+ * GetGroupsRequest contains the request for getting all groups
+ *
+ * Empty request - returns all available groups
+ *
+ * @generated from message services.localrpc.GetGroupsRequest
+ */
+export class GetGroupsRequest extends Message<GetGroupsRequest> {
+  constructor(data?: PartialMessage<GetGroupsRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "services.localrpc.GetGroupsRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetGroupsRequest {
+    return new GetGroupsRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetGroupsRequest {
+    return new GetGroupsRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetGroupsRequest {
+    return new GetGroupsRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetGroupsRequest | PlainMessage<GetGroupsRequest> | undefined, b: GetGroupsRequest | PlainMessage<GetGroupsRequest> | undefined): boolean {
+    return proto3.util.equals(GetGroupsRequest, a, b);
+  }
+}
+
+/**
+ * GetGroupsResponse contains information about all available groups
+ *
+ * @generated from message services.localrpc.GetGroupsResponse
+ */
+export class GetGroupsResponse extends Message<GetGroupsResponse> {
+  /**
+   * Map of group ID to group title
+   * Format: { "execute": "Execute", "sys": "System", "file": "File", ... }
+   *
+   * @generated from field: map<string, string> groups = 1;
+   */
+  groups: { [key: string]: string } = {};
+
+  /**
+   * Error message if retrieval failed
+   *
+   * @generated from field: string error = 2;
+   */
+  error = "";
+
+  /**
+   * Whether the operation was successful
+   *
+   * @generated from field: bool success = 3;
+   */
+  success = false;
+
+  constructor(data?: PartialMessage<GetGroupsResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "services.localrpc.GetGroupsResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "groups", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
+    { no: 2, name: "error", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "success", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetGroupsResponse {
+    return new GetGroupsResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetGroupsResponse {
+    return new GetGroupsResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetGroupsResponse {
+    return new GetGroupsResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetGroupsResponse | PlainMessage<GetGroupsResponse> | undefined, b: GetGroupsResponse | PlainMessage<GetGroupsResponse> | undefined): boolean {
+    return proto3.util.equals(GetGroupsResponse, a, b);
+  }
+}
+

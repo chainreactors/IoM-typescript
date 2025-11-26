@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { ExecuteCommandRequest, ExecuteCommandResponse, ExecuteLuaRequest, ExecuteLuaResponse, GetHistoryRequest, GetHistoryResponse } from "./localrpc_pb.js";
+import { ExecuteCommandRequest, ExecuteCommandResponse, ExecuteLuaRequest, ExecuteLuaResponse, GetGroupsRequest, GetGroupsResponse, GetHistoryRequest, GetHistoryResponse, GetSchemasRequest, GetSchemasResponse } from "./localrpc_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -49,6 +49,29 @@ export const CommandService = {
       name: "GetHistory",
       I: GetHistoryRequest,
       O: GetHistoryResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * GetSchemas retrieves JSON schemas for commands in specified cobra group
+     * Returns schemas suitable for react-jsonschema-form rendering
+     *
+     * @generated from rpc services.localrpc.CommandService.GetSchemas
+     */
+    getSchemas: {
+      name: "GetSchemas",
+      I: GetSchemasRequest,
+      O: GetSchemasResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * GetGroups retrieves information about all available command groups
+     *
+     * @generated from rpc services.localrpc.CommandService.GetGroups
+     */
+    getGroups: {
+      name: "GetGroups",
+      I: GetGroupsRequest,
+      O: GetGroupsResponse,
       kind: MethodKind.Unary,
     },
   }
