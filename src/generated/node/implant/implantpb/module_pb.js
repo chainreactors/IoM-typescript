@@ -45,6 +45,8 @@ export const Secure = /*@__PURE__*/ proto3.makeMessageType(
 );
 
 /**
+ * Age 密钥交换相关消息
+ *
  * @generated from message modulepb.KeyExchangeRequest
  */
 export const KeyExchangeRequest = /*@__PURE__*/ proto3.makeMessageType(
@@ -868,6 +870,33 @@ export const PtyResponse = /*@__PURE__*/ proto3.makeMessageType(
     { no: 5, name: "session_active", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
     { no: 6, name: "active_sessions", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
     { no: 7, name: "metadata", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
+  ],
+);
+
+/**
+ * @generated from message modulepb.CommonBody
+ */
+export const CommonBody = /*@__PURE__*/ proto3.makeMessageType(
+  "modulepb.CommonBody",
+  () => [
+    { no: 2, name: "u32_array", kind: "scalar", T: 13 /* ScalarType.UINT32 */, repeated: true },
+    { no: 4, name: "u64_array", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true },
+    { no: 6, name: "bool_array", kind: "scalar", T: 8 /* ScalarType.BOOL */, repeated: true },
+    { no: 8, name: "string_array", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 10, name: "bytes_array", kind: "scalar", T: 12 /* ScalarType.BYTES */, repeated: true },
+  ],
+);
+
+/**
+ * generic wrapper for calling modules that expect CommonBody
+ *
+ * @generated from message modulepb.CommonRequest
+ */
+export const CommonRequest = /*@__PURE__*/ proto3.makeMessageType(
+  "modulepb.CommonRequest",
+  () => [
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "body", kind: "message", T: CommonBody },
   ],
 );
 

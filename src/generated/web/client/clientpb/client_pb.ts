@@ -231,6 +231,8 @@ export class Session extends Message<Session> {
   addons: Addon[] = [];
 
   /**
+   * Age 密钥对
+   *
    * @generated from field: clientpb.KeyPair key_pair = 32;
    */
   keyPair?: KeyPair;
@@ -2260,6 +2262,187 @@ export class ShellcodeEncode extends Message<ShellcodeEncode> {
 }
 
 /**
+ * malefic-mutant tools
+ *
+ * @generated from message clientpb.MutantSrdiRequest
+ */
+export class MutantSrdiRequest extends Message<MutantSrdiRequest> {
+  /**
+   * @generated from field: bytes bin = 1;
+   */
+  bin = new Uint8Array(0);
+
+  /**
+   * x86 or x64
+   *
+   * @generated from field: string arch = 2;
+   */
+  arch = "";
+
+  /**
+   * @generated from field: string function_name = 3;
+   */
+  functionName = "";
+
+  /**
+   * win
+   *
+   * @generated from field: string platform = 4;
+   */
+  platform = "";
+
+  /**
+   * link or malefic
+   *
+   * @generated from field: string type = 5;
+   */
+  type = "";
+
+  /**
+   * @generated from field: bytes userdata = 6;
+   */
+  userdata = new Uint8Array(0);
+
+  constructor(data?: PartialMessage<MutantSrdiRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "clientpb.MutantSrdiRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "bin", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 2, name: "arch", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "function_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "platform", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "userdata", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MutantSrdiRequest {
+    return new MutantSrdiRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MutantSrdiRequest {
+    return new MutantSrdiRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MutantSrdiRequest {
+    return new MutantSrdiRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: MutantSrdiRequest | PlainMessage<MutantSrdiRequest> | undefined, b: MutantSrdiRequest | PlainMessage<MutantSrdiRequest> | undefined): boolean {
+    return proto3.util.equals(MutantSrdiRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message clientpb.MutantStripRequest
+ */
+export class MutantStripRequest extends Message<MutantStripRequest> {
+  /**
+   * @generated from field: bytes bin = 1;
+   */
+  bin = new Uint8Array(0);
+
+  /**
+   * @generated from field: repeated string custom_paths = 2;
+   */
+  customPaths: string[] = [];
+
+  constructor(data?: PartialMessage<MutantStripRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "clientpb.MutantStripRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "bin", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 2, name: "custom_paths", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MutantStripRequest {
+    return new MutantStripRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MutantStripRequest {
+    return new MutantStripRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MutantStripRequest {
+    return new MutantStripRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: MutantStripRequest | PlainMessage<MutantStripRequest> | undefined, b: MutantStripRequest | PlainMessage<MutantStripRequest> | undefined): boolean {
+    return proto3.util.equals(MutantStripRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message clientpb.MutantSigforgeRequest
+ */
+export class MutantSigforgeRequest extends Message<MutantSigforgeRequest> {
+  /**
+   * extract, copy, inject, remove, check
+   *
+   * @generated from field: string operation = 1;
+   */
+  operation = "";
+
+  /**
+   * source PE file
+   *
+   * @generated from field: bytes source_bin = 2;
+   */
+  sourceBin = new Uint8Array(0);
+
+  /**
+   * target PE file (for copy)
+   *
+   * @generated from field: bytes target_bin = 3;
+   */
+  targetBin = new Uint8Array(0);
+
+  /**
+   * signature data (for inject)
+   *
+   * @generated from field: bytes signature = 4;
+   */
+  signature = new Uint8Array(0);
+
+  constructor(data?: PartialMessage<MutantSigforgeRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "clientpb.MutantSigforgeRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "operation", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "source_bin", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 3, name: "target_bin", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 4, name: "signature", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MutantSigforgeRequest {
+    return new MutantSigforgeRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MutantSigforgeRequest {
+    return new MutantSigforgeRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MutantSigforgeRequest {
+    return new MutantSigforgeRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: MutantSigforgeRequest | PlainMessage<MutantSigforgeRequest> | undefined, b: MutantSigforgeRequest | PlainMessage<MutantSigforgeRequest> | undefined): boolean {
+    return proto3.util.equals(MutantSigforgeRequest, a, b);
+  }
+}
+
+/**
  * @generated from message clientpb.Bin
  */
 export class Bin extends Message<Bin> {
@@ -2395,6 +2578,11 @@ export class Artifact extends Message<Artifact> {
    */
   rdi = "";
 
+  /**
+   * @generated from field: string comment = 20;
+   */
+  comment = "";
+
   constructor(data?: PartialMessage<Artifact>) {
     super();
     proto3.util.initPartial(data, this);
@@ -2422,6 +2610,7 @@ export class Artifact extends Message<Artifact> {
     { no: 17, name: "log", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
     { no: 18, name: "log_num", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
     { no: 19, name: "rdi", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 20, name: "comment", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Artifact {
@@ -2919,6 +3108,8 @@ export class Pipeline extends Message<Pipeline> {
   certName = "";
 
   /**
+   * Age 安全配置
+   *
    * @generated from field: clientpb.Secure secure = 12;
    */
   secure?: Secure;
@@ -4114,6 +4305,16 @@ export class BuildConfig extends Message<BuildConfig> {
     case: "saas";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
+  /**
+   * @generated from field: bool lib = 13;
+   */
+  lib = false;
+
+  /**
+   * @generated from field: string comment = 14;
+   */
+  comment = "";
+
   constructor(data?: PartialMessage<BuildConfig>) {
     super();
     proto3.util.initPartial(data, this);
@@ -4134,6 +4335,8 @@ export class BuildConfig extends Message<BuildConfig> {
     { no: 10, name: "docker", kind: "message", T: DockerBuildConfig, oneof: "source_config" },
     { no: 11, name: "github_action", kind: "message", T: GithubActionBuildConfig, oneof: "source_config" },
     { no: 12, name: "saas", kind: "message", T: SaasBuildConfig, oneof: "source_config" },
+    { no: 13, name: "lib", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 14, name: "comment", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): BuildConfig {
@@ -4926,11 +5129,15 @@ export class Contexts extends Message<Contexts> {
  */
 export class KeyPair extends Message<KeyPair> {
   /**
+   * 公钥
+   *
    * @generated from field: string public_key = 1;
    */
   publicKey = "";
 
   /**
+   * 私钥
+   *
    * @generated from field: string private_key = 2;
    */
   privateKey = "";
@@ -4969,16 +5176,22 @@ export class KeyPair extends Message<KeyPair> {
  */
 export class Secure extends Message<Secure> {
   /**
+   * 是否启用安全模式
+   *
    * @generated from field: bool enable = 1;
    */
   enable = false;
 
   /**
+   * server密钥对
+   *
    * @generated from field: clientpb.KeyPair server_keypair = 2;
    */
   serverKeypair?: KeyPair;
 
   /**
+   * implant密钥对
+   *
    * @generated from field: clientpb.KeyPair implant_keypair = 3;
    */
   implantKeypair?: KeyPair;

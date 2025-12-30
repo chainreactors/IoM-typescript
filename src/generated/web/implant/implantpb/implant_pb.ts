@@ -5,7 +5,7 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { ACK, Addons, BinaryResponse, Block, BypassRequest, ChownRequest, CurlRequest, DownloadRequest, DownloadResponse, EnumDriversResponse, ExecRequest, ExecResponse, ExecuteAddon, ExecuteBinary, ExecuteCommand, FFmpegRequest, GetSystem, IfconfigResponse, Init, Inject, KeyExchangeRequest, KeyExchangeResponse, LoadAddon, LoadModule, LsResponse, Modules, NetstatResponse, Ping, Pipe, PsResponse, PtyRequest, PtyResponse, Register, Registry, RegistryWriteRequest, Request, Response, RunAsRequest, Service, ServiceConfig, ServicesResponse, Suicide, Switch, SysInfo, TaskCtrl, TaskInfo, TaskListResponse, TaskSchedule, TaskSchedulesResponse, Timer, UploadRequest, WmiMethodRequest, WmiQueryRequest } from "./module_pb";
+import { ACK, Addons, BinaryResponse, Block, BypassRequest, ChownRequest, CommonBody, CurlRequest, DownloadRequest, DownloadResponse, EnumDriversResponse, ExecRequest, ExecResponse, ExecuteAddon, ExecuteBinary, ExecuteCommand, FFmpegRequest, GetSystem, IfconfigResponse, Init, Inject, KeyExchangeRequest, KeyExchangeResponse, LoadAddon, LoadModule, LsResponse, Modules, NetstatResponse, Ping, Pipe, PsResponse, PtyRequest, PtyResponse, Register, Registry, RegistryWriteRequest, Request, Response, RunAsRequest, Service, ServiceConfig, ServicesResponse, Suicide, Switch, SysInfo, TaskCtrl, TaskInfo, TaskListResponse, TaskSchedule, TaskSchedulesResponse, Timer, UploadRequest, WmiMethodRequest, WmiQueryRequest } from "./module_pb";
 
 /**
  * @generated from message implantpb.Empty
@@ -131,6 +131,12 @@ export class Spite extends Message<Spite> {
    * @generated from oneof implantpb.Spite.body
    */
   body: {
+    /**
+     * @generated from field: modulepb.CommonBody common = 9;
+     */
+    value: CommonBody;
+    case: "common";
+  } | {
     /**
      * @generated from field: implantpb.Empty empty = 10;
      */
@@ -476,6 +482,7 @@ export class Spite extends Message<Spite> {
     { no: 4, name: "timeout", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
     { no: 5, name: "error", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
     { no: 6, name: "status", kind: "message", T: Status },
+    { no: 9, name: "common", kind: "message", T: CommonBody, oneof: "body" },
     { no: 10, name: "empty", kind: "message", T: Empty, oneof: "body" },
     { no: 11, name: "block", kind: "message", T: Block, oneof: "body" },
     { no: 13, name: "ack", kind: "message", T: ACK, oneof: "body" },

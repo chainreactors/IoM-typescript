@@ -3,9 +3,9 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { Artifact, Artifacts, Audits, Basic, BasicUpdateSession, Bin, Cert, Certs, Client, Clients, Context, Contexts, DLL2Shellcode, Empty, Event, Events, EXE2Shellcode, Files, GithubActionBuildConfig, Int, Jobs, LicenseInfo, Listeners, LoginReq, Notify, On, Pipelines, Polling, Profile, Profiles, Session, SessionRequest, Sessions, ShellcodeEncode, Sync, Task, TaskContext, TaskContexts, TaskRequest, Tasks, TasksContext, TLS } from "../../client/clientpb/client_pb.js";
+import { Artifact, Artifacts, Audits, Basic, BasicUpdateSession, Bin, Cert, Certs, Client, Clients, Context, Contexts, DLL2Shellcode, Empty, Event, Events, EXE2Shellcode, Files, GithubActionBuildConfig, Int, Jobs, LicenseInfo, Listeners, LoginReq, MutantSigforgeRequest, MutantSrdiRequest, MutantStripRequest, Notify, On, Pipelines, Polling, Profile, Profiles, Session, SessionRequest, Sessions, ShellcodeEncode, Sync, Task, TaskContext, TaskContexts, TaskRequest, Tasks, TasksContext, TLS } from "../../client/clientpb/client_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
-import { BypassRequest, ChownRequest, CurlRequest, DownloadRequest, ExecRequest, ExecuteAddon, ExecuteBinary, FFmpegRequest, LoadAddon, LoadModule, Ping, PipeRequest, PtyRequest, RegistryRequest, RegistryWriteRequest, Request, RunAsRequest, ServiceRequest, Switch, TaskCtrl, TaskScheduleRequest, Timer, UploadRequest, WmiMethodRequest, WmiQueryRequest } from "../../implant/implantpb/module_pb.js";
+import { BypassRequest, ChownRequest, CommonRequest, CurlRequest, DownloadRequest, ExecRequest, ExecuteAddon, ExecuteBinary, FFmpegRequest, LoadAddon, LoadModule, Ping, PipeRequest, PtyRequest, RegistryRequest, RegistryWriteRequest, Request, RunAsRequest, ServiceRequest, Switch, TaskCtrl, TaskScheduleRequest, Timer, UploadRequest, WmiMethodRequest, WmiQueryRequest } from "../../implant/implantpb/module_pb.js";
 import { Operator, Response } from "../../client/rootpb/root_pb.js";
 
 /**
@@ -288,6 +288,15 @@ export const MaliceRPC = {
     refreshModule: {
       name: "RefreshModule",
       I: Request,
+      O: Task,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc clientrpc.MaliceRPC.ModuleCommon
+     */
+    moduleCommon: {
+      name: "ModuleCommon",
+      I: CommonRequest,
       O: Task,
       kind: MethodKind.Unary,
     },
@@ -1016,6 +1025,35 @@ export const MaliceRPC = {
     shellcodeEncode: {
       name: "ShellcodeEncode",
       I: ShellcodeEncode,
+      O: Bin,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * malefic-mutant tools
+     *
+     * @generated from rpc clientrpc.MaliceRPC.MutantSrdi
+     */
+    mutantSrdi: {
+      name: "MutantSrdi",
+      I: MutantSrdiRequest,
+      O: Bin,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc clientrpc.MaliceRPC.MutantStrip
+     */
+    mutantStrip: {
+      name: "MutantStrip",
+      I: MutantStripRequest,
+      O: Bin,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc clientrpc.MaliceRPC.MutantSigforge
+     */
+    mutantSigforge: {
+      name: "MutantSigforge",
+      I: MutantSigforgeRequest,
       O: Bin,
       kind: MethodKind.Unary,
     },

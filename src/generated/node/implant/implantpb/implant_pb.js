@@ -4,7 +4,7 @@
 // @ts-nocheck
 
 import { proto3 } from "@bufbuild/protobuf";
-import { ACK, Addons, BinaryResponse, Block, BypassRequest, ChownRequest, CurlRequest, DownloadRequest, DownloadResponse, EnumDriversResponse, ExecRequest, ExecResponse, ExecuteAddon, ExecuteBinary, ExecuteCommand, FFmpegRequest, GetSystem, IfconfigResponse, Init, Inject, KeyExchangeRequest, KeyExchangeResponse, LoadAddon, LoadModule, LsResponse, Modules, NetstatResponse, Ping, Pipe, PsResponse, PtyRequest, PtyResponse, Register, Registry, RegistryWriteRequest, Request, Response, RunAsRequest, Service, ServiceConfig, ServicesResponse, Suicide, Switch, SysInfo, TaskCtrl, TaskInfo, TaskListResponse, TaskSchedule, TaskSchedulesResponse, Timer, UploadRequest, WmiMethodRequest, WmiQueryRequest } from "./module_pb.js";
+import { ACK, Addons, BinaryResponse, Block, BypassRequest, ChownRequest, CommonBody, CurlRequest, DownloadRequest, DownloadResponse, EnumDriversResponse, ExecRequest, ExecResponse, ExecuteAddon, ExecuteBinary, ExecuteCommand, FFmpegRequest, GetSystem, IfconfigResponse, Init, Inject, KeyExchangeRequest, KeyExchangeResponse, LoadAddon, LoadModule, LsResponse, Modules, NetstatResponse, Ping, Pipe, PsResponse, PtyRequest, PtyResponse, Register, Registry, RegistryWriteRequest, Request, Response, RunAsRequest, Service, ServiceConfig, ServicesResponse, Suicide, Switch, SysInfo, TaskCtrl, TaskInfo, TaskListResponse, TaskSchedule, TaskSchedulesResponse, Timer, UploadRequest, WmiMethodRequest, WmiQueryRequest } from "./module_pb.js";
 
 /**
  * @generated from message implantpb.Empty
@@ -40,6 +40,7 @@ export const Spite = /*@__PURE__*/ proto3.makeMessageType(
     { no: 4, name: "timeout", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
     { no: 5, name: "error", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
     { no: 6, name: "status", kind: "message", T: Status },
+    { no: 9, name: "common", kind: "message", T: CommonBody, oneof: "body" },
     { no: 10, name: "empty", kind: "message", T: Empty, oneof: "body" },
     { no: 11, name: "block", kind: "message", T: Block, oneof: "body" },
     { no: 13, name: "ack", kind: "message", T: ACK, oneof: "body" },

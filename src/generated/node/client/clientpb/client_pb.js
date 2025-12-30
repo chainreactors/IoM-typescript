@@ -531,6 +531,47 @@ export const ShellcodeEncode = /*@__PURE__*/ proto3.makeMessageType(
 );
 
 /**
+ * malefic-mutant tools
+ *
+ * @generated from message clientpb.MutantSrdiRequest
+ */
+export const MutantSrdiRequest = /*@__PURE__*/ proto3.makeMessageType(
+  "clientpb.MutantSrdiRequest",
+  () => [
+    { no: 1, name: "bin", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 2, name: "arch", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "function_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "platform", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "userdata", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+  ],
+);
+
+/**
+ * @generated from message clientpb.MutantStripRequest
+ */
+export const MutantStripRequest = /*@__PURE__*/ proto3.makeMessageType(
+  "clientpb.MutantStripRequest",
+  () => [
+    { no: 1, name: "bin", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 2, name: "custom_paths", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+  ],
+);
+
+/**
+ * @generated from message clientpb.MutantSigforgeRequest
+ */
+export const MutantSigforgeRequest = /*@__PURE__*/ proto3.makeMessageType(
+  "clientpb.MutantSigforgeRequest",
+  () => [
+    { no: 1, name: "operation", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "source_bin", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 3, name: "target_bin", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 4, name: "signature", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+  ],
+);
+
+/**
  * @generated from message clientpb.Bin
  */
 export const Bin = /*@__PURE__*/ proto3.makeMessageType(
@@ -565,6 +606,7 @@ export const Artifact = /*@__PURE__*/ proto3.makeMessageType(
     { no: 17, name: "log", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
     { no: 18, name: "log_num", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
     { no: 19, name: "rdi", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 20, name: "comment", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ],
 );
 
@@ -952,6 +994,8 @@ export const BuildConfig = /*@__PURE__*/ proto3.makeMessageType(
     { no: 10, name: "docker", kind: "message", T: DockerBuildConfig, oneof: "source_config" },
     { no: 11, name: "github_action", kind: "message", T: GithubActionBuildConfig, oneof: "source_config" },
     { no: 12, name: "saas", kind: "message", T: SaasBuildConfig, oneof: "source_config" },
+    { no: 13, name: "lib", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 14, name: "comment", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ],
 );
 

@@ -5,7 +5,7 @@
 
 import { Artifact, BuildConfig, CtrlPipeline, Empty, JobCtrl, JobStatus, Listener, Pipeline, Pipelines, Profile, RegisterListener, RegisterSession, REMAgent, RemLog, SpiteRequest, SpiteResponse, WebContent, WebContents, Website } from "../../client/clientpb/client_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
-import { Ping, Request, SysInfo } from "../../implant/implantpb/module_pb.js";
+import { Init, Ping, SysInfo } from "../../implant/implantpb/module_pb.js";
 
 /**
  * @generated from service listenerrpc.ListenerRPC
@@ -65,7 +65,7 @@ export const ListenerRPC = {
      */
     initBindSession: {
       name: "InitBindSession",
-      I: Request,
+      I: Init,
       O: Empty,
       kind: MethodKind.Unary,
     },
