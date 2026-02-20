@@ -190,6 +190,21 @@ export class SessionManager {
   }
 
   /**
+   * Get tasks for a specific session
+   */
+  async getTasks(sessionId: string, all = false): Promise<any[]> {
+    if (!this.client) {
+      throw new Error('SessionManager client is not initialized');
+    }
+    const maliceClient = this.client.getMaliceClient();
+    const response = await maliceClient.getTasks({
+      sessionId,
+      all
+    });
+    return response.tasks || [];
+  }
+
+  /**
    * Execute a task for a specific session and wait for completion
    * This method automatically gets the session and calls the appropriate sync_ method
    */
