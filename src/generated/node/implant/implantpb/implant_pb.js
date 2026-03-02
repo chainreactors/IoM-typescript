@@ -109,3 +109,14 @@ export const Spites = /*@__PURE__*/ proto3.makeMessageType(
   ],
 );
 
+/**
+ * @generated from message implantpb.ExecuteModuleRequest
+ */
+export const ExecuteModuleRequest = /*@__PURE__*/ proto3.makeMessageType(
+  "implantpb.ExecuteModuleRequest",
+  () => [
+    { no: 1, name: "spite", kind: "message", T: Spite },
+    { no: 2, name: "expect", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ],
+);
+

@@ -631,8 +631,10 @@ export const Profile = /*@__PURE__*/ proto3.makeMessageType(
     { no: 4, name: "proxy", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 8, name: "params", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 9, name: "pipeline_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 11, name: "content", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 11, name: "implant_config", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
     { no: 12, name: "created_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 13, name: "prelude_config", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 14, name: "resources", kind: "message", T: BuildResources },
   ],
 );
 
@@ -800,6 +802,33 @@ export const CertificateSubject = /*@__PURE__*/ proto3.makeMessageType(
     { no: 5, name: "ou", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 6, name: "st", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 7, name: "validity", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ],
+);
+
+/**
+ * @generated from message clientpb.AcmeConfig
+ */
+export const AcmeConfig = /*@__PURE__*/ proto3.makeMessageType(
+  "clientpb.AcmeConfig",
+  () => [
+    { no: 1, name: "email", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "ca_url", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "provider", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "credentials", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
+  ],
+);
+
+/**
+ * @generated from message clientpb.AcmeRequest
+ */
+export const AcmeRequest = /*@__PURE__*/ proto3.makeMessageType(
+  "clientpb.AcmeRequest",
+  () => [
+    { no: 1, name: "domain", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "provider", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "credentials", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
+    { no: 4, name: "email", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "ca_url", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ],
 );
 
@@ -1129,6 +1158,7 @@ export const Notify = /*@__PURE__*/ proto3.makeMessageType(
     { no: 6, name: "dingtalk_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 7, name: "lark_enable", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
     { no: 8, name: "lark_webhook_url", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 15, name: "lark_secret", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 9, name: "serverchan_enable", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
     { no: 10, name: "serverchan_url", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 11, name: "pushplus_enable", kind: "scalar", T: 8 /* ScalarType.BOOL */ },

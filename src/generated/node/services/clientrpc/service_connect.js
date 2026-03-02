@@ -3,9 +3,10 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { Artifact, Artifacts, Audits, Basic, BasicUpdateSession, Bin, Cert, Certs, Client, Clients, Context, Contexts, DLL2Shellcode, Empty, Event, Events, EXE2Shellcode, Files, GithubActionBuildConfig, Int, Jobs, LicenseInfo, Listeners, LoginReq, MutantSigforgeRequest, MutantSrdiRequest, MutantStripRequest, Notify, On, Pipelines, Polling, Profile, Profiles, Session, SessionRequest, Sessions, ShellcodeEncode, Sync, Task, TaskContext, TaskContexts, TaskRequest, Tasks, TasksContext, TLS } from "../../client/clientpb/client_pb.js";
+import { AcmeConfig, AcmeRequest, Artifact, Artifacts, Audits, Basic, BasicUpdateSession, Bin, Cert, Certs, Client, Clients, Context, Contexts, DLL2Shellcode, Empty, Event, Events, EXE2Shellcode, Files, GithubActionBuildConfig, Int, Jobs, LicenseInfo, Listeners, LoginReq, MutantSigforgeRequest, MutantSrdiRequest, MutantStripRequest, Notify, On, Pipelines, Polling, Profile, Profiles, Session, SessionRequest, Sessions, ShellcodeEncode, Sync, Task, TaskContext, TaskContexts, TaskRequest, Tasks, TasksContext, TLS } from "../../client/clientpb/client_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
-import { BypassRequest, ChownRequest, CommonRequest, CurlRequest, DownloadRequest, ExecRequest, ExecuteAddon, ExecuteBinary, FFmpegRequest, LoadAddon, LoadModule, Ping, PipeRequest, PtyRequest, RegistryRequest, RegistryWriteRequest, Request, RunAsRequest, ServiceRequest, Switch, TaskCtrl, TaskScheduleRequest, Timer, UploadRequest, WmiMethodRequest, WmiQueryRequest } from "../../implant/implantpb/module_pb.js";
+import { BypassRequest, ChownRequest, CurlRequest, DownloadRequest, ExecRequest, ExecuteAddon, ExecuteBinary, FFmpegRequest, LoadAddon, LoadModule, Ping, PipeRequest, PtyRequest, RegistryRequest, RegistryWriteRequest, Request, RunAsRequest, ServiceRequest, Switch, TaskCtrl, TaskScheduleRequest, Timer, UploadRequest, WmiMethodRequest, WmiQueryRequest } from "../../implant/implantpb/module_pb.js";
+import { ExecuteModuleRequest } from "../../implant/implantpb/implant_pb.js";
 import { Operator, Response } from "../../client/rootpb/root_pb.js";
 
 /**
@@ -292,11 +293,11 @@ export const MaliceRPC = {
       kind: MethodKind.Unary,
     },
     /**
-     * @generated from rpc clientrpc.MaliceRPC.ModuleCommon
+     * @generated from rpc clientrpc.MaliceRPC.ExecuteModule
      */
-    moduleCommon: {
-      name: "ModuleCommon",
-      I: CommonRequest,
+    executeModule: {
+      name: "ExecuteModule",
+      I: ExecuteModuleRequest,
       O: Task,
       kind: MethodKind.Unary,
     },
@@ -1201,6 +1202,24 @@ export const MaliceRPC = {
       kind: MethodKind.Unary,
     },
     /**
+     * @generated from rpc clientrpc.MaliceRPC.GetAcmeConfig
+     */
+    getAcmeConfig: {
+      name: "GetAcmeConfig",
+      I: Empty,
+      O: AcmeConfig,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc clientrpc.MaliceRPC.UpdateAcmeConfig
+     */
+    updateAcmeConfig: {
+      name: "UpdateAcmeConfig",
+      I: AcmeConfig,
+      O: Empty,
+      kind: MethodKind.Unary,
+    },
+    /**
      * @generated from rpc clientrpc.MaliceRPC.RefreshConfig
      */
     refreshConfig: {
@@ -1245,6 +1264,15 @@ export const MaliceRPC = {
       name: "DownloadCertificate",
       I: Cert,
       O: TLS,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc clientrpc.MaliceRPC.ObtainAcmeCert
+     */
+    obtainAcmeCert: {
+      name: "ObtainAcmeCert",
+      I: AcmeRequest,
+      O: Empty,
       kind: MethodKind.Unary,
     },
     /**
@@ -1328,6 +1356,15 @@ export const MaliceRPC = {
      */
     addDownload: {
       name: "AddDownload",
+      I: Context,
+      O: Empty,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc clientrpc.MaliceRPC.DeleteContext
+     */
+    deleteContext: {
+      name: "DeleteContext",
       I: Context,
       O: Empty,
       kind: MethodKind.Unary,

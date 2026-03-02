@@ -78,7 +78,7 @@ export class Register extends Message<Register> {
   sysinfo?: SysInfo;
 
   /**
-   * implant的公钥，用于server加密数据
+   * Implant's public key, used by server to encrypt data
    *
    * @generated from field: modulepb.Secure secure = 12;
    */
@@ -142,7 +142,7 @@ export class Secure extends Message<Secure> {
   type = "";
 
   /**
-   * implant的公钥，用于server加密数据
+   * Implant's public key, used by server to encrypt data
    *
    * @generated from field: string public_key = 4;
    */
@@ -180,34 +180,34 @@ export class Secure extends Message<Secure> {
 }
 
 /**
- * Age 密钥交换相关消息
+ * Age key exchange related messages
  *
  * @generated from message modulepb.KeyExchangeRequest
  */
 export class KeyExchangeRequest extends Message<KeyExchangeRequest> {
   /**
-   * 临时公钥 (Age X25519)
+   * Temporary public key (Age X25519)
    *
    * @generated from field: string public_key = 1;
    */
   publicKey = "";
 
   /**
-   * 对临时公钥的签名
+   * Signature of temporary public key
    *
    * @generated from field: bytes signature = 2;
    */
   signature = new Uint8Array(0);
 
   /**
-   * 时间戳
+   * Timestamp
    *
    * @generated from field: uint64 timestamp = 3;
    */
   timestamp = protoInt64.zero;
 
   /**
-   * 随机数
+   * Nonce
    *
    * @generated from field: string nonce = 4;
    */
@@ -249,7 +249,7 @@ export class KeyExchangeRequest extends Message<KeyExchangeRequest> {
  */
 export class KeyExchangeResponse extends Message<KeyExchangeResponse> {
   /**
-   * Server 临时公钥
+   * Server temporary public key
    *
    * @generated from field: string public_key = 1;
    */
@@ -3022,35 +3022,35 @@ export class WmiMethodRequest extends Message<WmiMethodRequest> {
  */
 export class RunAsRequest extends Message<RunAsRequest> {
   /**
-   * 需要执行的用户名
+   * Username to execute as
    *
    * @generated from field: string username = 1;
    */
   username = "";
 
   /**
-   * 用户所属域
+   * User domain
    *
    * @generated from field: string domain = 2;
    */
   domain = "";
 
   /**
-   * 用户密码
+   * User password
    *
    * @generated from field: string password = 3;
    */
   password = "";
 
   /**
-   * 程序路径
+   * Program path
    *
    * @generated from field: string program = 4;
    */
   program = "";
 
   /**
-   * 程序参数（可选）
+   * Program arguments (optional)
    *
    * @generated from field: string args = 5;
    */
@@ -3062,7 +3062,7 @@ export class RunAsRequest extends Message<RunAsRequest> {
   useProfile = false;
 
   /**
-   * 是否仅使用网络凭据 (可选，默认 false)
+   * Use network credentials only (optional, default false)
    *
    * @generated from field: bool netonly = 7;
    */
@@ -3165,6 +3165,11 @@ export class Inject extends Message<Inject> {
    */
   pid = 0;
 
+  /**
+   * @generated from field: uint32 token_pid = 3;
+   */
+  tokenPid = 0;
+
   constructor(data?: PartialMessage<Inject>) {
     super();
     proto3.util.initPartial(data, this);
@@ -3175,6 +3180,7 @@ export class Inject extends Message<Inject> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "bin", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
     { no: 2, name: "pid", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 3, name: "token_pid", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Inject {
@@ -3609,35 +3615,35 @@ export class PtyRequest extends Message<PtyRequest> {
  */
 export class PtyResponse extends Message<PtyResponse> {
   /**
-   * 会话ID
+   * Session ID
    *
    * @generated from field: string session_id = 1;
    */
   sessionId = "";
 
   /**
-   * 输出数据（二进制）
+   * Output data (binary)
    *
    * @generated from field: bytes output_data = 2;
    */
   outputData = new Uint8Array(0);
 
   /**
-   * 输出数据（文本）
+   * Output data (text)
    *
    * @generated from field: string output_text = 3;
    */
   outputText = "";
 
   /**
-   * 错误信息
+   * Error message
    *
    * @generated from field: string error = 4;
    */
   error = "";
 
   /**
-   * 会话是否仍然活跃
+   * Whether session is still active
    *
    * @generated from field: bool session_active = 5;
    */
@@ -3692,6 +3698,11 @@ export class PtyResponse extends Message<PtyResponse> {
  */
 export class CommonBody extends Message<CommonBody> {
   /**
+   * @generated from field: string name = 1;
+   */
+  name = "";
+
+  /**
    * @generated from field: repeated uint32 u32_array = 2;
    */
   u32Array: number[] = [];
@@ -3724,6 +3735,7 @@ export class CommonBody extends Message<CommonBody> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "modulepb.CommonBody";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "u32_array", kind: "scalar", T: 13 /* ScalarType.UINT32 */, repeated: true },
     { no: 4, name: "u64_array", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true },
     { no: 6, name: "bool_array", kind: "scalar", T: 8 /* ScalarType.BOOL */, repeated: true },
@@ -3745,51 +3757,6 @@ export class CommonBody extends Message<CommonBody> {
 
   static equals(a: CommonBody | PlainMessage<CommonBody> | undefined, b: CommonBody | PlainMessage<CommonBody> | undefined): boolean {
     return proto3.util.equals(CommonBody, a, b);
-  }
-}
-
-/**
- * generic wrapper for calling modules that expect CommonBody
- *
- * @generated from message modulepb.CommonRequest
- */
-export class CommonRequest extends Message<CommonRequest> {
-  /**
-   * @generated from field: string name = 1;
-   */
-  name = "";
-
-  /**
-   * @generated from field: modulepb.CommonBody body = 2;
-   */
-  body?: CommonBody;
-
-  constructor(data?: PartialMessage<CommonRequest>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "modulepb.CommonRequest";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "body", kind: "message", T: CommonBody },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CommonRequest {
-    return new CommonRequest().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CommonRequest {
-    return new CommonRequest().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CommonRequest {
-    return new CommonRequest().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: CommonRequest | PlainMessage<CommonRequest> | undefined, b: CommonRequest | PlainMessage<CommonRequest> | undefined): boolean {
-    return proto3.util.equals(CommonRequest, a, b);
   }
 }
 

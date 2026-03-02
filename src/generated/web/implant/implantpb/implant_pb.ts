@@ -594,3 +594,46 @@ export class Spites extends Message<Spites> {
   }
 }
 
+/**
+ * @generated from message implantpb.ExecuteModuleRequest
+ */
+export class ExecuteModuleRequest extends Message<ExecuteModuleRequest> {
+  /**
+   * @generated from field: implantpb.Spite spite = 1;
+   */
+  spite?: Spite;
+
+  /**
+   * @generated from field: string expect = 2;
+   */
+  expect = "";
+
+  constructor(data?: PartialMessage<ExecuteModuleRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "implantpb.ExecuteModuleRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "spite", kind: "message", T: Spite },
+    { no: 2, name: "expect", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ExecuteModuleRequest {
+    return new ExecuteModuleRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ExecuteModuleRequest {
+    return new ExecuteModuleRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ExecuteModuleRequest {
+    return new ExecuteModuleRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ExecuteModuleRequest | PlainMessage<ExecuteModuleRequest> | undefined, b: ExecuteModuleRequest | PlainMessage<ExecuteModuleRequest> | undefined): boolean {
+    return proto3.util.equals(ExecuteModuleRequest, a, b);
+  }
+}
+

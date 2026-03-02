@@ -231,7 +231,7 @@ export class Session extends Message<Session> {
   addons: Addon[] = [];
 
   /**
-   * Age 密钥对
+   * Age key pair
    *
    * @generated from field: clientpb.KeyPair key_pair = 32;
    */
@@ -2697,14 +2697,24 @@ export class Profile extends Message<Profile> {
   pipelineId = "";
 
   /**
-   * @generated from field: bytes content = 11;
+   * @generated from field: bytes implant_config = 11;
    */
-  content = new Uint8Array(0);
+  implantConfig = new Uint8Array(0);
 
   /**
    * @generated from field: int64 created_at = 12;
    */
   createdAt = protoInt64.zero;
+
+  /**
+   * @generated from field: bytes prelude_config = 13;
+   */
+  preludeConfig = new Uint8Array(0);
+
+  /**
+   * @generated from field: clientpb.BuildResources resources = 14;
+   */
+  resources?: BuildResources;
 
   constructor(data?: PartialMessage<Profile>) {
     super();
@@ -2719,8 +2729,10 @@ export class Profile extends Message<Profile> {
     { no: 4, name: "proxy", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 8, name: "params", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 9, name: "pipeline_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 11, name: "content", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 11, name: "implant_config", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
     { no: 12, name: "created_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 13, name: "prelude_config", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 14, name: "resources", kind: "message", T: BuildResources },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Profile {
@@ -3108,7 +3120,7 @@ export class Pipeline extends Message<Pipeline> {
   certName = "";
 
   /**
-   * Age 安全配置
+   * Age security configuration
    *
    * @generated from field: clientpb.Secure secure = 12;
    */
@@ -3489,6 +3501,132 @@ export class CertificateSubject extends Message<CertificateSubject> {
 
   static equals(a: CertificateSubject | PlainMessage<CertificateSubject> | undefined, b: CertificateSubject | PlainMessage<CertificateSubject> | undefined): boolean {
     return proto3.util.equals(CertificateSubject, a, b);
+  }
+}
+
+/**
+ * @generated from message clientpb.AcmeConfig
+ */
+export class AcmeConfig extends Message<AcmeConfig> {
+  /**
+   * @generated from field: string email = 1;
+   */
+  email = "";
+
+  /**
+   * @generated from field: string ca_url = 2;
+   */
+  caUrl = "";
+
+  /**
+   * cloudflare, alidns, dnspod, route53
+   *
+   * @generated from field: string provider = 3;
+   */
+  provider = "";
+
+  /**
+   * @generated from field: map<string, string> credentials = 4;
+   */
+  credentials: { [key: string]: string } = {};
+
+  constructor(data?: PartialMessage<AcmeConfig>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "clientpb.AcmeConfig";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "email", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "ca_url", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "provider", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "credentials", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AcmeConfig {
+    return new AcmeConfig().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AcmeConfig {
+    return new AcmeConfig().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AcmeConfig {
+    return new AcmeConfig().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: AcmeConfig | PlainMessage<AcmeConfig> | undefined, b: AcmeConfig | PlainMessage<AcmeConfig> | undefined): boolean {
+    return proto3.util.equals(AcmeConfig, a, b);
+  }
+}
+
+/**
+ * @generated from message clientpb.AcmeRequest
+ */
+export class AcmeRequest extends Message<AcmeRequest> {
+  /**
+   * @generated from field: string domain = 1;
+   */
+  domain = "";
+
+  /**
+   * optional, override config default
+   *
+   * @generated from field: string provider = 2;
+   */
+  provider = "";
+
+  /**
+   * optional, override config default
+   *
+   * @generated from field: map<string, string> credentials = 3;
+   */
+  credentials: { [key: string]: string } = {};
+
+  /**
+   * optional
+   *
+   * @generated from field: string email = 4;
+   */
+  email = "";
+
+  /**
+   * optional
+   *
+   * @generated from field: string ca_url = 5;
+   */
+  caUrl = "";
+
+  constructor(data?: PartialMessage<AcmeRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "clientpb.AcmeRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "domain", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "provider", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "credentials", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
+    { no: 4, name: "email", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "ca_url", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AcmeRequest {
+    return new AcmeRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AcmeRequest {
+    return new AcmeRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AcmeRequest {
+    return new AcmeRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: AcmeRequest | PlainMessage<AcmeRequest> | undefined, b: AcmeRequest | PlainMessage<AcmeRequest> | undefined): boolean {
+    return proto3.util.equals(AcmeRequest, a, b);
   }
 }
 
@@ -4920,6 +5058,11 @@ export class Notify extends Message<Notify> {
   larkWebhookUrl = "";
 
   /**
+   * @generated from field: string lark_secret = 15;
+   */
+  larkSecret = "";
+
+  /**
    * @generated from field: bool serverchan_enable = 9;
    */
   serverchanEnable = false;
@@ -4965,6 +5108,7 @@ export class Notify extends Message<Notify> {
     { no: 6, name: "dingtalk_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 7, name: "lark_enable", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
     { no: 8, name: "lark_webhook_url", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 15, name: "lark_secret", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 9, name: "serverchan_enable", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
     { no: 10, name: "serverchan_url", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 11, name: "pushplus_enable", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
@@ -5129,14 +5273,14 @@ export class Contexts extends Message<Contexts> {
  */
 export class KeyPair extends Message<KeyPair> {
   /**
-   * 公钥
+   * Public key
    *
    * @generated from field: string public_key = 1;
    */
   publicKey = "";
 
   /**
-   * 私钥
+   * Private key
    *
    * @generated from field: string private_key = 2;
    */
@@ -5176,21 +5320,21 @@ export class KeyPair extends Message<KeyPair> {
  */
 export class Secure extends Message<Secure> {
   /**
-   * 是否启用安全模式
+   * Whether to enable security mode
    *
    * @generated from field: bool enable = 1;
    */
   enable = false;
 
   /**
-   * server密钥对
+   * Server key pair
    *
    * @generated from field: clientpb.KeyPair server_keypair = 2;
    */
   serverKeypair?: KeyPair;
 
   /**
-   * implant密钥对
+   * Implant key pair
    *
    * @generated from field: clientpb.KeyPair implant_keypair = 3;
    */
