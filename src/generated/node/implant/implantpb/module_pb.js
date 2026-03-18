@@ -6,6 +6,18 @@
 import { proto3 } from "@bufbuild/protobuf";
 
 /**
+ * @generated from enum modulepb.SwitchAction
+ */
+export const SwitchAction = /*@__PURE__*/ proto3.makeEnum(
+  "modulepb.SwitchAction",
+  [
+    {no: 0, name: "REPLACE"},
+    {no: 1, name: "ADD"},
+    {no: 2, name: "SWITCH"},
+  ],
+);
+
+/**
  * @generated from message modulepb.Ping
  */
 export const Ping = /*@__PURE__*/ proto3.makeMessageType(
@@ -782,12 +794,80 @@ export const PipeRequest = /*@__PURE__*/ proto3.makeMessageType(
 );
 
 /**
+ * @generated from message modulepb.TargetTlsConfig
+ */
+export const TargetTlsConfig = /*@__PURE__*/ proto3.makeMessageType(
+  "modulepb.TargetTlsConfig",
+  () => [
+    { no: 1, name: "enable", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 2, name: "version", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "sni", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "skip_verify", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ],
+);
+
+/**
+ * @generated from message modulepb.TargetProxyConfig
+ */
+export const TargetProxyConfig = /*@__PURE__*/ proto3.makeMessageType(
+  "modulepb.TargetProxyConfig",
+  () => [
+    { no: 1, name: "type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "host", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "port", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 4, name: "username", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "password", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ],
+);
+
+/**
+ * @generated from message modulepb.TargetHttpConfig
+ */
+export const TargetHttpConfig = /*@__PURE__*/ proto3.makeMessageType(
+  "modulepb.TargetHttpConfig",
+  () => [
+    { no: 1, name: "method", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "path", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "version", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "headers", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
+  ],
+);
+
+/**
+ * @generated from message modulepb.TargetRemConfig
+ */
+export const TargetRemConfig = /*@__PURE__*/ proto3.makeMessageType(
+  "modulepb.TargetRemConfig",
+  () => [
+    { no: 1, name: "link", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ],
+);
+
+/**
+ * @generated from message modulepb.Target
+ */
+export const Target = /*@__PURE__*/ proto3.makeMessageType(
+  "modulepb.Target",
+  () => [
+    { no: 1, name: "address", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "protocol", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "tls_config", kind: "message", T: TargetTlsConfig },
+    { no: 4, name: "proxy_config", kind: "message", T: TargetProxyConfig },
+    { no: 5, name: "http_config", kind: "message", T: TargetHttpConfig },
+    { no: 6, name: "rem_config", kind: "message", T: TargetRemConfig },
+    { no: 7, name: "domain_suffix", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ],
+);
+
+/**
  * @generated from message modulepb.Switch
  */
 export const Switch = /*@__PURE__*/ proto3.makeMessageType(
   "modulepb.Switch",
   () => [
-    { no: 1, name: "urls", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 1, name: "targets", kind: "message", T: Target, repeated: true },
+    { no: 2, name: "action", kind: "enum", T: proto3.getEnumType(SwitchAction) },
+    { no: 3, name: "key", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
   ],
 );
 
@@ -886,6 +966,139 @@ export const CommonBody = /*@__PURE__*/ proto3.makeMessageType(
     { no: 6, name: "bool_array", kind: "scalar", T: 8 /* ScalarType.BOOL */, repeated: true },
     { no: 8, name: "string_array", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
     { no: 10, name: "bytes_array", kind: "scalar", T: 12 /* ScalarType.BYTES */, repeated: true },
+  ],
+);
+
+/**
+ * @generated from message modulepb.LLMMessage
+ */
+export const LLMMessage = /*@__PURE__*/ proto3.makeMessageType(
+  "modulepb.LLMMessage",
+  () => [
+    { no: 1, name: "role", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "content", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ],
+);
+
+/**
+ * @generated from message modulepb.LLMToolCall
+ */
+export const LLMToolCall = /*@__PURE__*/ proto3.makeMessageType(
+  "modulepb.LLMToolCall",
+  () => [
+    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "arguments", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ],
+);
+
+/**
+ * @generated from message modulepb.LLMToolResult
+ */
+export const LLMToolResult = /*@__PURE__*/ proto3.makeMessageType(
+  "modulepb.LLMToolResult",
+  () => [
+    { no: 1, name: "call_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "content", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ],
+);
+
+/**
+ * @generated from message modulepb.LLMEvent
+ */
+export const LLMEvent = /*@__PURE__*/ proto3.makeMessageType(
+  "modulepb.LLMEvent",
+  () => [
+    { no: 1, name: "type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "format", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "model", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "message_count", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 5, name: "messages", kind: "message", T: LLMMessage, repeated: true },
+    { no: 6, name: "tool_calls", kind: "message", T: LLMToolCall, repeated: true },
+    { no: 7, name: "tool_results", kind: "message", T: LLMToolResult, repeated: true },
+    { no: 8, name: "status_code", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+  ],
+);
+
+/**
+ * @generated from message modulepb.BridgeToolParam
+ */
+export const BridgeToolParam = /*@__PURE__*/ proto3.makeMessageType(
+  "modulepb.BridgeToolParam",
+  () => [
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "required", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ],
+);
+
+/**
+ * @generated from message modulepb.BridgeToolDef
+ */
+export const BridgeToolDef = /*@__PURE__*/ proto3.makeMessageType(
+  "modulepb.BridgeToolDef",
+  () => [
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "params", kind: "message", T: BridgeToolParam, repeated: true },
+  ],
+);
+
+/**
+ * @generated from message modulepb.BridgeAgentRequest
+ */
+export const BridgeAgentRequest = /*@__PURE__*/ proto3.makeMessageType(
+  "modulepb.BridgeAgentRequest",
+  () => [
+    { no: 1, name: "session", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "text", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "model", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "provider", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "system_prompt", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "max_turns", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 7, name: "extra_tools", kind: "message", T: BridgeToolDef, repeated: true },
+    { no: 8, name: "skills", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+  ],
+);
+
+/**
+ * @generated from message modulepb.BridgeAgentResponse
+ */
+export const BridgeAgentResponse = /*@__PURE__*/ proto3.makeMessageType(
+  "modulepb.BridgeAgentResponse",
+  () => [
+    { no: 1, name: "session", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "text", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "iterations", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 4, name: "tool_calls_made", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 5, name: "error", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "available_tools", kind: "message", T: BridgeToolDef, repeated: true },
+  ],
+);
+
+/**
+ * implant -> server: JSON-serialized BridgeRequest (moltis bridge protocol)
+ *
+ * @generated from message modulepb.BridgeLlmRequest
+ */
+export const BridgeLlmRequest = /*@__PURE__*/ proto3.makeMessageType(
+  "modulepb.BridgeLlmRequest",
+  () => [
+    { no: 1, name: "data", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+  ],
+);
+
+/**
+ * server -> implant: JSON-serialized BridgeResponse (moltis bridge protocol)
+ *
+ * @generated from message modulepb.BridgeLlmResponse
+ */
+export const BridgeLlmResponse = /*@__PURE__*/ proto3.makeMessageType(
+  "modulepb.BridgeLlmResponse",
+  () => [
+    { no: 1, name: "data", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 2, name: "error", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ],
 );
 

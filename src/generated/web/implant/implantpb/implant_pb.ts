@@ -5,7 +5,7 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { ACK, Addons, BinaryResponse, Block, BypassRequest, ChownRequest, CommonBody, CurlRequest, DownloadRequest, DownloadResponse, EnumDriversResponse, ExecRequest, ExecResponse, ExecuteAddon, ExecuteBinary, ExecuteCommand, FFmpegRequest, GetSystem, IfconfigResponse, Init, Inject, KeyExchangeRequest, KeyExchangeResponse, LoadAddon, LoadModule, LsResponse, Modules, NetstatResponse, Ping, Pipe, PsResponse, PtyRequest, PtyResponse, Register, Registry, RegistryWriteRequest, Request, Response, RunAsRequest, Service, ServiceConfig, ServicesResponse, Suicide, Switch, SysInfo, TaskCtrl, TaskInfo, TaskListResponse, TaskSchedule, TaskSchedulesResponse, Timer, UploadRequest, WmiMethodRequest, WmiQueryRequest } from "./module_pb";
+import { ACK, Addons, BinaryResponse, Block, BridgeAgentRequest, BridgeAgentResponse, BridgeLlmRequest, BridgeLlmResponse, BypassRequest, ChownRequest, CommonBody, CurlRequest, DownloadRequest, DownloadResponse, EnumDriversResponse, ExecRequest, ExecResponse, ExecuteAddon, ExecuteBinary, ExecuteCommand, FFmpegRequest, GetSystem, IfconfigResponse, Init, Inject, KeyExchangeRequest, KeyExchangeResponse, LLMEvent, LoadAddon, LoadModule, LsResponse, Modules, NetstatResponse, Ping, Pipe, PsResponse, PtyRequest, PtyResponse, Register, Registry, RegistryWriteRequest, Request, Response, RunAsRequest, Service, ServiceConfig, ServicesResponse, Suicide, Switch, SysInfo, TaskCtrl, TaskInfo, TaskListResponse, TaskSchedule, TaskSchedulesResponse, Timer, UploadRequest, WmiMethodRequest, WmiQueryRequest } from "./module_pb";
 
 /**
  * @generated from message implantpb.Empty
@@ -466,6 +466,36 @@ export class Spite extends Message<Spite> {
      */
     value: PtyResponse;
     case: "ptyResponse";
+  } | {
+    /**
+     * @generated from field: modulepb.LLMEvent llm_event = 160;
+     */
+    value: LLMEvent;
+    case: "llmEvent";
+  } | {
+    /**
+     * @generated from field: modulepb.BridgeAgentRequest bridge_agent_request = 164;
+     */
+    value: BridgeAgentRequest;
+    case: "bridgeAgentRequest";
+  } | {
+    /**
+     * @generated from field: modulepb.BridgeAgentResponse bridge_agent_response = 165;
+     */
+    value: BridgeAgentResponse;
+    case: "bridgeAgentResponse";
+  } | {
+    /**
+     * @generated from field: modulepb.BridgeLlmRequest bridge_llm_request = 166;
+     */
+    value: BridgeLlmRequest;
+    case: "bridgeLlmRequest";
+  } | {
+    /**
+     * @generated from field: modulepb.BridgeLlmResponse bridge_llm_response = 167;
+     */
+    value: BridgeLlmResponse;
+    case: "bridgeLlmResponse";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
   constructor(data?: PartialMessage<Spite>) {
@@ -538,6 +568,11 @@ export class Spite extends Message<Spite> {
     { no: 150, name: "ffmpeg_request", kind: "message", T: FFmpegRequest, oneof: "body" },
     { no: 151, name: "pty_request", kind: "message", T: PtyRequest, oneof: "body" },
     { no: 152, name: "pty_response", kind: "message", T: PtyResponse, oneof: "body" },
+    { no: 160, name: "llm_event", kind: "message", T: LLMEvent, oneof: "body" },
+    { no: 164, name: "bridge_agent_request", kind: "message", T: BridgeAgentRequest, oneof: "body" },
+    { no: 165, name: "bridge_agent_response", kind: "message", T: BridgeAgentResponse, oneof: "body" },
+    { no: 166, name: "bridge_llm_request", kind: "message", T: BridgeLlmRequest, oneof: "body" },
+    { no: 167, name: "bridge_llm_response", kind: "message", T: BridgeLlmResponse, oneof: "body" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Spite {

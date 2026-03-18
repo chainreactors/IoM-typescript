@@ -7,6 +7,32 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
 
 /**
+ * @generated from enum modulepb.SwitchAction
+ */
+export enum SwitchAction {
+  /**
+   * @generated from enum value: REPLACE = 0;
+   */
+  REPLACE = 0,
+
+  /**
+   * @generated from enum value: ADD = 1;
+   */
+  ADD = 1,
+
+  /**
+   * @generated from enum value: SWITCH = 2;
+   */
+  SWITCH = 2,
+}
+// Retrieve enum metadata with: proto3.getEnumType(SwitchAction)
+proto3.util.setEnumType(SwitchAction, "modulepb.SwitchAction", [
+  { no: 0, name: "REPLACE" },
+  { no: 1, name: "ADD" },
+  { no: 2, name: "SWITCH" },
+]);
+
+/**
  * @generated from message modulepb.Ping
  */
 export class Ping extends Message<Ping> {
@@ -3293,13 +3319,306 @@ export class PipeRequest extends Message<PipeRequest> {
 }
 
 /**
+ * @generated from message modulepb.TargetTlsConfig
+ */
+export class TargetTlsConfig extends Message<TargetTlsConfig> {
+  /**
+   * @generated from field: bool enable = 1;
+   */
+  enable = false;
+
+  /**
+   * @generated from field: string version = 2;
+   */
+  version = "";
+
+  /**
+   * @generated from field: string sni = 3;
+   */
+  sni = "";
+
+  /**
+   * @generated from field: bool skip_verify = 4;
+   */
+  skipVerify = false;
+
+  constructor(data?: PartialMessage<TargetTlsConfig>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "modulepb.TargetTlsConfig";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "enable", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 2, name: "version", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "sni", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "skip_verify", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TargetTlsConfig {
+    return new TargetTlsConfig().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TargetTlsConfig {
+    return new TargetTlsConfig().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TargetTlsConfig {
+    return new TargetTlsConfig().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TargetTlsConfig | PlainMessage<TargetTlsConfig> | undefined, b: TargetTlsConfig | PlainMessage<TargetTlsConfig> | undefined): boolean {
+    return proto3.util.equals(TargetTlsConfig, a, b);
+  }
+}
+
+/**
+ * @generated from message modulepb.TargetProxyConfig
+ */
+export class TargetProxyConfig extends Message<TargetProxyConfig> {
+  /**
+   * @generated from field: string type = 1;
+   */
+  type = "";
+
+  /**
+   * @generated from field: string host = 2;
+   */
+  host = "";
+
+  /**
+   * @generated from field: uint32 port = 3;
+   */
+  port = 0;
+
+  /**
+   * @generated from field: string username = 4;
+   */
+  username = "";
+
+  /**
+   * @generated from field: string password = 5;
+   */
+  password = "";
+
+  constructor(data?: PartialMessage<TargetProxyConfig>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "modulepb.TargetProxyConfig";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "host", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "port", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 4, name: "username", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "password", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TargetProxyConfig {
+    return new TargetProxyConfig().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TargetProxyConfig {
+    return new TargetProxyConfig().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TargetProxyConfig {
+    return new TargetProxyConfig().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TargetProxyConfig | PlainMessage<TargetProxyConfig> | undefined, b: TargetProxyConfig | PlainMessage<TargetProxyConfig> | undefined): boolean {
+    return proto3.util.equals(TargetProxyConfig, a, b);
+  }
+}
+
+/**
+ * @generated from message modulepb.TargetHttpConfig
+ */
+export class TargetHttpConfig extends Message<TargetHttpConfig> {
+  /**
+   * @generated from field: string method = 1;
+   */
+  method = "";
+
+  /**
+   * @generated from field: string path = 2;
+   */
+  path = "";
+
+  /**
+   * @generated from field: string version = 3;
+   */
+  version = "";
+
+  /**
+   * @generated from field: map<string, string> headers = 4;
+   */
+  headers: { [key: string]: string } = {};
+
+  constructor(data?: PartialMessage<TargetHttpConfig>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "modulepb.TargetHttpConfig";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "method", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "path", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "version", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "headers", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TargetHttpConfig {
+    return new TargetHttpConfig().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TargetHttpConfig {
+    return new TargetHttpConfig().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TargetHttpConfig {
+    return new TargetHttpConfig().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TargetHttpConfig | PlainMessage<TargetHttpConfig> | undefined, b: TargetHttpConfig | PlainMessage<TargetHttpConfig> | undefined): boolean {
+    return proto3.util.equals(TargetHttpConfig, a, b);
+  }
+}
+
+/**
+ * @generated from message modulepb.TargetRemConfig
+ */
+export class TargetRemConfig extends Message<TargetRemConfig> {
+  /**
+   * @generated from field: string link = 1;
+   */
+  link = "";
+
+  constructor(data?: PartialMessage<TargetRemConfig>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "modulepb.TargetRemConfig";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "link", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TargetRemConfig {
+    return new TargetRemConfig().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TargetRemConfig {
+    return new TargetRemConfig().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TargetRemConfig {
+    return new TargetRemConfig().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TargetRemConfig | PlainMessage<TargetRemConfig> | undefined, b: TargetRemConfig | PlainMessage<TargetRemConfig> | undefined): boolean {
+    return proto3.util.equals(TargetRemConfig, a, b);
+  }
+}
+
+/**
+ * @generated from message modulepb.Target
+ */
+export class Target extends Message<Target> {
+  /**
+   * @generated from field: string address = 1;
+   */
+  address = "";
+
+  /**
+   * "tcp" / "http" / "rem"
+   *
+   * @generated from field: string protocol = 2;
+   */
+  protocol = "";
+
+  /**
+   * @generated from field: modulepb.TargetTlsConfig tls_config = 3;
+   */
+  tlsConfig?: TargetTlsConfig;
+
+  /**
+   * @generated from field: modulepb.TargetProxyConfig proxy_config = 4;
+   */
+  proxyConfig?: TargetProxyConfig;
+
+  /**
+   * @generated from field: modulepb.TargetHttpConfig http_config = 5;
+   */
+  httpConfig?: TargetHttpConfig;
+
+  /**
+   * @generated from field: modulepb.TargetRemConfig rem_config = 6;
+   */
+  remConfig?: TargetRemConfig;
+
+  /**
+   * @generated from field: string domain_suffix = 7;
+   */
+  domainSuffix = "";
+
+  constructor(data?: PartialMessage<Target>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "modulepb.Target";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "address", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "protocol", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "tls_config", kind: "message", T: TargetTlsConfig },
+    { no: 4, name: "proxy_config", kind: "message", T: TargetProxyConfig },
+    { no: 5, name: "http_config", kind: "message", T: TargetHttpConfig },
+    { no: 6, name: "rem_config", kind: "message", T: TargetRemConfig },
+    { no: 7, name: "domain_suffix", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Target {
+    return new Target().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Target {
+    return new Target().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Target {
+    return new Target().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Target | PlainMessage<Target> | undefined, b: Target | PlainMessage<Target> | undefined): boolean {
+    return proto3.util.equals(Target, a, b);
+  }
+}
+
+/**
  * @generated from message modulepb.Switch
  */
 export class Switch extends Message<Switch> {
   /**
-   * @generated from field: repeated string urls = 1;
+   * @generated from field: repeated modulepb.Target targets = 1;
    */
-  urls: string[] = [];
+  targets: Target[] = [];
+
+  /**
+   * @generated from field: modulepb.SwitchAction action = 2;
+   */
+  action = SwitchAction.REPLACE;
+
+  /**
+   * @generated from field: bytes key = 3;
+   */
+  key = new Uint8Array(0);
 
   constructor(data?: PartialMessage<Switch>) {
     super();
@@ -3309,7 +3628,9 @@ export class Switch extends Message<Switch> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "modulepb.Switch";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "urls", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 1, name: "targets", kind: "message", T: Target, repeated: true },
+    { no: 2, name: "action", kind: "enum", T: proto3.getEnumType(SwitchAction) },
+    { no: 3, name: "key", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Switch {
@@ -3757,6 +4078,586 @@ export class CommonBody extends Message<CommonBody> {
 
   static equals(a: CommonBody | PlainMessage<CommonBody> | undefined, b: CommonBody | PlainMessage<CommonBody> | undefined): boolean {
     return proto3.util.equals(CommonBody, a, b);
+  }
+}
+
+/**
+ * @generated from message modulepb.LLMMessage
+ */
+export class LLMMessage extends Message<LLMMessage> {
+  /**
+   * "system" | "user" | "assistant" | "tool"
+   *
+   * @generated from field: string role = 1;
+   */
+  role = "";
+
+  /**
+   * text content (truncated to ~200 chars)
+   *
+   * @generated from field: string content = 2;
+   */
+  content = "";
+
+  constructor(data?: PartialMessage<LLMMessage>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "modulepb.LLMMessage";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "role", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "content", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): LLMMessage {
+    return new LLMMessage().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): LLMMessage {
+    return new LLMMessage().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): LLMMessage {
+    return new LLMMessage().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: LLMMessage | PlainMessage<LLMMessage> | undefined, b: LLMMessage | PlainMessage<LLMMessage> | undefined): boolean {
+    return proto3.util.equals(LLMMessage, a, b);
+  }
+}
+
+/**
+ * @generated from message modulepb.LLMToolCall
+ */
+export class LLMToolCall extends Message<LLMToolCall> {
+  /**
+   * call id
+   *
+   * @generated from field: string id = 1;
+   */
+  id = "";
+
+  /**
+   * tool/function name
+   *
+   * @generated from field: string name = 2;
+   */
+  name = "";
+
+  /**
+   * JSON arguments (truncated to ~150 chars)
+   *
+   * @generated from field: string arguments = 3;
+   */
+  arguments = "";
+
+  constructor(data?: PartialMessage<LLMToolCall>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "modulepb.LLMToolCall";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "arguments", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): LLMToolCall {
+    return new LLMToolCall().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): LLMToolCall {
+    return new LLMToolCall().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): LLMToolCall {
+    return new LLMToolCall().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: LLMToolCall | PlainMessage<LLMToolCall> | undefined, b: LLMToolCall | PlainMessage<LLMToolCall> | undefined): boolean {
+    return proto3.util.equals(LLMToolCall, a, b);
+  }
+}
+
+/**
+ * @generated from message modulepb.LLMToolResult
+ */
+export class LLMToolResult extends Message<LLMToolResult> {
+  /**
+   * reference tool call id
+   *
+   * @generated from field: string call_id = 1;
+   */
+  callId = "";
+
+  /**
+   * result content (truncated to ~200 chars)
+   *
+   * @generated from field: string content = 2;
+   */
+  content = "";
+
+  constructor(data?: PartialMessage<LLMToolResult>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "modulepb.LLMToolResult";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "call_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "content", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): LLMToolResult {
+    return new LLMToolResult().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): LLMToolResult {
+    return new LLMToolResult().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): LLMToolResult {
+    return new LLMToolResult().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: LLMToolResult | PlainMessage<LLMToolResult> | undefined, b: LLMToolResult | PlainMessage<LLMToolResult> | undefined): boolean {
+    return proto3.util.equals(LLMToolResult, a, b);
+  }
+}
+
+/**
+ * @generated from message modulepb.LLMEvent
+ */
+export class LLMEvent extends Message<LLMEvent> {
+  /**
+   * "request" | "response"
+   *
+   * @generated from field: string type = 1;
+   */
+  type = "";
+
+  /**
+   * "openai" | "claude" | "openai-responses"
+   *
+   * @generated from field: string format = 2;
+   */
+  format = "";
+
+  /**
+   * model name
+   *
+   * @generated from field: string model = 3;
+   */
+  model = "";
+
+  /**
+   * total messages in conversation
+   *
+   * @generated from field: int32 message_count = 4;
+   */
+  messageCount = 0;
+
+  /**
+   * last N messages (summarized)
+   *
+   * @generated from field: repeated modulepb.LLMMessage messages = 5;
+   */
+  messages: LLMMessage[] = [];
+
+  /**
+   * tool calls in this turn
+   *
+   * @generated from field: repeated modulepb.LLMToolCall tool_calls = 6;
+   */
+  toolCalls: LLMToolCall[] = [];
+
+  /**
+   * tool results in this turn
+   *
+   * @generated from field: repeated modulepb.LLMToolResult tool_results = 7;
+   */
+  toolResults: LLMToolResult[] = [];
+
+  /**
+   * HTTP status code (responses only)
+   *
+   * @generated from field: int32 status_code = 8;
+   */
+  statusCode = 0;
+
+  constructor(data?: PartialMessage<LLMEvent>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "modulepb.LLMEvent";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "format", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "model", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "message_count", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 5, name: "messages", kind: "message", T: LLMMessage, repeated: true },
+    { no: 6, name: "tool_calls", kind: "message", T: LLMToolCall, repeated: true },
+    { no: 7, name: "tool_results", kind: "message", T: LLMToolResult, repeated: true },
+    { no: 8, name: "status_code", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): LLMEvent {
+    return new LLMEvent().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): LLMEvent {
+    return new LLMEvent().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): LLMEvent {
+    return new LLMEvent().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: LLMEvent | PlainMessage<LLMEvent> | undefined, b: LLMEvent | PlainMessage<LLMEvent> | undefined): boolean {
+    return proto3.util.equals(LLMEvent, a, b);
+  }
+}
+
+/**
+ * @generated from message modulepb.BridgeToolParam
+ */
+export class BridgeToolParam extends Message<BridgeToolParam> {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name = "";
+
+  /**
+   * @generated from field: string description = 2;
+   */
+  description = "";
+
+  /**
+   * "string", "integer", "boolean"
+   *
+   * @generated from field: string type = 3;
+   */
+  type = "";
+
+  /**
+   * @generated from field: bool required = 4;
+   */
+  required = false;
+
+  constructor(data?: PartialMessage<BridgeToolParam>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "modulepb.BridgeToolParam";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "required", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): BridgeToolParam {
+    return new BridgeToolParam().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): BridgeToolParam {
+    return new BridgeToolParam().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): BridgeToolParam {
+    return new BridgeToolParam().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: BridgeToolParam | PlainMessage<BridgeToolParam> | undefined, b: BridgeToolParam | PlainMessage<BridgeToolParam> | undefined): boolean {
+    return proto3.util.equals(BridgeToolParam, a, b);
+  }
+}
+
+/**
+ * @generated from message modulepb.BridgeToolDef
+ */
+export class BridgeToolDef extends Message<BridgeToolDef> {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name = "";
+
+  /**
+   * @generated from field: string description = 2;
+   */
+  description = "";
+
+  /**
+   * @generated from field: repeated modulepb.BridgeToolParam params = 3;
+   */
+  params: BridgeToolParam[] = [];
+
+  constructor(data?: PartialMessage<BridgeToolDef>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "modulepb.BridgeToolDef";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "params", kind: "message", T: BridgeToolParam, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): BridgeToolDef {
+    return new BridgeToolDef().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): BridgeToolDef {
+    return new BridgeToolDef().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): BridgeToolDef {
+    return new BridgeToolDef().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: BridgeToolDef | PlainMessage<BridgeToolDef> | undefined, b: BridgeToolDef | PlainMessage<BridgeToolDef> | undefined): boolean {
+    return proto3.util.equals(BridgeToolDef, a, b);
+  }
+}
+
+/**
+ * @generated from message modulepb.BridgeAgentRequest
+ */
+export class BridgeAgentRequest extends Message<BridgeAgentRequest> {
+  /**
+   * @generated from field: string session = 1;
+   */
+  session = "";
+
+  /**
+   * @generated from field: string text = 2;
+   */
+  text = "";
+
+  /**
+   * @generated from field: string model = 3;
+   */
+  model = "";
+
+  /**
+   * @generated from field: string provider = 4;
+   */
+  provider = "";
+
+  /**
+   * @generated from field: string system_prompt = 5;
+   */
+  systemPrompt = "";
+
+  /**
+   * @generated from field: uint32 max_turns = 6;
+   */
+  maxTurns = 0;
+
+  /**
+   * @generated from field: repeated modulepb.BridgeToolDef extra_tools = 7;
+   */
+  extraTools: BridgeToolDef[] = [];
+
+  /**
+   * @generated from field: repeated string skills = 8;
+   */
+  skills: string[] = [];
+
+  constructor(data?: PartialMessage<BridgeAgentRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "modulepb.BridgeAgentRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "session", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "text", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "model", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "provider", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "system_prompt", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "max_turns", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 7, name: "extra_tools", kind: "message", T: BridgeToolDef, repeated: true },
+    { no: 8, name: "skills", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): BridgeAgentRequest {
+    return new BridgeAgentRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): BridgeAgentRequest {
+    return new BridgeAgentRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): BridgeAgentRequest {
+    return new BridgeAgentRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: BridgeAgentRequest | PlainMessage<BridgeAgentRequest> | undefined, b: BridgeAgentRequest | PlainMessage<BridgeAgentRequest> | undefined): boolean {
+    return proto3.util.equals(BridgeAgentRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message modulepb.BridgeAgentResponse
+ */
+export class BridgeAgentResponse extends Message<BridgeAgentResponse> {
+  /**
+   * @generated from field: string session = 1;
+   */
+  session = "";
+
+  /**
+   * @generated from field: string text = 2;
+   */
+  text = "";
+
+  /**
+   * @generated from field: uint32 iterations = 3;
+   */
+  iterations = 0;
+
+  /**
+   * @generated from field: uint32 tool_calls_made = 4;
+   */
+  toolCallsMade = 0;
+
+  /**
+   * @generated from field: string error = 5;
+   */
+  error = "";
+
+  /**
+   * @generated from field: repeated modulepb.BridgeToolDef available_tools = 6;
+   */
+  availableTools: BridgeToolDef[] = [];
+
+  constructor(data?: PartialMessage<BridgeAgentResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "modulepb.BridgeAgentResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "session", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "text", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "iterations", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 4, name: "tool_calls_made", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 5, name: "error", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "available_tools", kind: "message", T: BridgeToolDef, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): BridgeAgentResponse {
+    return new BridgeAgentResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): BridgeAgentResponse {
+    return new BridgeAgentResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): BridgeAgentResponse {
+    return new BridgeAgentResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: BridgeAgentResponse | PlainMessage<BridgeAgentResponse> | undefined, b: BridgeAgentResponse | PlainMessage<BridgeAgentResponse> | undefined): boolean {
+    return proto3.util.equals(BridgeAgentResponse, a, b);
+  }
+}
+
+/**
+ * implant -> server: JSON-serialized BridgeRequest (moltis bridge protocol)
+ *
+ * @generated from message modulepb.BridgeLlmRequest
+ */
+export class BridgeLlmRequest extends Message<BridgeLlmRequest> {
+  /**
+   * @generated from field: bytes data = 1;
+   */
+  data = new Uint8Array(0);
+
+  constructor(data?: PartialMessage<BridgeLlmRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "modulepb.BridgeLlmRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "data", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): BridgeLlmRequest {
+    return new BridgeLlmRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): BridgeLlmRequest {
+    return new BridgeLlmRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): BridgeLlmRequest {
+    return new BridgeLlmRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: BridgeLlmRequest | PlainMessage<BridgeLlmRequest> | undefined, b: BridgeLlmRequest | PlainMessage<BridgeLlmRequest> | undefined): boolean {
+    return proto3.util.equals(BridgeLlmRequest, a, b);
+  }
+}
+
+/**
+ * server -> implant: JSON-serialized BridgeResponse (moltis bridge protocol)
+ *
+ * @generated from message modulepb.BridgeLlmResponse
+ */
+export class BridgeLlmResponse extends Message<BridgeLlmResponse> {
+  /**
+   * @generated from field: bytes data = 1;
+   */
+  data = new Uint8Array(0);
+
+  /**
+   * @generated from field: string error = 2;
+   */
+  error = "";
+
+  constructor(data?: PartialMessage<BridgeLlmResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "modulepb.BridgeLlmResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "data", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 2, name: "error", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): BridgeLlmResponse {
+    return new BridgeLlmResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): BridgeLlmResponse {
+    return new BridgeLlmResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): BridgeLlmResponse {
+    return new BridgeLlmResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: BridgeLlmResponse | PlainMessage<BridgeLlmResponse> | undefined, b: BridgeLlmResponse | PlainMessage<BridgeLlmResponse> | undefined): boolean {
+    return proto3.util.equals(BridgeLlmResponse, a, b);
   }
 }
 

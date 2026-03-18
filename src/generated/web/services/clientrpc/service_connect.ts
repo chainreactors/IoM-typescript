@@ -3,9 +3,9 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { AcmeConfig, AcmeRequest, Artifact, Artifacts, Audits, Basic, BasicUpdateSession, Bin, Cert, Certs, Client, Clients, Context, Contexts, DLL2Shellcode, Empty, Event, Events, EXE2Shellcode, Files, GithubActionBuildConfig, Int, Jobs, LicenseInfo, Listeners, LoginReq, MutantSigforgeRequest, MutantSrdiRequest, MutantStripRequest, Notify, On, Pipelines, Polling, Profile, Profiles, Session, SessionRequest, Sessions, ShellcodeEncode, Sync, Task, TaskContext, TaskContexts, TaskRequest, Tasks, TasksContext, TLS } from "../../client/clientpb/client_pb";
+import { AcmeConfig, AcmeRequest, Artifact, Artifacts, Audits, Basic, BasicUpdateSession, Bin, Cert, Certs, Client, Clients, Context, Contexts, DLL2Shellcode, Empty, Event, Events, EXE2Shellcode, Files, GithubActionBuildConfig, Int, Jobs, LicenseInfo, Listeners, LoginReq, MutantSigforgeRequest, MutantSrdiRequest, MutantStripRequest, Notify, On, Pipelines, Polling, Profile, Profiles, Session, SessionCount, SessionRequest, Sessions, ShellcodeEncode, Sync, Task, TaskContext, TaskContexts, TaskRequest, Tasks, TasksContext, TLS } from "../../client/clientpb/client_pb";
 import { MethodKind } from "@bufbuild/protobuf";
-import { BypassRequest, ChownRequest, CurlRequest, DownloadRequest, ExecRequest, ExecuteAddon, ExecuteBinary, FFmpegRequest, LoadAddon, LoadModule, Ping, PipeRequest, PtyRequest, RegistryRequest, RegistryWriteRequest, Request, RunAsRequest, ServiceRequest, Switch, TaskCtrl, TaskScheduleRequest, Timer, UploadRequest, WmiMethodRequest, WmiQueryRequest } from "../../implant/implantpb/module_pb";
+import { BypassRequest, ChownRequest, CommonBody, CurlRequest, DownloadRequest, ExecRequest, ExecuteAddon, ExecuteBinary, FFmpegRequest, LoadAddon, LoadModule, Ping, PipeRequest, PtyRequest, RegistryRequest, RegistryWriteRequest, Request, RunAsRequest, ServiceRequest, Switch, TaskCtrl, TaskScheduleRequest, Timer, UploadRequest, WmiMethodRequest, WmiQueryRequest } from "../../implant/implantpb/module_pb";
 import { ExecuteModuleRequest } from "../../implant/implantpb/implant_pb";
 import { Operator, Response } from "../../client/rootpb/root_pb";
 
@@ -60,6 +60,15 @@ export const MaliceRPC = {
       name: "GetSession",
       I: SessionRequest,
       O: Session,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc clientrpc.MaliceRPC.GetSessionCount
+     */
+    getSessionCount: {
+      name: "GetSessionCount",
+      I: Empty,
+      O: SessionCount,
       kind: MethodKind.Unary,
     },
     /**
@@ -253,6 +262,15 @@ export const MaliceRPC = {
     sleep: {
       name: "Sleep",
       I: Timer,
+      O: Task,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc clientrpc.MaliceRPC.Keepalive
+     */
+    keepalive: {
+      name: "Keepalive",
+      I: CommonBody,
       O: Task,
       kind: MethodKind.Unary,
     },
@@ -492,6 +510,15 @@ export const MaliceRPC = {
      */
     mkdir: {
       name: "Mkdir",
+      I: Request,
+      O: Task,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc clientrpc.MaliceRPC.Touch
+     */
+    touch: {
+      name: "Touch",
       I: Request,
       O: Task,
       kind: MethodKind.Unary,

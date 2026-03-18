@@ -31,6 +31,17 @@ export const Basic = /*@__PURE__*/ proto3.makeMessageType(
 );
 
 /**
+ * @generated from message clientpb.SessionCount
+ */
+export const SessionCount = /*@__PURE__*/ proto3.makeMessageType(
+  "clientpb.SessionCount",
+  () => [
+    { no: 1, name: "alive", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 2, name: "total", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+  ],
+);
+
+/**
  * @generated from message clientpb.Session
  */
 export const Session = /*@__PURE__*/ proto3.makeMessageType(
@@ -287,6 +298,7 @@ export const Event = /*@__PURE__*/ proto3.makeMessageType(
     { no: 12, name: "client", kind: "message", T: Client },
     { no: 13, name: "task", kind: "message", T: Task },
     { no: 14, name: "spite", kind: "message", T: Spite },
+    { no: 15, name: "listener", kind: "message", T: Listener },
   ],
 );
 
@@ -735,6 +747,25 @@ export const Pipeline = /*@__PURE__*/ proto3.makeMessageType(
     { no: 22, name: "rem", kind: "message", T: REM, oneof: "body" },
     { no: 23, name: "web", kind: "message", T: Website, oneof: "body" },
     { no: 24, name: "http", kind: "message", T: HTTPPipeline, oneof: "body" },
+    { no: 25, name: "custom", kind: "message", T: CustomPipeline, oneof: "body" },
+  ],
+);
+
+/**
+ * CustomPipeline is a generic, externally-managed pipeline type.
+ * All custom configuration is passed via the params JSON string field;
+ * the server stores it as-is without parsing.
+ *
+ * @generated from message clientpb.CustomPipeline
+ */
+export const CustomPipeline = /*@__PURE__*/ proto3.makeMessageType(
+  "clientpb.CustomPipeline",
+  () => [
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "listener_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "host", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "port", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 5, name: "params", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ],
 );
 
@@ -894,6 +925,7 @@ export const REMAgent = /*@__PURE__*/ proto3.makeMessageType(
     { no: 5, name: "remote", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 6, name: "enable", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
     { no: 7, name: "args", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 8, name: "created_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
   ],
 );
 
@@ -954,6 +986,7 @@ export const WebContent = /*@__PURE__*/ proto3.makeMessageType(
     { no: 8, name: "url", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 9, name: "content", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
     { no: 10, name: "listener_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 11, name: "auth", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ],
 );
 
@@ -968,6 +1001,7 @@ export const Website = /*@__PURE__*/ proto3.makeMessageType(
     { no: 3, name: "port", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
     { no: 4, name: "root", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 6, name: "contents", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: WebContent} },
+    { no: 7, name: "auth", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ],
 );
 
@@ -1023,7 +1057,7 @@ export const BuildConfig = /*@__PURE__*/ proto3.makeMessageType(
     { no: 10, name: "docker", kind: "message", T: DockerBuildConfig, oneof: "source_config" },
     { no: 11, name: "github_action", kind: "message", T: GithubActionBuildConfig, oneof: "source_config" },
     { no: 12, name: "saas", kind: "message", T: SaasBuildConfig, oneof: "source_config" },
-    { no: 13, name: "lib", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 13, name: "output_type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 14, name: "comment", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ],
 );

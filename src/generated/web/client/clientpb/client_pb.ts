@@ -107,6 +107,49 @@ export class Basic extends Message<Basic> {
 }
 
 /**
+ * @generated from message clientpb.SessionCount
+ */
+export class SessionCount extends Message<SessionCount> {
+  /**
+   * @generated from field: int32 alive = 1;
+   */
+  alive = 0;
+
+  /**
+   * @generated from field: int32 total = 2;
+   */
+  total = 0;
+
+  constructor(data?: PartialMessage<SessionCount>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "clientpb.SessionCount";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "alive", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 2, name: "total", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SessionCount {
+    return new SessionCount().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SessionCount {
+    return new SessionCount().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SessionCount {
+    return new SessionCount().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: SessionCount | PlainMessage<SessionCount> | undefined, b: SessionCount | PlainMessage<SessionCount> | undefined): boolean {
+    return proto3.util.equals(SessionCount, a, b);
+  }
+}
+
+/**
  * @generated from message clientpb.Session
  */
 export class Session extends Message<Session> {
@@ -1202,6 +1245,11 @@ export class Event extends Message<Event> {
    */
   spite?: Spite;
 
+  /**
+   * @generated from field: clientpb.Listener listener = 15;
+   */
+  listener?: Listener;
+
   constructor(data?: PartialMessage<Event>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1221,6 +1269,7 @@ export class Event extends Message<Event> {
     { no: 12, name: "client", kind: "message", T: Client },
     { no: 13, name: "task", kind: "message", T: Task },
     { no: 14, name: "spite", kind: "message", T: Spite },
+    { no: 15, name: "listener", kind: "message", T: Listener },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Event {
@@ -3159,6 +3208,12 @@ export class Pipeline extends Message<Pipeline> {
      */
     value: HTTPPipeline;
     case: "http";
+  } | {
+    /**
+     * @generated from field: clientpb.CustomPipeline custom = 25;
+     */
+    value: CustomPipeline;
+    case: "custom";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
   constructor(data?: PartialMessage<Pipeline>) {
@@ -3184,6 +3239,7 @@ export class Pipeline extends Message<Pipeline> {
     { no: 22, name: "rem", kind: "message", T: REM, oneof: "body" },
     { no: 23, name: "web", kind: "message", T: Website, oneof: "body" },
     { no: 24, name: "http", kind: "message", T: HTTPPipeline, oneof: "body" },
+    { no: 25, name: "custom", kind: "message", T: CustomPipeline, oneof: "body" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Pipeline {
@@ -3200,6 +3256,71 @@ export class Pipeline extends Message<Pipeline> {
 
   static equals(a: Pipeline | PlainMessage<Pipeline> | undefined, b: Pipeline | PlainMessage<Pipeline> | undefined): boolean {
     return proto3.util.equals(Pipeline, a, b);
+  }
+}
+
+/**
+ * CustomPipeline is a generic, externally-managed pipeline type.
+ * All custom configuration is passed via the params JSON string field;
+ * the server stores it as-is without parsing.
+ *
+ * @generated from message clientpb.CustomPipeline
+ */
+export class CustomPipeline extends Message<CustomPipeline> {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name = "";
+
+  /**
+   * @generated from field: string listener_id = 2;
+   */
+  listenerId = "";
+
+  /**
+   * @generated from field: string host = 3;
+   */
+  host = "";
+
+  /**
+   * @generated from field: uint32 port = 4;
+   */
+  port = 0;
+
+  /**
+   * @generated from field: string params = 5;
+   */
+  params = "";
+
+  constructor(data?: PartialMessage<CustomPipeline>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "clientpb.CustomPipeline";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "listener_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "host", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "port", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 5, name: "params", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CustomPipeline {
+    return new CustomPipeline().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CustomPipeline {
+    return new CustomPipeline().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CustomPipeline {
+    return new CustomPipeline().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: CustomPipeline | PlainMessage<CustomPipeline> | undefined, b: CustomPipeline | PlainMessage<CustomPipeline> | undefined): boolean {
+    return proto3.util.equals(CustomPipeline, a, b);
   }
 }
 
@@ -3871,6 +3992,11 @@ export class REMAgent extends Message<REMAgent> {
    */
   args: string[] = [];
 
+  /**
+   * @generated from field: int64 created_at = 8;
+   */
+  createdAt = protoInt64.zero;
+
   constructor(data?: PartialMessage<REMAgent>) {
     super();
     proto3.util.initPartial(data, this);
@@ -3886,6 +4012,7 @@ export class REMAgent extends Message<REMAgent> {
     { no: 5, name: "remote", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 6, name: "enable", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
     { no: 7, name: "args", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 8, name: "created_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): REMAgent {
@@ -4138,6 +4265,13 @@ export class WebContent extends Message<WebContent> {
    */
   listenerId = "";
 
+  /**
+   * per-path auth "user:pass", empty = inherit website default, "none" = skip
+   *
+   * @generated from field: string auth = 11;
+   */
+  auth = "";
+
   constructor(data?: PartialMessage<WebContent>) {
     super();
     proto3.util.initPartial(data, this);
@@ -4156,6 +4290,7 @@ export class WebContent extends Message<WebContent> {
     { no: 8, name: "url", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 9, name: "content", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
     { no: 10, name: "listener_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 11, name: "auth", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): WebContent {
@@ -4204,6 +4339,13 @@ export class Website extends Message<Website> {
    */
   contents: { [key: string]: WebContent } = {};
 
+  /**
+   * website-level default auth "user:pass"
+   *
+   * @generated from field: string auth = 7;
+   */
+  auth = "";
+
   constructor(data?: PartialMessage<Website>) {
     super();
     proto3.util.initPartial(data, this);
@@ -4217,6 +4359,7 @@ export class Website extends Message<Website> {
     { no: 3, name: "port", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
     { no: 4, name: "root", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 6, name: "contents", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: WebContent} },
+    { no: 7, name: "auth", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Website {
@@ -4444,9 +4587,11 @@ export class BuildConfig extends Message<BuildConfig> {
   } | { case: undefined; value?: undefined } = { case: undefined };
 
   /**
-   * @generated from field: bool lib = 13;
+   * "executable"(default), "lib", "shellcode"
+   *
+   * @generated from field: string output_type = 13;
    */
-  lib = false;
+  outputType = "";
 
   /**
    * @generated from field: string comment = 14;
@@ -4473,7 +4618,7 @@ export class BuildConfig extends Message<BuildConfig> {
     { no: 10, name: "docker", kind: "message", T: DockerBuildConfig, oneof: "source_config" },
     { no: 11, name: "github_action", kind: "message", T: GithubActionBuildConfig, oneof: "source_config" },
     { no: 12, name: "saas", kind: "message", T: SaasBuildConfig, oneof: "source_config" },
-    { no: 13, name: "lib", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 13, name: "output_type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 14, name: "comment", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 

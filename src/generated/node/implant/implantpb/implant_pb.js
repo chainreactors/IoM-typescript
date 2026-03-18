@@ -4,7 +4,7 @@
 // @ts-nocheck
 
 import { proto3 } from "@bufbuild/protobuf";
-import { ACK, Addons, BinaryResponse, Block, BypassRequest, ChownRequest, CommonBody, CurlRequest, DownloadRequest, DownloadResponse, EnumDriversResponse, ExecRequest, ExecResponse, ExecuteAddon, ExecuteBinary, ExecuteCommand, FFmpegRequest, GetSystem, IfconfigResponse, Init, Inject, KeyExchangeRequest, KeyExchangeResponse, LoadAddon, LoadModule, LsResponse, Modules, NetstatResponse, Ping, Pipe, PsResponse, PtyRequest, PtyResponse, Register, Registry, RegistryWriteRequest, Request, Response, RunAsRequest, Service, ServiceConfig, ServicesResponse, Suicide, Switch, SysInfo, TaskCtrl, TaskInfo, TaskListResponse, TaskSchedule, TaskSchedulesResponse, Timer, UploadRequest, WmiMethodRequest, WmiQueryRequest } from "./module_pb.js";
+import { ACK, Addons, BinaryResponse, Block, BridgeAgentRequest, BridgeAgentResponse, BridgeLlmRequest, BridgeLlmResponse, BypassRequest, ChownRequest, CommonBody, CurlRequest, DownloadRequest, DownloadResponse, EnumDriversResponse, ExecRequest, ExecResponse, ExecuteAddon, ExecuteBinary, ExecuteCommand, FFmpegRequest, GetSystem, IfconfigResponse, Init, Inject, KeyExchangeRequest, KeyExchangeResponse, LLMEvent, LoadAddon, LoadModule, LsResponse, Modules, NetstatResponse, Ping, Pipe, PsResponse, PtyRequest, PtyResponse, Register, Registry, RegistryWriteRequest, Request, Response, RunAsRequest, Service, ServiceConfig, ServicesResponse, Suicide, Switch, SysInfo, TaskCtrl, TaskInfo, TaskListResponse, TaskSchedule, TaskSchedulesResponse, Timer, UploadRequest, WmiMethodRequest, WmiQueryRequest } from "./module_pb.js";
 
 /**
  * @generated from message implantpb.Empty
@@ -96,6 +96,11 @@ export const Spite = /*@__PURE__*/ proto3.makeMessageType(
     { no: 150, name: "ffmpeg_request", kind: "message", T: FFmpegRequest, oneof: "body" },
     { no: 151, name: "pty_request", kind: "message", T: PtyRequest, oneof: "body" },
     { no: 152, name: "pty_response", kind: "message", T: PtyResponse, oneof: "body" },
+    { no: 160, name: "llm_event", kind: "message", T: LLMEvent, oneof: "body" },
+    { no: 164, name: "bridge_agent_request", kind: "message", T: BridgeAgentRequest, oneof: "body" },
+    { no: 165, name: "bridge_agent_response", kind: "message", T: BridgeAgentResponse, oneof: "body" },
+    { no: 166, name: "bridge_llm_request", kind: "message", T: BridgeLlmRequest, oneof: "body" },
+    { no: 167, name: "bridge_llm_response", kind: "message", T: BridgeLlmResponse, oneof: "body" },
   ],
 );
 

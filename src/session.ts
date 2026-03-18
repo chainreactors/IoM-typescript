@@ -250,7 +250,7 @@ export class SessionManager {
       'cd': 'sync_cd',
       'pwd': 'sync_pwd',
       'enum_drivers': 'sync_enumDrivers',
-      // Add more mappings as needed
+      'touch': 'sync_touch',
     };
     
     const methodName = taskNameToMethod[taskRequest.name.toLowerCase()];
