@@ -737,6 +737,7 @@ export const Pipeline = /*@__PURE__*/ proto3.makeMessageType(
     { no: 3, name: "type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 4, name: "listener_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 5, name: "parser", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "packet_length", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
     { no: 8, name: "tls", kind: "message", T: TLS },
     { no: 9, name: "encryption", kind: "message", T: Encryption, repeated: true },
     { no: 10, name: "ip", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -920,7 +921,7 @@ export const REMAgent = /*@__PURE__*/ proto3.makeMessageType(
   () => [
     { no: 1, name: "pipeline_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "mod", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "inbound_side", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 4, name: "local", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 5, name: "remote", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 6, name: "enable", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
@@ -1229,6 +1230,24 @@ export const Contexts = /*@__PURE__*/ proto3.makeMessageType(
   "clientpb.Contexts",
   () => [
     { no: 1, name: "contexts", kind: "message", T: Context, repeated: true },
+  ],
+);
+
+/**
+ * ContextChunk is used by the SyncStream RPC to deliver a Context
+ * incrementally. The first chunk carries `header` (metadata) and
+ * `total_size`; subsequent chunks carry binary `content` slices.
+ *
+ * @generated from message clientpb.ContextChunk
+ */
+export const ContextChunk = /*@__PURE__*/ proto3.makeMessageType(
+  "clientpb.ContextChunk",
+  () => [
+    { no: 1, name: "header", kind: "message", T: Context },
+    { no: 2, name: "content", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 3, name: "offset", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 4, name: "total_size", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 5, name: "eof", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ],
 );
 

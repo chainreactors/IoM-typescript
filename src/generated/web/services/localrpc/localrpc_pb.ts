@@ -531,3 +531,186 @@ export class GetGroupsResponse extends Message<GetGroupsResponse> {
   }
 }
 
+/**
+ * SearchCommandsRequest contains search parameters for command discovery
+ *
+ * @generated from message services.localrpc.SearchCommandsRequest
+ */
+export class SearchCommandsRequest extends Message<SearchCommandsRequest> {
+  /**
+   * Search keyword for fuzzy matching against command name and description
+   *
+   * @generated from field: string query = 1;
+   */
+  query = "";
+
+  /**
+   * Optional group filter to narrow search scope
+   *
+   * @generated from field: string group = 2;
+   */
+  group = "";
+
+  /**
+   * Optional session ID to scope search to commands available for that session
+   *
+   * @generated from field: string session_id = 3;
+   */
+  sessionId = "";
+
+  constructor(data?: PartialMessage<SearchCommandsRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "services.localrpc.SearchCommandsRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "query", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "group", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "session_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SearchCommandsRequest {
+    return new SearchCommandsRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SearchCommandsRequest {
+    return new SearchCommandsRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SearchCommandsRequest {
+    return new SearchCommandsRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: SearchCommandsRequest | PlainMessage<SearchCommandsRequest> | undefined, b: SearchCommandsRequest | PlainMessage<SearchCommandsRequest> | undefined): boolean {
+    return proto3.util.equals(SearchCommandsRequest, a, b);
+  }
+}
+
+/**
+ * CommandInfo contains a lightweight summary of a command
+ *
+ * @generated from message services.localrpc.CommandInfo
+ */
+export class CommandInfo extends Message<CommandInfo> {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name = "";
+
+  /**
+   * @generated from field: string group = 2;
+   */
+  group = "";
+
+  /**
+   * @generated from field: string description = 3;
+   */
+  description = "";
+
+  /**
+   * @generated from field: string ttp = 4;
+   */
+  ttp = "";
+
+  /**
+   * @generated from field: int32 opsec = 5;
+   */
+  opsec = 0;
+
+  /**
+   * @generated from field: string usage = 6;
+   */
+  usage = "";
+
+  /**
+   * @generated from field: repeated string subcommands = 7;
+   */
+  subcommands: string[] = [];
+
+  constructor(data?: PartialMessage<CommandInfo>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "services.localrpc.CommandInfo";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "group", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "ttp", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "opsec", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 6, name: "usage", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: "subcommands", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CommandInfo {
+    return new CommandInfo().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CommandInfo {
+    return new CommandInfo().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CommandInfo {
+    return new CommandInfo().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: CommandInfo | PlainMessage<CommandInfo> | undefined, b: CommandInfo | PlainMessage<CommandInfo> | undefined): boolean {
+    return proto3.util.equals(CommandInfo, a, b);
+  }
+}
+
+/**
+ * SearchCommandsResponse contains matching command summaries
+ *
+ * @generated from message services.localrpc.SearchCommandsResponse
+ */
+export class SearchCommandsResponse extends Message<SearchCommandsResponse> {
+  /**
+   * @generated from field: repeated services.localrpc.CommandInfo commands = 1;
+   */
+  commands: CommandInfo[] = [];
+
+  /**
+   * @generated from field: string error = 2;
+   */
+  error = "";
+
+  /**
+   * @generated from field: bool success = 3;
+   */
+  success = false;
+
+  constructor(data?: PartialMessage<SearchCommandsResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "services.localrpc.SearchCommandsResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "commands", kind: "message", T: CommandInfo, repeated: true },
+    { no: 2, name: "error", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "success", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SearchCommandsResponse {
+    return new SearchCommandsResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SearchCommandsResponse {
+    return new SearchCommandsResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SearchCommandsResponse {
+    return new SearchCommandsResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: SearchCommandsResponse | PlainMessage<SearchCommandsResponse> | undefined, b: SearchCommandsResponse | PlainMessage<SearchCommandsResponse> | undefined): boolean {
+    return proto3.util.equals(SearchCommandsResponse, a, b);
+  }
+}
+

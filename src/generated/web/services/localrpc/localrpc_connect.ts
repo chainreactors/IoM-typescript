@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { ExecuteCommandRequest, ExecuteCommandResponse, ExecuteLuaRequest, ExecuteLuaResponse, GetGroupsRequest, GetGroupsResponse, GetHistoryRequest, GetHistoryResponse, GetSchemasRequest, GetSchemasResponse } from "./localrpc_pb";
+import { ExecuteCommandRequest, ExecuteCommandResponse, ExecuteLuaRequest, ExecuteLuaResponse, GetGroupsRequest, GetGroupsResponse, GetHistoryRequest, GetHistoryResponse, GetSchemasRequest, GetSchemasResponse, SearchCommandsRequest, SearchCommandsResponse } from "./localrpc_pb";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -73,6 +73,28 @@ export const CommandService = {
       I: GetGroupsRequest,
       O: GetGroupsResponse,
       kind: MethodKind.Unary,
+    },
+    /**
+     * SearchCommands searches for commands by name or description with fuzzy matching
+     *
+     * @generated from rpc services.localrpc.CommandService.SearchCommands
+     */
+    searchCommands: {
+      name: "SearchCommands",
+      I: SearchCommandsRequest,
+      O: SearchCommandsResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * StreamCommand executes a command and continuously streams back task event output.
+     *
+     * @generated from rpc services.localrpc.CommandService.StreamCommand
+     */
+    streamCommand: {
+      name: "StreamCommand",
+      I: ExecuteCommandRequest,
+      O: ExecuteCommandResponse,
+      kind: MethodKind.ServerStreaming,
     },
   }
 } as const;

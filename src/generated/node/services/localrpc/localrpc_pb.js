@@ -138,3 +138,49 @@ export const GetGroupsResponse = /*@__PURE__*/ proto3.makeMessageType(
   ],
 );
 
+/**
+ * SearchCommandsRequest contains search parameters for command discovery
+ *
+ * @generated from message services.localrpc.SearchCommandsRequest
+ */
+export const SearchCommandsRequest = /*@__PURE__*/ proto3.makeMessageType(
+  "services.localrpc.SearchCommandsRequest",
+  () => [
+    { no: 1, name: "query", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "group", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "session_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ],
+);
+
+/**
+ * CommandInfo contains a lightweight summary of a command
+ *
+ * @generated from message services.localrpc.CommandInfo
+ */
+export const CommandInfo = /*@__PURE__*/ proto3.makeMessageType(
+  "services.localrpc.CommandInfo",
+  () => [
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "group", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "ttp", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "opsec", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 6, name: "usage", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: "subcommands", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+  ],
+);
+
+/**
+ * SearchCommandsResponse contains matching command summaries
+ *
+ * @generated from message services.localrpc.SearchCommandsResponse
+ */
+export const SearchCommandsResponse = /*@__PURE__*/ proto3.makeMessageType(
+  "services.localrpc.SearchCommandsResponse",
+  () => [
+    { no: 1, name: "commands", kind: "message", T: CommandInfo, repeated: true },
+    { no: 2, name: "error", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "success", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ],
+);
+
