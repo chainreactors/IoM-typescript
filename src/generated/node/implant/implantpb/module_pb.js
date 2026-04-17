@@ -387,6 +387,7 @@ export const Modules = /*@__PURE__*/ proto3.makeMessageType(
   "modulepb.Modules",
   () => [
     { no: 1, name: "modules", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 2, name: "bundle_map", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
   ],
 );
 

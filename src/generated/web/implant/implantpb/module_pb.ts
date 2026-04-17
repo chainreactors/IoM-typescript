@@ -1591,6 +1591,11 @@ export class Modules extends Message<Modules> {
    */
   modules: string[] = [];
 
+  /**
+   * @generated from field: map<string, string> bundle_map = 2;
+   */
+  bundleMap: { [key: string]: string } = {};
+
   constructor(data?: PartialMessage<Modules>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1600,6 +1605,7 @@ export class Modules extends Message<Modules> {
   static readonly typeName = "modulepb.Modules";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "modules", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 2, name: "bundle_map", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Modules {

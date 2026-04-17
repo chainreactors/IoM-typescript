@@ -4604,6 +4604,13 @@ export class BuildConfig extends Message<BuildConfig> {
    */
   comment = "";
 
+  /**
+   * build in debug mode (passes --debug to malefic-mutant: dev profile, no release opt)
+   *
+   * @generated from field: bool debug = 15;
+   */
+  debug = false;
+
   constructor(data?: PartialMessage<BuildConfig>) {
     super();
     proto3.util.initPartial(data, this);
@@ -4626,6 +4633,7 @@ export class BuildConfig extends Message<BuildConfig> {
     { no: 12, name: "saas", kind: "message", T: SaasBuildConfig, oneof: "source_config" },
     { no: 13, name: "output_type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 14, name: "comment", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 15, name: "debug", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): BuildConfig {

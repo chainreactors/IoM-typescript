@@ -1060,6 +1060,7 @@ export const BuildConfig = /*@__PURE__*/ proto3.makeMessageType(
     { no: 12, name: "saas", kind: "message", T: SaasBuildConfig, oneof: "source_config" },
     { no: 13, name: "output_type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 14, name: "comment", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 15, name: "debug", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ],
 );
 
