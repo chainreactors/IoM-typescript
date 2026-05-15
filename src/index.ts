@@ -94,6 +94,7 @@ export {
   DockerBuildConfig,
   GithubActionBuildConfig,
   SaasBuildConfig,
+  SaasConfig,
 } from './generated/web/client/clientpb/client_pb';
 
 // Re-export commonly used protobuf types

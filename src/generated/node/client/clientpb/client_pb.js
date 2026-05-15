@@ -1124,6 +1124,18 @@ export const SaasBuildConfig = /*@__PURE__*/ proto3.makeMessageType(
 );
 
 /**
+ * @generated from message clientpb.SaasConfig
+ */
+export const SaasConfig = /*@__PURE__*/ proto3.makeMessageType(
+  "clientpb.SaasConfig",
+  () => [
+    { no: 1, name: "enable", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 2, name: "url", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ],
+);
+
+/**
  * @generated from message clientpb.GithubWorkflowConfig
  */
 export const GithubWorkflowConfig = /*@__PURE__*/ proto3.makeMessageType(

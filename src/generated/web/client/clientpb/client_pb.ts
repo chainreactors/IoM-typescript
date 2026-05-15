@@ -4893,6 +4893,55 @@ export class SaasBuildConfig extends Message<SaasBuildConfig> {
 }
 
 /**
+ * @generated from message clientpb.SaasConfig
+ */
+export class SaasConfig extends Message<SaasConfig> {
+  /**
+   * @generated from field: bool enable = 1;
+   */
+  enable = false;
+
+  /**
+   * @generated from field: string url = 2;
+   */
+  url = "";
+
+  /**
+   * @generated from field: string token = 3;
+   */
+  token = "";
+
+  constructor(data?: PartialMessage<SaasConfig>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "clientpb.SaasConfig";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "enable", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 2, name: "url", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SaasConfig {
+    return new SaasConfig().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SaasConfig {
+    return new SaasConfig().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SaasConfig {
+    return new SaasConfig().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: SaasConfig | PlainMessage<SaasConfig> | undefined, b: SaasConfig | PlainMessage<SaasConfig> | undefined): boolean {
+    return proto3.util.equals(SaasConfig, a, b);
+  }
+}
+
+/**
  * @generated from message clientpb.GithubWorkflowConfig
  */
 export class GithubWorkflowConfig extends Message<GithubWorkflowConfig> {
