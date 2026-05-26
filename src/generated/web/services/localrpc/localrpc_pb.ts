@@ -546,6 +546,7 @@ export class SearchCommandsRequest extends Message<SearchCommandsRequest> {
 
   /**
    * Optional group filter to narrow search scope
+   * Examples: "implant", "execute", "sys", "file", "pivot"
    *
    * @generated from field: string group = 2;
    */
@@ -595,36 +596,50 @@ export class SearchCommandsRequest extends Message<SearchCommandsRequest> {
  */
 export class CommandInfo extends Message<CommandInfo> {
   /**
+   * Command name
+   *
    * @generated from field: string name = 1;
    */
   name = "";
 
   /**
+   * Command group ID
+   *
    * @generated from field: string group = 2;
    */
   group = "";
 
   /**
+   * Short description
+   *
    * @generated from field: string description = 3;
    */
   description = "";
 
   /**
+   * ATT&CK technique ID (e.g., "T1033")
+   *
    * @generated from field: string ttp = 4;
    */
   ttp = "";
 
   /**
+   * OPSEC safety rating (1-10, higher is safer)
+   *
    * @generated from field: int32 opsec = 5;
    */
   opsec = 0;
 
   /**
+   * Usage line showing command syntax
+   *
    * @generated from field: string usage = 6;
    */
   usage = "";
 
   /**
+   * List of subcommand names
+   *
    * @generated from field: repeated string subcommands = 7;
    */
   subcommands: string[] = [];
@@ -670,16 +685,22 @@ export class CommandInfo extends Message<CommandInfo> {
  */
 export class SearchCommandsResponse extends Message<SearchCommandsResponse> {
   /**
+   * List of matching commands
+   *
    * @generated from field: repeated services.localrpc.CommandInfo commands = 1;
    */
   commands: CommandInfo[] = [];
 
   /**
+   * Error message if search failed
+   *
    * @generated from field: string error = 2;
    */
   error = "";
 
   /**
+   * Whether the operation was successful
+   *
    * @generated from field: bool success = 3;
    */
   success = false;

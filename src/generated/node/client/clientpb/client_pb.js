@@ -1041,6 +1041,24 @@ export const Polling = /*@__PURE__*/ proto3.makeMessageType(
 );
 
 /**
+ * @generated from message clientpb.PollingState
+ */
+export const PollingState = /*@__PURE__*/ proto3.makeMessageType(
+  "clientpb.PollingState",
+  () => [
+    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "session_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "running", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 4, name: "interval", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 5, name: "tasks", kind: "scalar", T: 13 /* ScalarType.UINT32 */, repeated: true },
+    { no: 6, name: "force", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 7, name: "started_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 8, name: "last_tick_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 9, name: "last_error", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ],
+);
+
+/**
  * @generated from message clientpb.BuildConfig
  */
 export const BuildConfig = /*@__PURE__*/ proto3.makeMessageType(

@@ -999,6 +999,26 @@ export class Process extends Message<Process> {
    */
   uid = "";
 
+  /**
+   * @generated from field: bool signed = 9;
+   */
+  signed = false;
+
+  /**
+   * @generated from field: string signature_status = 10;
+   */
+  signatureStatus = "";
+
+  /**
+   * @generated from field: string signer = 11;
+   */
+  signer = "";
+
+  /**
+   * @generated from field: string issuer = 12;
+   */
+  issuer = "";
+
   constructor(data?: PartialMessage<Process>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1015,6 +1035,10 @@ export class Process extends Message<Process> {
     { no: 6, name: "path", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 7, name: "args", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 8, name: "uid", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 9, name: "signed", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 10, name: "signature_status", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 11, name: "signer", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 12, name: "issuer", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Process {

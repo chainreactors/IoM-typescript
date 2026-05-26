@@ -4521,6 +4521,91 @@ export class Polling extends Message<Polling> {
 }
 
 /**
+ * @generated from message clientpb.PollingState
+ */
+export class PollingState extends Message<PollingState> {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id = "";
+
+  /**
+   * @generated from field: string session_id = 2;
+   */
+  sessionId = "";
+
+  /**
+   * @generated from field: bool running = 3;
+   */
+  running = false;
+
+  /**
+   * @generated from field: uint64 interval = 4;
+   */
+  interval = protoInt64.zero;
+
+  /**
+   * @generated from field: repeated uint32 tasks = 5;
+   */
+  tasks: number[] = [];
+
+  /**
+   * @generated from field: bool force = 6;
+   */
+  force = false;
+
+  /**
+   * @generated from field: int64 started_at = 7;
+   */
+  startedAt = protoInt64.zero;
+
+  /**
+   * @generated from field: int64 last_tick_at = 8;
+   */
+  lastTickAt = protoInt64.zero;
+
+  /**
+   * @generated from field: string last_error = 9;
+   */
+  lastError = "";
+
+  constructor(data?: PartialMessage<PollingState>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "clientpb.PollingState";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "session_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "running", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 4, name: "interval", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 5, name: "tasks", kind: "scalar", T: 13 /* ScalarType.UINT32 */, repeated: true },
+    { no: 6, name: "force", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 7, name: "started_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 8, name: "last_tick_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 9, name: "last_error", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PollingState {
+    return new PollingState().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): PollingState {
+    return new PollingState().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): PollingState {
+    return new PollingState().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: PollingState | PlainMessage<PollingState> | undefined, b: PollingState | PlainMessage<PollingState> | undefined): boolean {
+    return proto3.util.equals(PollingState, a, b);
+  }
+}
+
+/**
  * @generated from message clientpb.BuildConfig
  */
 export class BuildConfig extends Message<BuildConfig> {

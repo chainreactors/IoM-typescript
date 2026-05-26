@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { AcmeConfig, AcmeRequest, Artifact, Artifacts, Audits, Basic, BasicUpdateSession, Bin, Cert, Certs, Client, Clients, Context, ContextChunk, Contexts, DLL2Shellcode, Empty, Event, Events, EXE2Shellcode, Files, GithubActionBuildConfig, Int, Jobs, LicenseInfo, Listeners, LoginReq, MutantSigforgeRequest, MutantSrdiRequest, MutantStripRequest, Notify, On, Pipelines, Polling, Profile, Profiles, SaasConfig, Session, SessionCount, SessionRequest, Sessions, ShellcodeEncode, Sync, Task, TaskContext, TaskContexts, TaskRequest, Tasks, TasksContext, TLS } from "../../client/clientpb/client_pb.js";
+import { AcmeConfig, AcmeRequest, Artifact, Artifacts, Audits, Basic, BasicUpdateSession, Bin, Cert, Certs, Client, Clients, Context, ContextChunk, Contexts, DLL2Shellcode, Empty, Event, Events, EXE2Shellcode, Files, GithubActionBuildConfig, Int, Jobs, LicenseInfo, Listeners, LoginReq, MutantSigforgeRequest, MutantSrdiRequest, MutantStripRequest, Notify, On, Pipelines, Polling, PollingState, Profile, Profiles, SaasConfig, Session, SessionCount, SessionRequest, Sessions, ShellcodeEncode, Sync, Task, TaskContext, TaskContexts, TaskRequest, Tasks, TasksContext, TLS } from "../../client/clientpb/client_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 import { BridgeAgentRequest, BypassRequest, ChownRequest, CommonBody, CurlRequest, DownloadRequest, ExecRequest, ExecuteAddon, ExecuteBinary, FFmpegRequest, LoadAddon, LoadModule, Ping, PipeRequest, PtyRequest, RegistryRequest, RegistryWriteRequest, Request, RunAsRequest, ServiceRequest, Switch, TaskCtrl, TaskScheduleRequest, Timer, UploadRequest, WmiMethodRequest, WmiQueryRequest } from "../../implant/implantpb/module_pb.js";
 import { ExecuteModuleRequest } from "../../implant/implantpb/implant_pb.js";
@@ -418,6 +418,24 @@ export const MaliceRPC = {
       name: "Polling",
       I: Polling,
       O: Empty,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc clientrpc.MaliceRPC.StopPolling
+     */
+    stopPolling: {
+      name: "StopPolling",
+      I: Polling,
+      O: Empty,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc clientrpc.MaliceRPC.PollingStatus
+     */
+    pollingStatus: {
+      name: "PollingStatus",
+      I: Polling,
+      O: PollingState,
       kind: MethodKind.Unary,
     },
     /**

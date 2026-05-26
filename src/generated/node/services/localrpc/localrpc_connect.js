@@ -76,6 +76,7 @@ export const CommandService = {
     },
     /**
      * SearchCommands searches for commands by name or description with fuzzy matching
+     * Returns lightweight command summaries to avoid context pollution
      *
      * @generated from rpc services.localrpc.CommandService.SearchCommands
      */
@@ -87,6 +88,8 @@ export const CommandService = {
     },
     /**
      * StreamCommand executes a command and continuously streams back task event output.
+     * Suitable for any command that produces persistent EventTaskDone events (e.g. tapping, poison).
+     * The client cancels the context to stop the stream.
      *
      * @generated from rpc services.localrpc.CommandService.StreamCommand
      */

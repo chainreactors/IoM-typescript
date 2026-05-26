@@ -249,6 +249,10 @@ export const Process = /*@__PURE__*/ proto3.makeMessageType(
     { no: 6, name: "path", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 7, name: "args", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 8, name: "uid", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 9, name: "signed", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 10, name: "signature_status", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 11, name: "signer", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 12, name: "issuer", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ],
 );
 
