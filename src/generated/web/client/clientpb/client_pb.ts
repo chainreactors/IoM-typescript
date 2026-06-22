@@ -895,6 +895,11 @@ export class JobCtrl extends Message<JobCtrl> {
    */
   session?: Session;
 
+  /**
+   * @generated from field: clientpb.ListenerRetire retire = 6;
+   */
+  retire?: ListenerRetire;
+
   constructor(data?: PartialMessage<JobCtrl>) {
     super();
     proto3.util.initPartial(data, this);
@@ -908,6 +913,7 @@ export class JobCtrl extends Message<JobCtrl> {
     { no: 3, name: "job", kind: "message", T: Job },
     { no: 4, name: "content", kind: "message", T: WebContent },
     { no: 5, name: "session", kind: "message", T: Session },
+    { no: 6, name: "retire", kind: "message", T: ListenerRetire },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): JobCtrl {
@@ -1089,6 +1095,232 @@ export class Listeners extends Message<Listeners> {
 
   static equals(a: Listeners | PlainMessage<Listeners> | undefined, b: Listeners | PlainMessage<Listeners> | undefined): boolean {
     return proto3.util.equals(Listeners, a, b);
+  }
+}
+
+/**
+ * @generated from message clientpb.ForwardListenerConnect
+ */
+export class ForwardListenerConnect extends Message<ForwardListenerConnect> {
+  /**
+   * @generated from field: string listener_id = 1;
+   */
+  listenerId = "";
+
+  /**
+   * @generated from field: string connect_host = 2;
+   */
+  connectHost = "";
+
+  /**
+   * @generated from field: uint32 connect_port = 3;
+   */
+  connectPort = 0;
+
+  /**
+   * @generated from field: uint32 timeout_seconds = 4;
+   */
+  timeoutSeconds = 0;
+
+  constructor(data?: PartialMessage<ForwardListenerConnect>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "clientpb.ForwardListenerConnect";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "listener_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "connect_host", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "connect_port", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 4, name: "timeout_seconds", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ForwardListenerConnect {
+    return new ForwardListenerConnect().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ForwardListenerConnect {
+    return new ForwardListenerConnect().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ForwardListenerConnect {
+    return new ForwardListenerConnect().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ForwardListenerConnect | PlainMessage<ForwardListenerConnect> | undefined, b: ForwardListenerConnect | PlainMessage<ForwardListenerConnect> | undefined): boolean {
+    return proto3.util.equals(ForwardListenerConnect, a, b);
+  }
+}
+
+/**
+ * @generated from message clientpb.ForwardListenerStatus
+ */
+export class ForwardListenerStatus extends Message<ForwardListenerStatus> {
+  /**
+   * @generated from field: string listener_id = 1;
+   */
+  listenerId = "";
+
+  /**
+   * @generated from field: string connect_host = 2;
+   */
+  connectHost = "";
+
+  /**
+   * @generated from field: uint32 connect_port = 3;
+   */
+  connectPort = 0;
+
+  /**
+   * @generated from field: string address = 4;
+   */
+  address = "";
+
+  /**
+   * @generated from field: bool active = 5;
+   */
+  active = false;
+
+  /**
+   * @generated from field: string fingerprint = 6;
+   */
+  fingerprint = "";
+
+  /**
+   * @generated from field: string error = 7;
+   */
+  error = "";
+
+  constructor(data?: PartialMessage<ForwardListenerStatus>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "clientpb.ForwardListenerStatus";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "listener_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "connect_host", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "connect_port", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 4, name: "address", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "active", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 6, name: "fingerprint", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: "error", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ForwardListenerStatus {
+    return new ForwardListenerStatus().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ForwardListenerStatus {
+    return new ForwardListenerStatus().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ForwardListenerStatus {
+    return new ForwardListenerStatus().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ForwardListenerStatus | PlainMessage<ForwardListenerStatus> | undefined, b: ForwardListenerStatus | PlainMessage<ForwardListenerStatus> | undefined): boolean {
+    return proto3.util.equals(ForwardListenerStatus, a, b);
+  }
+}
+
+/**
+ * @generated from message clientpb.ForwardListenerStatuses
+ */
+export class ForwardListenerStatuses extends Message<ForwardListenerStatuses> {
+  /**
+   * @generated from field: repeated clientpb.ForwardListenerStatus listeners = 1;
+   */
+  listeners: ForwardListenerStatus[] = [];
+
+  constructor(data?: PartialMessage<ForwardListenerStatuses>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "clientpb.ForwardListenerStatuses";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "listeners", kind: "message", T: ForwardListenerStatus, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ForwardListenerStatuses {
+    return new ForwardListenerStatuses().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ForwardListenerStatuses {
+    return new ForwardListenerStatuses().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ForwardListenerStatuses {
+    return new ForwardListenerStatuses().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ForwardListenerStatuses | PlainMessage<ForwardListenerStatuses> | undefined, b: ForwardListenerStatuses | PlainMessage<ForwardListenerStatuses> | undefined): boolean {
+    return proto3.util.equals(ForwardListenerStatuses, a, b);
+  }
+}
+
+/**
+ * @generated from message clientpb.ListenerRetire
+ */
+export class ListenerRetire extends Message<ListenerRetire> {
+  /**
+   * @generated from field: string listener_id = 1;
+   */
+  listenerId = "";
+
+  /**
+   * @generated from field: bool purge_config = 2;
+   */
+  purgeConfig = false;
+
+  /**
+   * @generated from field: bool purge_auth = 3;
+   */
+  purgeAuth = false;
+
+  /**
+   * @generated from field: bool no_revoke = 4;
+   */
+  noRevoke = false;
+
+  /**
+   * @generated from field: uint32 timeout_seconds = 5;
+   */
+  timeoutSeconds = 0;
+
+  constructor(data?: PartialMessage<ListenerRetire>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "clientpb.ListenerRetire";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "listener_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "purge_config", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 3, name: "purge_auth", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 4, name: "no_revoke", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 5, name: "timeout_seconds", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListenerRetire {
+    return new ListenerRetire().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListenerRetire {
+    return new ListenerRetire().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListenerRetire {
+    return new ListenerRetire().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ListenerRetire | PlainMessage<ListenerRetire> | undefined, b: ListenerRetire | PlainMessage<ListenerRetire> | undefined): boolean {
+    return proto3.util.equals(ListenerRetire, a, b);
   }
 }
 

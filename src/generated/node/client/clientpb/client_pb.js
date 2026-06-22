@@ -216,6 +216,7 @@ export const JobCtrl = /*@__PURE__*/ proto3.makeMessageType(
     { no: 3, name: "job", kind: "message", T: Job },
     { no: 4, name: "content", kind: "message", T: WebContent },
     { no: 5, name: "session", kind: "message", T: Session },
+    { no: 6, name: "retire", kind: "message", T: ListenerRetire },
   ],
 );
 
@@ -255,6 +256,59 @@ export const Listeners = /*@__PURE__*/ proto3.makeMessageType(
   "clientpb.Listeners",
   () => [
     { no: 1, name: "listeners", kind: "message", T: Listener, repeated: true },
+  ],
+);
+
+/**
+ * @generated from message clientpb.ForwardListenerConnect
+ */
+export const ForwardListenerConnect = /*@__PURE__*/ proto3.makeMessageType(
+  "clientpb.ForwardListenerConnect",
+  () => [
+    { no: 1, name: "listener_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "connect_host", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "connect_port", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 4, name: "timeout_seconds", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+  ],
+);
+
+/**
+ * @generated from message clientpb.ForwardListenerStatus
+ */
+export const ForwardListenerStatus = /*@__PURE__*/ proto3.makeMessageType(
+  "clientpb.ForwardListenerStatus",
+  () => [
+    { no: 1, name: "listener_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "connect_host", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "connect_port", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 4, name: "address", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "active", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 6, name: "fingerprint", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: "error", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ],
+);
+
+/**
+ * @generated from message clientpb.ForwardListenerStatuses
+ */
+export const ForwardListenerStatuses = /*@__PURE__*/ proto3.makeMessageType(
+  "clientpb.ForwardListenerStatuses",
+  () => [
+    { no: 1, name: "listeners", kind: "message", T: ForwardListenerStatus, repeated: true },
+  ],
+);
+
+/**
+ * @generated from message clientpb.ListenerRetire
+ */
+export const ListenerRetire = /*@__PURE__*/ proto3.makeMessageType(
+  "clientpb.ListenerRetire",
+  () => [
+    { no: 1, name: "listener_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "purge_config", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 3, name: "purge_auth", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 4, name: "no_revoke", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 5, name: "timeout_seconds", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
   ],
 );
 

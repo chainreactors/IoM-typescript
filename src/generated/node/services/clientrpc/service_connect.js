@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { AcmeConfig, AcmeRequest, Artifact, Artifacts, Audits, Basic, BasicUpdateSession, Bin, Cert, Certs, Client, Clients, Context, ContextChunk, Contexts, DLL2Shellcode, Empty, Event, Events, EXE2Shellcode, Files, GithubActionBuildConfig, Int, Jobs, LicenseInfo, Listeners, LoginReq, MutantSigforgeRequest, MutantSrdiRequest, MutantStripRequest, Notify, On, Pipelines, Polling, PollingState, Profile, Profiles, SaasConfig, Session, SessionCount, SessionRequest, Sessions, ShellcodeEncode, Sync, Task, TaskContext, TaskContexts, TaskRequest, Tasks, TasksContext, TLS } from "../../client/clientpb/client_pb.js";
+import { AcmeConfig, AcmeRequest, Artifact, Artifacts, Audits, Basic, BasicUpdateSession, Bin, Cert, Certs, Client, Clients, Context, ContextChunk, Contexts, DLL2Shellcode, Empty, Event, Events, EXE2Shellcode, Files, ForwardListenerConnect, ForwardListenerStatus, ForwardListenerStatuses, GithubActionBuildConfig, Int, Jobs, LicenseInfo, Listener, ListenerRetire, Listeners, LoginReq, MutantSigforgeRequest, MutantSrdiRequest, MutantStripRequest, Notify, On, Pipelines, Polling, PollingState, Profile, Profiles, SaasConfig, Session, SessionCount, SessionRequest, Sessions, ShellcodeEncode, Sync, Task, TaskContext, TaskContexts, TaskRequest, Tasks, TasksContext, TLS } from "../../client/clientpb/client_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 import { BridgeAgentRequest, BypassRequest, ChownRequest, CommonBody, CurlRequest, DownloadRequest, ExecRequest, ExecuteAddon, ExecuteBinary, FFmpegRequest, LoadAddon, LoadModule, Ping, PipeRequest, PtyRequest, RegistryRequest, RegistryWriteRequest, Request, RunAsRequest, ServiceRequest, Switch, TaskCtrl, TaskScheduleRequest, Timer, UploadRequest, WmiMethodRequest, WmiQueryRequest } from "../../implant/implantpb/module_pb.js";
 import { ExecuteModuleRequest } from "../../implant/implantpb/implant_pb.js";
@@ -96,6 +96,51 @@ export const MaliceRPC = {
       name: "GetListeners",
       I: Empty,
       O: Listeners,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc clientrpc.MaliceRPC.ConnectForwardListener
+     */
+    connectForwardListener: {
+      name: "ConnectForwardListener",
+      I: ForwardListenerConnect,
+      O: ForwardListenerStatus,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc clientrpc.MaliceRPC.DisconnectForwardListener
+     */
+    disconnectForwardListener: {
+      name: "DisconnectForwardListener",
+      I: Listener,
+      O: ForwardListenerStatus,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc clientrpc.MaliceRPC.GetForwardListenerStatus
+     */
+    getForwardListenerStatus: {
+      name: "GetForwardListenerStatus",
+      I: Listener,
+      O: ForwardListenerStatus,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc clientrpc.MaliceRPC.ListForwardListeners
+     */
+    listForwardListeners: {
+      name: "ListForwardListeners",
+      I: Empty,
+      O: ForwardListenerStatuses,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc clientrpc.MaliceRPC.RetireListener
+     */
+    retireListener: {
+      name: "RetireListener",
+      I: ListenerRetire,
+      O: ForwardListenerStatus,
       kind: MethodKind.Unary,
     },
     /**
