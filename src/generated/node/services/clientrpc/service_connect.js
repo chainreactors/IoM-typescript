@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { AcmeConfig, AcmeRequest, Artifact, Artifacts, Audits, Basic, BasicUpdateSession, Bin, Cert, Certs, Client, Clients, Context, ContextChunk, Contexts, DLL2Shellcode, Empty, Event, Events, EXE2Shellcode, Files, ForwardListenerConnect, ForwardListenerStatus, ForwardListenerStatuses, GithubActionBuildConfig, Int, Jobs, LicenseInfo, Listener, ListenerRetire, Listeners, LoginReq, MutantSigforgeRequest, MutantSrdiRequest, MutantStripRequest, Notify, On, Pipelines, Polling, PollingState, Profile, Profiles, SaasConfig, Session, SessionCount, SessionRequest, Sessions, ShellcodeEncode, Sync, Task, TaskContext, TaskContexts, TaskRequest, Tasks, TasksContext, TLS } from "../../client/clientpb/client_pb.js";
+import { AcmeConfig, AcmeRequest, Artifact, Artifacts, Audits, Basic, BasicUpdateSession, Bin, Cert, Certs, Client, Clients, Context, ContextChunk, Contexts, DLL2Shellcode, Empty, Event, Events, EXE2Shellcode, Files, ForwardListenerConnect, ForwardListenerStatus, ForwardListenerStatuses, GithubActionBuildConfig, Int, Jobs, LicenseInfo, Listener, ListenerRetire, Listeners, LoginReq, MutantSigforgeRequest, MutantSrdiRequest, MutantStripRequest, MutantToolRequest, MutantToolResponse, Notify, On, Pipelines, Polling, PollingState, Profile, Profiles, SaasConfig, Session, SessionCount, SessionRequest, Sessions, ShellcodeEncode, Sync, Task, TaskContext, TaskContexts, TaskDetails, TaskQuery, TaskRequest, Tasks, TasksContext, TLS } from "../../client/clientpb/client_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 import { BridgeAgentRequest, BypassRequest, ChownRequest, CommonBody, CurlRequest, DownloadRequest, ExecRequest, ExecuteAddon, ExecuteBinary, FFmpegRequest, LoadAddon, LoadModule, Ping, PipeRequest, PtyRequest, RegistryRequest, RegistryWriteRequest, Request, RunAsRequest, ServiceRequest, Switch, TaskCtrl, TaskScheduleRequest, Timer, UploadRequest, WmiMethodRequest, WmiQueryRequest } from "../../implant/implantpb/module_pb.js";
 import { ExecuteModuleRequest } from "../../implant/implantpb/implant_pb.js";
@@ -170,6 +170,15 @@ export const MaliceRPC = {
       name: "GetTasks",
       I: TaskRequest,
       O: Tasks,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc clientrpc.MaliceRPC.QueryTasks
+     */
+    queryTasks: {
+      name: "QueryTasks",
+      I: TaskQuery,
+      O: TaskDetails,
       kind: MethodKind.Unary,
     },
     /**
@@ -1178,6 +1187,15 @@ export const MaliceRPC = {
       name: "MutantSigforge",
       I: MutantSigforgeRequest,
       O: Bin,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc clientrpc.MaliceRPC.MutantTool
+     */
+    mutantTool: {
+      name: "MutantTool",
+      I: MutantToolRequest,
+      O: MutantToolResponse,
       kind: MethodKind.Unary,
     },
     /**

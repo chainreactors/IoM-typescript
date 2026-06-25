@@ -149,6 +149,8 @@ export const SearchCommandsRequest = /*@__PURE__*/ proto3.makeMessageType(
     { no: 1, name: "query", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "group", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "session_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "type_filter", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "limit", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
   ],
 );
 
@@ -167,6 +169,9 @@ export const CommandInfo = /*@__PURE__*/ proto3.makeMessageType(
     { no: 5, name: "opsec", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
     { no: 6, name: "usage", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 7, name: "subcommands", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 8, name: "snippet", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 9, name: "source", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 10, name: "rank", kind: "scalar", T: 1 /* ScalarType.DOUBLE */ },
   ],
 );
 
@@ -181,6 +186,7 @@ export const SearchCommandsResponse = /*@__PURE__*/ proto3.makeMessageType(
     { no: 1, name: "commands", kind: "message", T: CommandInfo, repeated: true },
     { no: 2, name: "error", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "success", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 4, name: "total_count", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
   ],
 );
 

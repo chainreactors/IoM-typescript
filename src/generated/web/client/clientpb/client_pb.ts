@@ -1264,67 +1264,6 @@ export class ForwardListenerStatuses extends Message<ForwardListenerStatuses> {
 }
 
 /**
- * @generated from message clientpb.ListenerRetire
- */
-export class ListenerRetire extends Message<ListenerRetire> {
-  /**
-   * @generated from field: string listener_id = 1;
-   */
-  listenerId = "";
-
-  /**
-   * @generated from field: bool purge_config = 2;
-   */
-  purgeConfig = false;
-
-  /**
-   * @generated from field: bool purge_auth = 3;
-   */
-  purgeAuth = false;
-
-  /**
-   * @generated from field: bool no_revoke = 4;
-   */
-  noRevoke = false;
-
-  /**
-   * @generated from field: uint32 timeout_seconds = 5;
-   */
-  timeoutSeconds = 0;
-
-  constructor(data?: PartialMessage<ListenerRetire>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "clientpb.ListenerRetire";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "listener_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "purge_config", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 3, name: "purge_auth", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 4, name: "no_revoke", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 5, name: "timeout_seconds", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListenerRetire {
-    return new ListenerRetire().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListenerRetire {
-    return new ListenerRetire().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListenerRetire {
-    return new ListenerRetire().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: ListenerRetire | PlainMessage<ListenerRetire> | undefined, b: ListenerRetire | PlainMessage<ListenerRetire> | undefined): boolean {
-    return proto3.util.equals(ListenerRetire, a, b);
-  }
-}
-
-/**
  * @generated from message clientpb.Client
  */
 export class Client extends Message<Client> {
@@ -1981,6 +1920,31 @@ export class Task extends Message<Task> {
    */
   finishedAt = protoInt64.zero;
 
+  /**
+   * @generated from field: string command_summary = 15;
+   */
+  commandSummary = "";
+
+  /**
+   * @generated from field: string request_summary = 16;
+   */
+  requestSummary = "";
+
+  /**
+   * @generated from field: int64 request_size = 17;
+   */
+  requestSize = protoInt64.zero;
+
+  /**
+   * @generated from field: string request_sha256 = 18;
+   */
+  requestSha256 = "";
+
+  /**
+   * @generated from field: bool has_request = 19;
+   */
+  hasRequest = false;
+
   constructor(data?: PartialMessage<Task>) {
     super();
     proto3.util.initPartial(data, this);
@@ -2003,6 +1967,11 @@ export class Task extends Message<Task> {
     { no: 12, name: "timeout", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
     { no: 13, name: "created_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
     { no: 14, name: "finished_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 15, name: "command_summary", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 16, name: "request_summary", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 17, name: "request_size", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 18, name: "request_sha256", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 19, name: "has_request", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Task {
@@ -2056,6 +2025,183 @@ export class Tasks extends Message<Tasks> {
 
   static equals(a: Tasks | PlainMessage<Tasks> | undefined, b: Tasks | PlainMessage<Tasks> | undefined): boolean {
     return proto3.util.equals(Tasks, a, b);
+  }
+}
+
+/**
+ * @generated from message clientpb.TaskQuery
+ */
+export class TaskQuery extends Message<TaskQuery> {
+  /**
+   * @generated from field: string session_id = 1;
+   */
+  sessionId = "";
+
+  /**
+   * @generated from field: repeated uint32 task_ids = 2;
+   */
+  taskIds: number[] = [];
+
+  /**
+   * @generated from field: uint32 page_size = 3;
+   */
+  pageSize = 0;
+
+  /**
+   * @generated from field: string page_token = 4;
+   */
+  pageToken = "";
+
+  /**
+   * @generated from field: bool include_request_summary = 5;
+   */
+  includeRequestSummary = false;
+
+  /**
+   * @generated from field: bool include_raw_request = 6;
+   */
+  includeRawRequest = false;
+
+  /**
+   * @generated from field: bool include_results = 7;
+   */
+  includeResults = false;
+
+  /**
+   * @generated from field: bool include_total_count = 8;
+   */
+  includeTotalCount = false;
+
+  constructor(data?: PartialMessage<TaskQuery>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "clientpb.TaskQuery";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "session_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "task_ids", kind: "scalar", T: 13 /* ScalarType.UINT32 */, repeated: true },
+    { no: 3, name: "page_size", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 4, name: "page_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "include_request_summary", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 6, name: "include_raw_request", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 7, name: "include_results", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 8, name: "include_total_count", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TaskQuery {
+    return new TaskQuery().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TaskQuery {
+    return new TaskQuery().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TaskQuery {
+    return new TaskQuery().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TaskQuery | PlainMessage<TaskQuery> | undefined, b: TaskQuery | PlainMessage<TaskQuery> | undefined): boolean {
+    return proto3.util.equals(TaskQuery, a, b);
+  }
+}
+
+/**
+ * @generated from message clientpb.TaskDetail
+ */
+export class TaskDetail extends Message<TaskDetail> {
+  /**
+   * @generated from field: clientpb.Task task = 1;
+   */
+  task?: Task;
+
+  /**
+   * @generated from field: implantpb.Spite raw_request = 2;
+   */
+  rawRequest?: Spite;
+
+  /**
+   * @generated from field: repeated implantpb.Spite results = 3;
+   */
+  results: Spite[] = [];
+
+  constructor(data?: PartialMessage<TaskDetail>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "clientpb.TaskDetail";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "task", kind: "message", T: Task },
+    { no: 2, name: "raw_request", kind: "message", T: Spite },
+    { no: 3, name: "results", kind: "message", T: Spite, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TaskDetail {
+    return new TaskDetail().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TaskDetail {
+    return new TaskDetail().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TaskDetail {
+    return new TaskDetail().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TaskDetail | PlainMessage<TaskDetail> | undefined, b: TaskDetail | PlainMessage<TaskDetail> | undefined): boolean {
+    return proto3.util.equals(TaskDetail, a, b);
+  }
+}
+
+/**
+ * @generated from message clientpb.TaskDetails
+ */
+export class TaskDetails extends Message<TaskDetails> {
+  /**
+   * @generated from field: repeated clientpb.TaskDetail tasks = 1;
+   */
+  tasks: TaskDetail[] = [];
+
+  /**
+   * @generated from field: string next_page_token = 2;
+   */
+  nextPageToken = "";
+
+  /**
+   * @generated from field: int64 total_count = 3;
+   */
+  totalCount = protoInt64.zero;
+
+  constructor(data?: PartialMessage<TaskDetails>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "clientpb.TaskDetails";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "tasks", kind: "message", T: TaskDetail, repeated: true },
+    { no: 2, name: "next_page_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "total_count", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TaskDetails {
+    return new TaskDetails().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TaskDetails {
+    return new TaskDetails().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TaskDetails {
+    return new TaskDetails().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TaskDetails | PlainMessage<TaskDetails> | undefined, b: TaskDetails | PlainMessage<TaskDetails> | undefined): boolean {
+    return proto3.util.equals(TaskDetails, a, b);
   }
 }
 
@@ -2720,6 +2866,147 @@ export class MutantSigforgeRequest extends Message<MutantSigforgeRequest> {
 
   static equals(a: MutantSigforgeRequest | PlainMessage<MutantSigforgeRequest> | undefined, b: MutantSigforgeRequest | PlainMessage<MutantSigforgeRequest> | undefined): boolean {
     return proto3.util.equals(MutantSigforgeRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message clientpb.MutantToolFile
+ */
+export class MutantToolFile extends Message<MutantToolFile> {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name = "";
+
+  /**
+   * @generated from field: bytes bin = 2;
+   */
+  bin = new Uint8Array(0);
+
+  constructor(data?: PartialMessage<MutantToolFile>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "clientpb.MutantToolFile";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "bin", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MutantToolFile {
+    return new MutantToolFile().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MutantToolFile {
+    return new MutantToolFile().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MutantToolFile {
+    return new MutantToolFile().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: MutantToolFile | PlainMessage<MutantToolFile> | undefined, b: MutantToolFile | PlainMessage<MutantToolFile> | undefined): boolean {
+    return proto3.util.equals(MutantToolFile, a, b);
+  }
+}
+
+/**
+ * @generated from message clientpb.MutantToolRequest
+ */
+export class MutantToolRequest extends Message<MutantToolRequest> {
+  /**
+   * @generated from field: repeated string args = 1;
+   */
+  args: string[] = [];
+
+  /**
+   * @generated from field: repeated clientpb.MutantToolFile inputs = 2;
+   */
+  inputs: MutantToolFile[] = [];
+
+  /**
+   * @generated from field: repeated string outputs = 3;
+   */
+  outputs: string[] = [];
+
+  /**
+   * @generated from field: uint32 timeout_seconds = 4;
+   */
+  timeoutSeconds = 0;
+
+  constructor(data?: PartialMessage<MutantToolRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "clientpb.MutantToolRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "args", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 2, name: "inputs", kind: "message", T: MutantToolFile, repeated: true },
+    { no: 3, name: "outputs", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 4, name: "timeout_seconds", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MutantToolRequest {
+    return new MutantToolRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MutantToolRequest {
+    return new MutantToolRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MutantToolRequest {
+    return new MutantToolRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: MutantToolRequest | PlainMessage<MutantToolRequest> | undefined, b: MutantToolRequest | PlainMessage<MutantToolRequest> | undefined): boolean {
+    return proto3.util.equals(MutantToolRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message clientpb.MutantToolResponse
+ */
+export class MutantToolResponse extends Message<MutantToolResponse> {
+  /**
+   * @generated from field: bytes stdout = 1;
+   */
+  stdout = new Uint8Array(0);
+
+  /**
+   * @generated from field: repeated clientpb.MutantToolFile files = 2;
+   */
+  files: MutantToolFile[] = [];
+
+  constructor(data?: PartialMessage<MutantToolResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "clientpb.MutantToolResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "stdout", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 2, name: "files", kind: "message", T: MutantToolFile, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MutantToolResponse {
+    return new MutantToolResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MutantToolResponse {
+    return new MutantToolResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MutantToolResponse {
+    return new MutantToolResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: MutantToolResponse | PlainMessage<MutantToolResponse> | undefined, b: MutantToolResponse | PlainMessage<MutantToolResponse> | undefined): boolean {
+    return proto3.util.equals(MutantToolResponse, a, b);
   }
 }
 
@@ -5967,6 +6254,67 @@ export class Secure extends Message<Secure> {
 
   static equals(a: Secure | PlainMessage<Secure> | undefined, b: Secure | PlainMessage<Secure> | undefined): boolean {
     return proto3.util.equals(Secure, a, b);
+  }
+}
+
+/**
+ * @generated from message clientpb.ListenerRetire
+ */
+export class ListenerRetire extends Message<ListenerRetire> {
+  /**
+   * @generated from field: string listener_id = 1;
+   */
+  listenerId = "";
+
+  /**
+   * @generated from field: bool purge_config = 2;
+   */
+  purgeConfig = false;
+
+  /**
+   * @generated from field: bool purge_auth = 3;
+   */
+  purgeAuth = false;
+
+  /**
+   * @generated from field: bool no_revoke = 4;
+   */
+  noRevoke = false;
+
+  /**
+   * @generated from field: uint32 timeout_seconds = 5;
+   */
+  timeoutSeconds = 0;
+
+  constructor(data?: PartialMessage<ListenerRetire>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "clientpb.ListenerRetire";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "listener_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "purge_config", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 3, name: "purge_auth", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 4, name: "no_revoke", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 5, name: "timeout_seconds", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListenerRetire {
+    return new ListenerRetire().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListenerRetire {
+    return new ListenerRetire().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListenerRetire {
+    return new ListenerRetire().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ListenerRetire | PlainMessage<ListenerRetire> | undefined, b: ListenerRetire | PlainMessage<ListenerRetire> | undefined): boolean {
+    return proto3.util.equals(ListenerRetire, a, b);
   }
 }
 

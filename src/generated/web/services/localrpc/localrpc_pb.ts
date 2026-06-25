@@ -538,7 +538,7 @@ export class GetGroupsResponse extends Message<GetGroupsResponse> {
  */
 export class SearchCommandsRequest extends Message<SearchCommandsRequest> {
   /**
-   * Search keyword for fuzzy matching against command name and description
+   * Full-text search query (FTS5 syntax supported: AND, OR, NOT, phrases)
    *
    * @generated from field: string query = 1;
    */
@@ -559,6 +559,20 @@ export class SearchCommandsRequest extends Message<SearchCommandsRequest> {
    */
   sessionId = "";
 
+  /**
+   * Filter by result type: "command", "plugin", or "" for all
+   *
+   * @generated from field: string type_filter = 4;
+   */
+  typeFilter = "";
+
+  /**
+   * Maximum results to return (default 20)
+   *
+   * @generated from field: int32 limit = 5;
+   */
+  limit = 0;
+
   constructor(data?: PartialMessage<SearchCommandsRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -570,6 +584,8 @@ export class SearchCommandsRequest extends Message<SearchCommandsRequest> {
     { no: 1, name: "query", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "group", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "session_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "type_filter", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "limit", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SearchCommandsRequest {
@@ -644,6 +660,27 @@ export class CommandInfo extends Message<CommandInfo> {
    */
   subcommands: string[] = [];
 
+  /**
+   * FTS5 highlighted snippet showing match context
+   *
+   * @generated from field: string snippet = 8;
+   */
+  snippet = "";
+
+  /**
+   * Command source: "builtin", "mal", "lua", "alias", "extension"
+   *
+   * @generated from field: string source = 9;
+   */
+  source = "";
+
+  /**
+   * FTS5 relevance rank (lower is better match)
+   *
+   * @generated from field: double rank = 10;
+   */
+  rank = 0;
+
   constructor(data?: PartialMessage<CommandInfo>) {
     super();
     proto3.util.initPartial(data, this);
@@ -659,6 +696,9 @@ export class CommandInfo extends Message<CommandInfo> {
     { no: 5, name: "opsec", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
     { no: 6, name: "usage", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 7, name: "subcommands", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 8, name: "snippet", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 9, name: "source", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 10, name: "rank", kind: "scalar", T: 1 /* ScalarType.DOUBLE */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CommandInfo {
@@ -705,6 +745,13 @@ export class SearchCommandsResponse extends Message<SearchCommandsResponse> {
    */
   success = false;
 
+  /**
+   * Total number of results found
+   *
+   * @generated from field: int32 total_count = 4;
+   */
+  totalCount = 0;
+
   constructor(data?: PartialMessage<SearchCommandsResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -716,6 +763,7 @@ export class SearchCommandsResponse extends Message<SearchCommandsResponse> {
     { no: 1, name: "commands", kind: "message", T: CommandInfo, repeated: true },
     { no: 2, name: "error", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "success", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 4, name: "total_count", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SearchCommandsResponse {

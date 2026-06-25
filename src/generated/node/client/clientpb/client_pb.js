@@ -299,20 +299,6 @@ export const ForwardListenerStatuses = /*@__PURE__*/ proto3.makeMessageType(
 );
 
 /**
- * @generated from message clientpb.ListenerRetire
- */
-export const ListenerRetire = /*@__PURE__*/ proto3.makeMessageType(
-  "clientpb.ListenerRetire",
-  () => [
-    { no: 1, name: "listener_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "purge_config", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 3, name: "purge_auth", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 4, name: "no_revoke", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 5, name: "timeout_seconds", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
-  ],
-);
-
-/**
  * @generated from message clientpb.Client
  */
 export const Client = /*@__PURE__*/ proto3.makeMessageType(
@@ -471,6 +457,11 @@ export const Task = /*@__PURE__*/ proto3.makeMessageType(
     { no: 12, name: "timeout", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
     { no: 13, name: "created_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
     { no: 14, name: "finished_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 15, name: "command_summary", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 16, name: "request_summary", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 17, name: "request_size", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 18, name: "request_sha256", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 19, name: "has_request", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ],
 );
 
@@ -481,6 +472,47 @@ export const Tasks = /*@__PURE__*/ proto3.makeMessageType(
   "clientpb.Tasks",
   () => [
     { no: 1, name: "tasks", kind: "message", T: Task, repeated: true },
+  ],
+);
+
+/**
+ * @generated from message clientpb.TaskQuery
+ */
+export const TaskQuery = /*@__PURE__*/ proto3.makeMessageType(
+  "clientpb.TaskQuery",
+  () => [
+    { no: 1, name: "session_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "task_ids", kind: "scalar", T: 13 /* ScalarType.UINT32 */, repeated: true },
+    { no: 3, name: "page_size", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 4, name: "page_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "include_request_summary", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 6, name: "include_raw_request", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 7, name: "include_results", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 8, name: "include_total_count", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ],
+);
+
+/**
+ * @generated from message clientpb.TaskDetail
+ */
+export const TaskDetail = /*@__PURE__*/ proto3.makeMessageType(
+  "clientpb.TaskDetail",
+  () => [
+    { no: 1, name: "task", kind: "message", T: Task },
+    { no: 2, name: "raw_request", kind: "message", T: Spite },
+    { no: 3, name: "results", kind: "message", T: Spite, repeated: true },
+  ],
+);
+
+/**
+ * @generated from message clientpb.TaskDetails
+ */
+export const TaskDetails = /*@__PURE__*/ proto3.makeMessageType(
+  "clientpb.TaskDetails",
+  () => [
+    { no: 1, name: "tasks", kind: "message", T: TaskDetail, repeated: true },
+    { no: 2, name: "next_page_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "total_count", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
   ],
 );
 
@@ -634,6 +666,41 @@ export const MutantSigforgeRequest = /*@__PURE__*/ proto3.makeMessageType(
     { no: 2, name: "source_bin", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
     { no: 3, name: "target_bin", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
     { no: 4, name: "signature", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+  ],
+);
+
+/**
+ * @generated from message clientpb.MutantToolFile
+ */
+export const MutantToolFile = /*@__PURE__*/ proto3.makeMessageType(
+  "clientpb.MutantToolFile",
+  () => [
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "bin", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+  ],
+);
+
+/**
+ * @generated from message clientpb.MutantToolRequest
+ */
+export const MutantToolRequest = /*@__PURE__*/ proto3.makeMessageType(
+  "clientpb.MutantToolRequest",
+  () => [
+    { no: 1, name: "args", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 2, name: "inputs", kind: "message", T: MutantToolFile, repeated: true },
+    { no: 3, name: "outputs", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 4, name: "timeout_seconds", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+  ],
+);
+
+/**
+ * @generated from message clientpb.MutantToolResponse
+ */
+export const MutantToolResponse = /*@__PURE__*/ proto3.makeMessageType(
+  "clientpb.MutantToolResponse",
+  () => [
+    { no: 1, name: "stdout", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 2, name: "files", kind: "message", T: MutantToolFile, repeated: true },
   ],
 );
 
@@ -1356,6 +1423,20 @@ export const Secure = /*@__PURE__*/ proto3.makeMessageType(
     { no: 1, name: "enable", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
     { no: 2, name: "server_keypair", kind: "message", T: KeyPair },
     { no: 3, name: "implant_keypair", kind: "message", T: KeyPair },
+  ],
+);
+
+/**
+ * @generated from message clientpb.ListenerRetire
+ */
+export const ListenerRetire = /*@__PURE__*/ proto3.makeMessageType(
+  "clientpb.ListenerRetire",
+  () => [
+    { no: 1, name: "listener_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "purge_config", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 3, name: "purge_auth", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 4, name: "no_revoke", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 5, name: "timeout_seconds", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
   ],
 );
 
