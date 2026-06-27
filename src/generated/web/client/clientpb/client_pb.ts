@@ -9,6 +9,38 @@ import { Addon, Os, Process, Register, Timer } from "../../implant/implantpb/mod
 import { Spite } from "../../implant/implantpb/implant_pb";
 
 /**
+ * @generated from enum clientpb.TLSUpdateMode
+ */
+export enum TLSUpdateMode {
+  /**
+   * @generated from enum value: TLS_UPDATE_MODE_UNSPECIFIED = 0;
+   */
+  TLS_UPDATE_MODE_UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: TLS_UPDATE_MODE_DISABLE = 1;
+   */
+  TLS_UPDATE_MODE_DISABLE = 1,
+
+  /**
+   * @generated from enum value: TLS_UPDATE_MODE_EXISTING_CERT = 2;
+   */
+  TLS_UPDATE_MODE_EXISTING_CERT = 2,
+
+  /**
+   * @generated from enum value: TLS_UPDATE_MODE_INLINE_CERT = 3;
+   */
+  TLS_UPDATE_MODE_INLINE_CERT = 3,
+}
+// Retrieve enum metadata with: proto3.getEnumType(TLSUpdateMode)
+proto3.util.setEnumType(TLSUpdateMode, "clientpb.TLSUpdateMode", [
+  { no: 0, name: "TLS_UPDATE_MODE_UNSPECIFIED" },
+  { no: 1, name: "TLS_UPDATE_MODE_DISABLE" },
+  { no: 2, name: "TLS_UPDATE_MODE_EXISTING_CERT" },
+  { no: 3, name: "TLS_UPDATE_MODE_INLINE_CERT" },
+]);
+
+/**
  * @generated from message clientpb.Empty
  */
 export class Empty extends Message<Empty> {
@@ -507,6 +539,11 @@ export class Audit extends Message<Audit> {
    */
   Lasted = "";
 
+  /**
+   * @generated from field: int32 result_index = 7;
+   */
+  resultIndex = 0;
+
   constructor(data?: PartialMessage<Audit>) {
     super();
     proto3.util.initPartial(data, this);
@@ -521,6 +558,7 @@ export class Audit extends Message<Audit> {
     { no: 4, name: "Created", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 5, name: "Finished", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 6, name: "Lasted", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: "result_index", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Audit {
@@ -3905,6 +3943,85 @@ export class CtrlPipeline extends Message<CtrlPipeline> {
 }
 
 /**
+ * @generated from message clientpb.PipelineTLSUpdate
+ */
+export class PipelineTLSUpdate extends Message<PipelineTLSUpdate> {
+  /**
+   * @generated from field: string listener_id = 1;
+   */
+  listenerId = "";
+
+  /**
+   * @generated from field: string name = 2;
+   */
+  name = "";
+
+  /**
+   * @generated from field: clientpb.TLSUpdateMode mode = 3;
+   */
+  mode = TLSUpdateMode.TLS_UPDATE_MODE_UNSPECIFIED;
+
+  /**
+   * @generated from field: string cert_name = 4;
+   */
+  certName = "";
+
+  /**
+   * @generated from field: clientpb.TLS tls = 5;
+   */
+  tls?: TLS;
+
+  /**
+   * @generated from field: bool save_cert = 6;
+   */
+  saveCert = false;
+
+  /**
+   * @generated from field: string save_cert_name = 7;
+   */
+  saveCertName = "";
+
+  /**
+   * @generated from field: string cert_comment = 8;
+   */
+  certComment = "";
+
+  constructor(data?: PartialMessage<PipelineTLSUpdate>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "clientpb.PipelineTLSUpdate";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "listener_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "mode", kind: "enum", T: proto3.getEnumType(TLSUpdateMode) },
+    { no: 4, name: "cert_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "tls", kind: "message", T: TLS },
+    { no: 6, name: "save_cert", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 7, name: "save_cert_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 8, name: "cert_comment", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PipelineTLSUpdate {
+    return new PipelineTLSUpdate().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): PipelineTLSUpdate {
+    return new PipelineTLSUpdate().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): PipelineTLSUpdate {
+    return new PipelineTLSUpdate().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: PipelineTLSUpdate | PlainMessage<PipelineTLSUpdate> | undefined, b: PipelineTLSUpdate | PlainMessage<PipelineTLSUpdate> | undefined): boolean {
+    return proto3.util.equals(PipelineTLSUpdate, a, b);
+  }
+}
+
+/**
  * @generated from message clientpb.TLS
  */
 export class TLS extends Message<TLS> {
@@ -4032,6 +4149,11 @@ export class Cert extends Message<Cert> {
    */
   type = "";
 
+  /**
+   * @generated from field: string comment = 5;
+   */
+  comment = "";
+
   constructor(data?: PartialMessage<Cert>) {
     super();
     proto3.util.initPartial(data, this);
@@ -4044,6 +4166,7 @@ export class Cert extends Message<Cert> {
     { no: 2, name: "key", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 4, name: "type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "comment", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Cert {
@@ -4797,6 +4920,21 @@ export class WebContent extends Message<WebContent> {
    */
   auth = "";
 
+  /**
+   * @generated from field: string name = 12;
+   */
+  name = "";
+
+  /**
+   * @generated from field: string comment = 13;
+   */
+  comment = "";
+
+  /**
+   * @generated from field: repeated string update_fields = 14;
+   */
+  updateFields: string[] = [];
+
   constructor(data?: PartialMessage<WebContent>) {
     super();
     proto3.util.initPartial(data, this);
@@ -4816,6 +4954,9 @@ export class WebContent extends Message<WebContent> {
     { no: 9, name: "content", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
     { no: 10, name: "listener_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 11, name: "auth", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 12, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 13, name: "comment", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 14, name: "update_fields", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): WebContent {

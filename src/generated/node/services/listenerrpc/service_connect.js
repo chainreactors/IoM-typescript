@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { Artifact, BuildConfig, CtrlPipeline, Empty, JobCtrl, JobStatus, Listener, Pipeline, Pipelines, Profile, RegisterListener, RegisterSession, REMAgent, RemLog, SpiteRequest, SpiteResponse, WebContent, WebContents, Website } from "../../client/clientpb/client_pb.js";
+import { Artifact, BuildConfig, CtrlPipeline, Empty, JobCtrl, JobStatus, Listener, Pipeline, Pipelines, PipelineTLSUpdate, Profile, RegisterListener, RegisterSession, REMAgent, RemLog, SpiteRequest, SpiteResponse, WebContent, WebContents, Website } from "../../client/clientpb/client_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 import { Init, Ping, SysInfo } from "../../implant/implantpb/module_pb.js";
 
@@ -164,6 +164,15 @@ export const ListenerRPC = {
       kind: MethodKind.Unary,
     },
     /**
+     * @generated from rpc listenerrpc.ListenerRPC.UpdateWebsiteTLS
+     */
+    updateWebsiteTLS: {
+      name: "UpdateWebsiteTLS",
+      I: PipelineTLSUpdate,
+      O: Pipeline,
+      kind: MethodKind.Unary,
+    },
+    /**
      * @generated from rpc listenerrpc.ListenerRPC.DeleteWebsite
      */
     deleteWebsite: {
@@ -204,6 +213,15 @@ export const ListenerRPC = {
      */
     updateWebsiteContent: {
       name: "UpdateWebsiteContent",
+      I: WebContent,
+      O: WebContent,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc listenerrpc.ListenerRPC.UpdateWebsiteContentMetadata
+     */
+    updateWebsiteContentMetadata: {
+      name: "UpdateWebsiteContentMetadata",
       I: WebContent,
       O: WebContent,
       kind: MethodKind.Unary,

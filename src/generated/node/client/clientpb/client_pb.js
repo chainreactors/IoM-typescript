@@ -8,6 +8,19 @@ import { Addon, Os, Process, Register, Timer } from "../../implant/implantpb/mod
 import { Spite } from "../../implant/implantpb/implant_pb.js";
 
 /**
+ * @generated from enum clientpb.TLSUpdateMode
+ */
+export const TLSUpdateMode = /*@__PURE__*/ proto3.makeEnum(
+  "clientpb.TLSUpdateMode",
+  [
+    {no: 0, name: "TLS_UPDATE_MODE_UNSPECIFIED"},
+    {no: 1, name: "TLS_UPDATE_MODE_DISABLE"},
+    {no: 2, name: "TLS_UPDATE_MODE_EXISTING_CERT"},
+    {no: 3, name: "TLS_UPDATE_MODE_INLINE_CERT"},
+  ],
+);
+
+/**
  * @generated from message clientpb.Empty
  */
 export const Empty = /*@__PURE__*/ proto3.makeMessageType(
@@ -122,6 +135,7 @@ export const Audit = /*@__PURE__*/ proto3.makeMessageType(
     { no: 4, name: "Created", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 5, name: "Finished", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 6, name: "Lasted", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: "result_index", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
   ],
 );
 
@@ -905,6 +919,23 @@ export const CtrlPipeline = /*@__PURE__*/ proto3.makeMessageType(
 );
 
 /**
+ * @generated from message clientpb.PipelineTLSUpdate
+ */
+export const PipelineTLSUpdate = /*@__PURE__*/ proto3.makeMessageType(
+  "clientpb.PipelineTLSUpdate",
+  () => [
+    { no: 1, name: "listener_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "mode", kind: "enum", T: proto3.getEnumType(TLSUpdateMode) },
+    { no: 4, name: "cert_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "tls", kind: "message", T: TLS },
+    { no: 6, name: "save_cert", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 7, name: "save_cert_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 8, name: "cert_comment", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ],
+);
+
+/**
  * @generated from message clientpb.TLS
  */
 export const TLS = /*@__PURE__*/ proto3.makeMessageType(
@@ -939,6 +970,7 @@ export const Cert = /*@__PURE__*/ proto3.makeMessageType(
     { no: 2, name: "key", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 4, name: "type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "comment", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ],
 );
 
@@ -1109,6 +1141,9 @@ export const WebContent = /*@__PURE__*/ proto3.makeMessageType(
     { no: 9, name: "content", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
     { no: 10, name: "listener_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 11, name: "auth", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 12, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 13, name: "comment", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 14, name: "update_fields", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
   ],
 );
 

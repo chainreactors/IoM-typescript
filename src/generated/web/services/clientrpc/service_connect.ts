@@ -1275,6 +1275,15 @@ export const MaliceRPC = {
       kind: MethodKind.Unary,
     },
     /**
+     * @generated from rpc clientrpc.MaliceRPC.UpdateArtifact
+     */
+    updateArtifact: {
+      name: "UpdateArtifact",
+      I: Artifact,
+      O: Artifact,
+      kind: MethodKind.Unary,
+    },
+    /**
      * @generated from rpc clientrpc.MaliceRPC.DeleteArtifact
      */
     deleteArtifact: {
