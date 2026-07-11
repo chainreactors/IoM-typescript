@@ -1539,3 +1539,41 @@ export const DeleteProjectRequest = /*@__PURE__*/ proto3.makeMessageType(
   ],
 );
 
+/**
+ * EventSubscription configures the resumable EventsV2 stream.
+ * topics match Event.type values. An empty topic list subscribes to all events.
+ *
+ * @generated from message clientpb.EventSubscription
+ */
+export const EventSubscription = /*@__PURE__*/ proto3.makeMessageType(
+  "clientpb.EventSubscription",
+  () => [
+    { no: 1, name: "stream_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "after_sequence", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 3, name: "replay", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 4, name: "topics", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 5, name: "include_heartbeats", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ],
+);
+
+/**
+ * EventEnvelope adds ordering and replay metadata without changing the legacy
+ * Event message used by Events and GetEvent.
+ *
+ * @generated from message clientpb.EventEnvelope
+ */
+export const EventEnvelope = /*@__PURE__*/ proto3.makeMessageType(
+  "clientpb.EventEnvelope",
+  () => [
+    { no: 1, name: "stream_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "sequence", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 3, name: "occurred_at_unix_milli", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 4, name: "event", kind: "message", T: Event },
+    { no: 5, name: "replayed", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 6, name: "reset_required", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 7, name: "oldest_sequence", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 8, name: "latest_sequence", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 9, name: "ready", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ],
+);
+

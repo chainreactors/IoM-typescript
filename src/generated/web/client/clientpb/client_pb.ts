@@ -6718,3 +6718,155 @@ export class DeleteProjectRequest extends Message<DeleteProjectRequest> {
   }
 }
 
+/**
+ * EventSubscription configures the resumable EventsV2 stream.
+ * topics match Event.type values. An empty topic list subscribes to all events.
+ *
+ * @generated from message clientpb.EventSubscription
+ */
+export class EventSubscription extends Message<EventSubscription> {
+  /**
+   * @generated from field: string stream_id = 1;
+   */
+  streamId = "";
+
+  /**
+   * @generated from field: uint64 after_sequence = 2;
+   */
+  afterSequence = protoInt64.zero;
+
+  /**
+   * @generated from field: bool replay = 3;
+   */
+  replay = false;
+
+  /**
+   * @generated from field: repeated string topics = 4;
+   */
+  topics: string[] = [];
+
+  /**
+   * @generated from field: bool include_heartbeats = 5;
+   */
+  includeHeartbeats = false;
+
+  constructor(data?: PartialMessage<EventSubscription>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "clientpb.EventSubscription";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "stream_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "after_sequence", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 3, name: "replay", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 4, name: "topics", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 5, name: "include_heartbeats", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EventSubscription {
+    return new EventSubscription().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): EventSubscription {
+    return new EventSubscription().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EventSubscription {
+    return new EventSubscription().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: EventSubscription | PlainMessage<EventSubscription> | undefined, b: EventSubscription | PlainMessage<EventSubscription> | undefined): boolean {
+    return proto3.util.equals(EventSubscription, a, b);
+  }
+}
+
+/**
+ * EventEnvelope adds ordering and replay metadata without changing the legacy
+ * Event message used by Events and GetEvent.
+ *
+ * @generated from message clientpb.EventEnvelope
+ */
+export class EventEnvelope extends Message<EventEnvelope> {
+  /**
+   * @generated from field: string stream_id = 1;
+   */
+  streamId = "";
+
+  /**
+   * @generated from field: uint64 sequence = 2;
+   */
+  sequence = protoInt64.zero;
+
+  /**
+   * @generated from field: int64 occurred_at_unix_milli = 3;
+   */
+  occurredAtUnixMilli = protoInt64.zero;
+
+  /**
+   * @generated from field: clientpb.Event event = 4;
+   */
+  event?: Event;
+
+  /**
+   * @generated from field: bool replayed = 5;
+   */
+  replayed = false;
+
+  /**
+   * @generated from field: bool reset_required = 6;
+   */
+  resetRequired = false;
+
+  /**
+   * @generated from field: uint64 oldest_sequence = 7;
+   */
+  oldestSequence = protoInt64.zero;
+
+  /**
+   * @generated from field: uint64 latest_sequence = 8;
+   */
+  latestSequence = protoInt64.zero;
+
+  /**
+   * @generated from field: bool ready = 9;
+   */
+  ready = false;
+
+  constructor(data?: PartialMessage<EventEnvelope>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "clientpb.EventEnvelope";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "stream_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "sequence", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 3, name: "occurred_at_unix_milli", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 4, name: "event", kind: "message", T: Event },
+    { no: 5, name: "replayed", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 6, name: "reset_required", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 7, name: "oldest_sequence", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 8, name: "latest_sequence", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 9, name: "ready", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EventEnvelope {
+    return new EventEnvelope().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): EventEnvelope {
+    return new EventEnvelope().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EventEnvelope {
+    return new EventEnvelope().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: EventEnvelope | PlainMessage<EventEnvelope> | undefined, b: EventEnvelope | PlainMessage<EventEnvelope> | undefined): boolean {
+    return proto3.util.equals(EventEnvelope, a, b);
+  }
+}
+
