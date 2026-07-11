@@ -6459,3 +6459,262 @@ export class ListenerRetire extends Message<ListenerRetire> {
   }
 }
 
+/**
+ * Project
+ *
+ * @generated from message clientpb.Project
+ */
+export class Project extends Message<Project> {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id = "";
+
+  /**
+   * @generated from field: string name = 2;
+   */
+  name = "";
+
+  /**
+   * @generated from field: string description = 3;
+   */
+  description = "";
+
+  /**
+   * @generated from field: string note = 4;
+   */
+  note = "";
+
+  /**
+   * @generated from field: bool is_deleted = 5;
+   */
+  isDeleted = false;
+
+  /**
+   * @generated from field: int64 created_at = 6;
+   */
+  createdAt = protoInt64.zero;
+
+  /**
+   * @generated from field: int64 updated_at = 7;
+   */
+  updatedAt = protoInt64.zero;
+
+  constructor(data?: PartialMessage<Project>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "clientpb.Project";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "note", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "is_deleted", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 6, name: "created_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 7, name: "updated_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Project {
+    return new Project().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Project {
+    return new Project().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Project {
+    return new Project().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Project | PlainMessage<Project> | undefined, b: Project | PlainMessage<Project> | undefined): boolean {
+    return proto3.util.equals(Project, a, b);
+  }
+}
+
+/**
+ * @generated from message clientpb.Projects
+ */
+export class Projects extends Message<Projects> {
+  /**
+   * @generated from field: repeated clientpb.Project projects = 1;
+   */
+  projects: Project[] = [];
+
+  constructor(data?: PartialMessage<Projects>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "clientpb.Projects";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "projects", kind: "message", T: Project, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Projects {
+    return new Projects().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Projects {
+    return new Projects().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Projects {
+    return new Projects().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Projects | PlainMessage<Projects> | undefined, b: Projects | PlainMessage<Projects> | undefined): boolean {
+    return proto3.util.equals(Projects, a, b);
+  }
+}
+
+/**
+ * @generated from message clientpb.CreateProjectRequest
+ */
+export class CreateProjectRequest extends Message<CreateProjectRequest> {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name = "";
+
+  /**
+   * @generated from field: string description = 2;
+   */
+  description = "";
+
+  /**
+   * @generated from field: string note = 3;
+   */
+  note = "";
+
+  constructor(data?: PartialMessage<CreateProjectRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "clientpb.CreateProjectRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "note", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateProjectRequest {
+    return new CreateProjectRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CreateProjectRequest {
+    return new CreateProjectRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CreateProjectRequest {
+    return new CreateProjectRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: CreateProjectRequest | PlainMessage<CreateProjectRequest> | undefined, b: CreateProjectRequest | PlainMessage<CreateProjectRequest> | undefined): boolean {
+    return proto3.util.equals(CreateProjectRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message clientpb.UpdateProjectRequest
+ */
+export class UpdateProjectRequest extends Message<UpdateProjectRequest> {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id = "";
+
+  /**
+   * @generated from field: string name = 2;
+   */
+  name = "";
+
+  /**
+   * @generated from field: string description = 3;
+   */
+  description = "";
+
+  /**
+   * @generated from field: string note = 4;
+   */
+  note = "";
+
+  constructor(data?: PartialMessage<UpdateProjectRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "clientpb.UpdateProjectRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "note", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UpdateProjectRequest {
+    return new UpdateProjectRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): UpdateProjectRequest {
+    return new UpdateProjectRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UpdateProjectRequest {
+    return new UpdateProjectRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: UpdateProjectRequest | PlainMessage<UpdateProjectRequest> | undefined, b: UpdateProjectRequest | PlainMessage<UpdateProjectRequest> | undefined): boolean {
+    return proto3.util.equals(UpdateProjectRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message clientpb.DeleteProjectRequest
+ */
+export class DeleteProjectRequest extends Message<DeleteProjectRequest> {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id = "";
+
+  /**
+   * @generated from field: bool hard = 2;
+   */
+  hard = false;
+
+  constructor(data?: PartialMessage<DeleteProjectRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "clientpb.DeleteProjectRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "hard", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeleteProjectRequest {
+    return new DeleteProjectRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DeleteProjectRequest {
+    return new DeleteProjectRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DeleteProjectRequest {
+    return new DeleteProjectRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: DeleteProjectRequest | PlainMessage<DeleteProjectRequest> | undefined, b: DeleteProjectRequest | PlainMessage<DeleteProjectRequest> | undefined): boolean {
+    return proto3.util.equals(DeleteProjectRequest, a, b);
+  }
+}
+

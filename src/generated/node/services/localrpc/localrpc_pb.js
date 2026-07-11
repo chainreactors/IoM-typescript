@@ -6,6 +6,51 @@
 import { proto3 } from "@bufbuild/protobuf";
 
 /**
+ * GetCompletionsRequest specifies which command and field to complete
+ *
+ * @generated from message services.localrpc.GetCompletionsRequest
+ */
+export const GetCompletionsRequest = /*@__PURE__*/ proto3.makeMessageType(
+  "services.localrpc.GetCompletionsRequest",
+  () => [
+    { no: 1, name: "command", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "flag", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "arg_index", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 4, name: "current", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "session_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ],
+);
+
+/**
+ * CompletionItem represents a single completion candidate
+ *
+ * @generated from message services.localrpc.CompletionItem
+ */
+export const CompletionItem = /*@__PURE__*/ proto3.makeMessageType(
+  "services.localrpc.CompletionItem",
+  () => [
+    { no: 1, name: "value", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "display", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "tag", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ],
+);
+
+/**
+ * GetCompletionsResponse contains completion results
+ *
+ * @generated from message services.localrpc.GetCompletionsResponse
+ */
+export const GetCompletionsResponse = /*@__PURE__*/ proto3.makeMessageType(
+  "services.localrpc.GetCompletionsResponse",
+  () => [
+    { no: 1, name: "items", kind: "message", T: CompletionItem, repeated: true },
+    { no: 2, name: "success", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 3, name: "error", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ],
+);
+
+/**
  * ExecuteCommandRequest contains the command to execute and optional session context
  *
  * @generated from message services.localrpc.ExecuteCommandRequest

@@ -7,6 +7,201 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto3 } from "@bufbuild/protobuf";
 
 /**
+ * GetCompletionsRequest specifies which command and field to complete
+ *
+ * @generated from message services.localrpc.GetCompletionsRequest
+ */
+export class GetCompletionsRequest extends Message<GetCompletionsRequest> {
+  /**
+   * Command path, e.g. "pipeline tcp" or "exec"
+   *
+   * @generated from field: string command = 1;
+   */
+  command = "";
+
+  /**
+   * Flag name to complete (e.g. "listener"). Empty for positional args.
+   *
+   * @generated from field: string flag = 2;
+   */
+  flag = "";
+
+  /**
+   * Positional argument index (used when flag is empty)
+   *
+   * @generated from field: int32 arg_index = 3;
+   */
+  argIndex = 0;
+
+  /**
+   * Current user input for filtering
+   *
+   * @generated from field: string current = 4;
+   */
+  current = "";
+
+  /**
+   * Session context for session-aware completions
+   *
+   * @generated from field: string session_id = 5;
+   */
+  sessionId = "";
+
+  constructor(data?: PartialMessage<GetCompletionsRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "services.localrpc.GetCompletionsRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "command", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "flag", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "arg_index", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 4, name: "current", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "session_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetCompletionsRequest {
+    return new GetCompletionsRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetCompletionsRequest {
+    return new GetCompletionsRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetCompletionsRequest {
+    return new GetCompletionsRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetCompletionsRequest | PlainMessage<GetCompletionsRequest> | undefined, b: GetCompletionsRequest | PlainMessage<GetCompletionsRequest> | undefined): boolean {
+    return proto3.util.equals(GetCompletionsRequest, a, b);
+  }
+}
+
+/**
+ * CompletionItem represents a single completion candidate
+ *
+ * @generated from message services.localrpc.CompletionItem
+ */
+export class CompletionItem extends Message<CompletionItem> {
+  /**
+   * The completion value to insert
+   *
+   * @generated from field: string value = 1;
+   */
+  value = "";
+
+  /**
+   * Display text (may differ from value)
+   *
+   * @generated from field: string display = 2;
+   */
+  display = "";
+
+  /**
+   * Description of this completion
+   *
+   * @generated from field: string description = 3;
+   */
+  description = "";
+
+  /**
+   * Category tag (e.g. "listener id", "session id", "pipeline")
+   *
+   * @generated from field: string tag = 4;
+   */
+  tag = "";
+
+  constructor(data?: PartialMessage<CompletionItem>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "services.localrpc.CompletionItem";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "value", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "display", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "tag", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CompletionItem {
+    return new CompletionItem().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CompletionItem {
+    return new CompletionItem().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CompletionItem {
+    return new CompletionItem().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: CompletionItem | PlainMessage<CompletionItem> | undefined, b: CompletionItem | PlainMessage<CompletionItem> | undefined): boolean {
+    return proto3.util.equals(CompletionItem, a, b);
+  }
+}
+
+/**
+ * GetCompletionsResponse contains completion results
+ *
+ * @generated from message services.localrpc.GetCompletionsResponse
+ */
+export class GetCompletionsResponse extends Message<GetCompletionsResponse> {
+  /**
+   * List of completion candidates
+   *
+   * @generated from field: repeated services.localrpc.CompletionItem items = 1;
+   */
+  items: CompletionItem[] = [];
+
+  /**
+   * Whether the operation was successful
+   *
+   * @generated from field: bool success = 2;
+   */
+  success = false;
+
+  /**
+   * Error message if completion failed
+   *
+   * @generated from field: string error = 3;
+   */
+  error = "";
+
+  constructor(data?: PartialMessage<GetCompletionsResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "services.localrpc.GetCompletionsResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "items", kind: "message", T: CompletionItem, repeated: true },
+    { no: 2, name: "success", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 3, name: "error", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetCompletionsResponse {
+    return new GetCompletionsResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetCompletionsResponse {
+    return new GetCompletionsResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetCompletionsResponse {
+    return new GetCompletionsResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetCompletionsResponse | PlainMessage<GetCompletionsResponse> | undefined, b: GetCompletionsResponse | PlainMessage<GetCompletionsResponse> | undefined): boolean {
+    return proto3.util.equals(GetCompletionsResponse, a, b);
+  }
+}
+
+/**
  * ExecuteCommandRequest contains the command to execute and optional session context
  *
  * @generated from message services.localrpc.ExecuteCommandRequest

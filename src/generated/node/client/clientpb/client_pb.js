@@ -1475,3 +1475,67 @@ export const ListenerRetire = /*@__PURE__*/ proto3.makeMessageType(
   ],
 );
 
+/**
+ * Project
+ *
+ * @generated from message clientpb.Project
+ */
+export const Project = /*@__PURE__*/ proto3.makeMessageType(
+  "clientpb.Project",
+  () => [
+    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "note", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "is_deleted", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 6, name: "created_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 7, name: "updated_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+  ],
+);
+
+/**
+ * @generated from message clientpb.Projects
+ */
+export const Projects = /*@__PURE__*/ proto3.makeMessageType(
+  "clientpb.Projects",
+  () => [
+    { no: 1, name: "projects", kind: "message", T: Project, repeated: true },
+  ],
+);
+
+/**
+ * @generated from message clientpb.CreateProjectRequest
+ */
+export const CreateProjectRequest = /*@__PURE__*/ proto3.makeMessageType(
+  "clientpb.CreateProjectRequest",
+  () => [
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "note", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ],
+);
+
+/**
+ * @generated from message clientpb.UpdateProjectRequest
+ */
+export const UpdateProjectRequest = /*@__PURE__*/ proto3.makeMessageType(
+  "clientpb.UpdateProjectRequest",
+  () => [
+    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "note", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ],
+);
+
+/**
+ * @generated from message clientpb.DeleteProjectRequest
+ */
+export const DeleteProjectRequest = /*@__PURE__*/ proto3.makeMessageType(
+  "clientpb.DeleteProjectRequest",
+  () => [
+    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "hard", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ],
+);
+

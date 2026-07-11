@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { ExecuteCommandRequest, ExecuteCommandResponse, ExecuteLuaRequest, ExecuteLuaResponse, GetGroupsRequest, GetGroupsResponse, GetHistoryRequest, GetHistoryResponse, GetSchemasRequest, GetSchemasResponse, SearchCommandsRequest, SearchCommandsResponse } from "./localrpc_pb.js";
+import { ExecuteCommandRequest, ExecuteCommandResponse, ExecuteLuaRequest, ExecuteLuaResponse, GetCompletionsRequest, GetCompletionsResponse, GetGroupsRequest, GetGroupsResponse, GetHistoryRequest, GetHistoryResponse, GetSchemasRequest, GetSchemasResponse, SearchCommandsRequest, SearchCommandsResponse } from "./localrpc_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -98,6 +98,18 @@ export const CommandService = {
       I: ExecuteCommandRequest,
       O: ExecuteCommandResponse,
       kind: MethodKind.ServerStreaming,
+    },
+    /**
+     * GetCompletions returns dynamic completion values for a specific flag or positional argument.
+     * Called by UI when user focuses on a field that has registered completions.
+     *
+     * @generated from rpc services.localrpc.CommandService.GetCompletions
+     */
+    getCompletions: {
+      name: "GetCompletions",
+      I: GetCompletionsRequest,
+      O: GetCompletionsResponse,
+      kind: MethodKind.Unary,
     },
   }
 };
