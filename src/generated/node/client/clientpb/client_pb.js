@@ -1577,3 +1577,21 @@ export const EventEnvelope = /*@__PURE__*/ proto3.makeMessageType(
   ],
 );
 
+/**
+ * ArtifactChunk is used by DownloadArtifactStream to deliver an Artifact
+ * incrementally. The first chunk carries metadata with an empty bin field;
+ * subsequent chunks carry binary content slices.
+ *
+ * @generated from message clientpb.ArtifactChunk
+ */
+export const ArtifactChunk = /*@__PURE__*/ proto3.makeMessageType(
+  "clientpb.ArtifactChunk",
+  () => [
+    { no: 1, name: "header", kind: "message", T: Artifact },
+    { no: 2, name: "content", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 3, name: "offset", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 4, name: "total_size", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 5, name: "eof", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ],
+);
+

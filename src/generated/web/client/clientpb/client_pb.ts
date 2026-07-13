@@ -6870,3 +6870,68 @@ export class EventEnvelope extends Message<EventEnvelope> {
   }
 }
 
+/**
+ * ArtifactChunk is used by DownloadArtifactStream to deliver an Artifact
+ * incrementally. The first chunk carries metadata with an empty bin field;
+ * subsequent chunks carry binary content slices.
+ *
+ * @generated from message clientpb.ArtifactChunk
+ */
+export class ArtifactChunk extends Message<ArtifactChunk> {
+  /**
+   * @generated from field: clientpb.Artifact header = 1;
+   */
+  header?: Artifact;
+
+  /**
+   * @generated from field: bytes content = 2;
+   */
+  content = new Uint8Array(0);
+
+  /**
+   * @generated from field: int64 offset = 3;
+   */
+  offset = protoInt64.zero;
+
+  /**
+   * @generated from field: int64 total_size = 4;
+   */
+  totalSize = protoInt64.zero;
+
+  /**
+   * @generated from field: bool eof = 5;
+   */
+  eof = false;
+
+  constructor(data?: PartialMessage<ArtifactChunk>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "clientpb.ArtifactChunk";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "header", kind: "message", T: Artifact },
+    { no: 2, name: "content", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 3, name: "offset", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 4, name: "total_size", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 5, name: "eof", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ArtifactChunk {
+    return new ArtifactChunk().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ArtifactChunk {
+    return new ArtifactChunk().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ArtifactChunk {
+    return new ArtifactChunk().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ArtifactChunk | PlainMessage<ArtifactChunk> | undefined, b: ArtifactChunk | PlainMessage<ArtifactChunk> | undefined): boolean {
+    return proto3.util.equals(ArtifactChunk, a, b);
+  }
+}
+
