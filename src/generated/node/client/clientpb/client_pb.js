@@ -1439,6 +1439,43 @@ export const ContextChunk = /*@__PURE__*/ proto3.makeMessageType(
 );
 
 /**
+ * UploadChunkRequest is one sequential chunk of a browser-safe file upload.
+ * Clients generate upload_id and resend immutable metadata on every chunk.
+ * Completion is defined by next_offset reaching total_size (no separate Commit).
+ *
+ * @generated from message clientpb.UploadChunkRequest
+ */
+export const UploadChunkRequest = /*@__PURE__*/ proto3.makeMessageType(
+  "clientpb.UploadChunkRequest",
+  () => [
+    { no: 1, name: "upload_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "target", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "priv", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 5, name: "total_size", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 6, name: "offset", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 7, name: "data", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 8, name: "hidden", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 9, name: "override", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ],
+);
+
+/**
+ * UploadChunkResponse acknowledges received bytes. task is set only when the
+ * file is fully staged and a downstream implant Task has been created.
+ *
+ * @generated from message clientpb.UploadChunkResponse
+ */
+export const UploadChunkResponse = /*@__PURE__*/ proto3.makeMessageType(
+  "clientpb.UploadChunkResponse",
+  () => [
+    { no: 1, name: "upload_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "next_offset", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 3, name: "task", kind: "message", T: Task },
+  ],
+);
+
+/**
  * @generated from message clientpb.KeyPair
  */
 export const KeyPair = /*@__PURE__*/ proto3.makeMessageType(

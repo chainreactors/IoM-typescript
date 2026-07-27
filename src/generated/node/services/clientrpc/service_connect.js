@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { AcmeConfig, AcmeRequest, Artifact, ArtifactChunk, Artifacts, Audits, Basic, BasicUpdateSession, Bin, Cert, Certs, Client, Clients, Context, ContextChunk, Contexts, CreateProjectRequest, DeleteProjectRequest, DLL2Shellcode, Empty, Event, EventEnvelope, Events, EventSubscription, EXE2Shellcode, Files, ForwardListenerConnect, ForwardListenerStatus, ForwardListenerStatuses, GithubActionBuildConfig, Int, Jobs, LicenseInfo, Listener, ListenerRetire, Listeners, LoginReq, MutantSigforgeRequest, MutantSrdiRequest, MutantStripRequest, MutantToolRequest, MutantToolResponse, Notify, On, Pipelines, Polling, PollingState, Profile, Profiles, Project, Projects, SaasConfig, Session, SessionCount, SessionRequest, Sessions, ShellcodeEncode, Sync, Task, TaskContext, TaskContexts, TaskDetails, TaskQuery, TaskRequest, Tasks, TasksContext, TLS, UpdateProjectRequest } from "../../client/clientpb/client_pb.js";
+import { AcmeConfig, AcmeRequest, Artifact, ArtifactChunk, Artifacts, Audits, Basic, BasicUpdateSession, Bin, Cert, Certs, Client, Clients, Context, ContextChunk, Contexts, CreateProjectRequest, DeleteProjectRequest, DLL2Shellcode, Empty, Event, EventEnvelope, Events, EventSubscription, EXE2Shellcode, Files, ForwardListenerConnect, ForwardListenerStatus, ForwardListenerStatuses, GithubActionBuildConfig, Int, Jobs, LicenseInfo, Listener, ListenerRetire, Listeners, LoginReq, MutantSigforgeRequest, MutantSrdiRequest, MutantStripRequest, MutantToolRequest, MutantToolResponse, Notify, On, Pipelines, Polling, PollingState, Profile, Profiles, Project, Projects, SaasConfig, Session, SessionCount, SessionRequest, Sessions, ShellcodeEncode, Sync, Task, TaskContext, TaskContexts, TaskDetails, TaskQuery, TaskRequest, Tasks, TasksContext, TLS, UpdateProjectRequest, UploadChunkRequest, UploadChunkResponse } from "../../client/clientpb/client_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 import { BridgeAgentRequest, BypassRequest, ChownRequest, CommonBody, CurlRequest, DownloadRequest, ExecRequest, ExecuteAddon, ExecuteBinary, FFmpegRequest, LoadAddon, LoadModule, Ping, PipeRequest, PtyRequest, RegistryRequest, RegistryWriteRequest, Request, RunAsRequest, ServiceRequest, Switch, TaskCtrl, TaskScheduleRequest, Timer, UploadRequest, WmiMethodRequest, WmiQueryRequest } from "../../implant/implantpb/module_pb.js";
 import { ExecuteModuleRequest } from "../../implant/implantpb/implant_pb.js";
@@ -501,6 +501,18 @@ export const MaliceRPC = {
       name: "Upload",
       I: UploadRequest,
       O: Task,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * UploadChunk stages sequential browser-safe chunks on the server, then
+     * dispatches a single implant upload Task when total_size is reached.
+     *
+     * @generated from rpc clientrpc.MaliceRPC.UploadChunk
+     */
+    uploadChunk: {
+      name: "UploadChunk",
+      I: UploadChunkRequest,
+      O: UploadChunkResponse,
       kind: MethodKind.Unary,
     },
     /**

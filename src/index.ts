@@ -150,6 +150,8 @@ export type {
 
   // File types
   Files,
+  UploadChunkRequest,
+  UploadChunkResponse,
 
   // Event types
   Event,

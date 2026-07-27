@@ -6297,6 +6297,147 @@ export class ContextChunk extends Message<ContextChunk> {
 }
 
 /**
+ * UploadChunkRequest is one sequential chunk of a browser-safe file upload.
+ * Clients generate upload_id and resend immutable metadata on every chunk.
+ * Completion is defined by next_offset reaching total_size (no separate Commit).
+ *
+ * @generated from message clientpb.UploadChunkRequest
+ */
+export class UploadChunkRequest extends Message<UploadChunkRequest> {
+  /**
+   * @generated from field: string upload_id = 1;
+   */
+  uploadId = "";
+
+  /**
+   * @generated from field: string name = 2;
+   */
+  name = "";
+
+  /**
+   * @generated from field: string target = 3;
+   */
+  target = "";
+
+  /**
+   * @generated from field: uint32 priv = 4;
+   */
+  priv = 0;
+
+  /**
+   * @generated from field: uint64 total_size = 5;
+   */
+  totalSize = protoInt64.zero;
+
+  /**
+   * @generated from field: uint64 offset = 6;
+   */
+  offset = protoInt64.zero;
+
+  /**
+   * @generated from field: bytes data = 7;
+   */
+  data = new Uint8Array(0);
+
+  /**
+   * @generated from field: bool hidden = 8;
+   */
+  hidden = false;
+
+  /**
+   * @generated from field: bool override = 9;
+   */
+  override = false;
+
+  constructor(data?: PartialMessage<UploadChunkRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "clientpb.UploadChunkRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "upload_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "target", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "priv", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 5, name: "total_size", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 6, name: "offset", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 7, name: "data", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 8, name: "hidden", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 9, name: "override", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UploadChunkRequest {
+    return new UploadChunkRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): UploadChunkRequest {
+    return new UploadChunkRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UploadChunkRequest {
+    return new UploadChunkRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: UploadChunkRequest | PlainMessage<UploadChunkRequest> | undefined, b: UploadChunkRequest | PlainMessage<UploadChunkRequest> | undefined): boolean {
+    return proto3.util.equals(UploadChunkRequest, a, b);
+  }
+}
+
+/**
+ * UploadChunkResponse acknowledges received bytes. task is set only when the
+ * file is fully staged and a downstream implant Task has been created.
+ *
+ * @generated from message clientpb.UploadChunkResponse
+ */
+export class UploadChunkResponse extends Message<UploadChunkResponse> {
+  /**
+   * @generated from field: string upload_id = 1;
+   */
+  uploadId = "";
+
+  /**
+   * @generated from field: uint64 next_offset = 2;
+   */
+  nextOffset = protoInt64.zero;
+
+  /**
+   * @generated from field: clientpb.Task task = 3;
+   */
+  task?: Task;
+
+  constructor(data?: PartialMessage<UploadChunkResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "clientpb.UploadChunkResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "upload_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "next_offset", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 3, name: "task", kind: "message", T: Task },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UploadChunkResponse {
+    return new UploadChunkResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): UploadChunkResponse {
+    return new UploadChunkResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UploadChunkResponse {
+    return new UploadChunkResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: UploadChunkResponse | PlainMessage<UploadChunkResponse> | undefined, b: UploadChunkResponse | PlainMessage<UploadChunkResponse> | undefined): boolean {
+    return proto3.util.equals(UploadChunkResponse, a, b);
+  }
+}
+
+/**
  * @generated from message clientpb.KeyPair
  */
 export class KeyPair extends Message<KeyPair> {
