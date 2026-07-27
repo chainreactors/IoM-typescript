@@ -111,8 +111,7 @@ export class GrpcClient {
       });
     }
 
-    // Debug log
-    console.log('[GrpcClient] Outgoing headers:', Array.from(headers.entries()));
+    this.log(`[GrpcClient] Outgoing headers: ${JSON.stringify(Array.from(headers.entries()))}`);
 
     const options: CallOptions = {
       ...callOptions,
