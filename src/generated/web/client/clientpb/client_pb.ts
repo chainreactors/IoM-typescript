@@ -7076,3 +7076,144 @@ export class ArtifactChunk extends Message<ArtifactChunk> {
   }
 }
 
+/**
+ * @generated from message clientpb.SessionLink
+ */
+export class SessionLink extends Message<SessionLink> {
+  /**
+   * @generated from field: string parent_session_id = 1;
+   */
+  parentSessionId = "";
+
+  /**
+   * @generated from field: string child_session_id = 2;
+   */
+  childSessionId = "";
+
+  /**
+   * @generated from field: string source = 3;
+   */
+  source = "";
+
+  /**
+   * @generated from field: int64 created_at = 4;
+   */
+  createdAt = protoInt64.zero;
+
+  /**
+   * @generated from field: int64 updated_at = 5;
+   */
+  updatedAt = protoInt64.zero;
+
+  constructor(data?: PartialMessage<SessionLink>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "clientpb.SessionLink";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "parent_session_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "child_session_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "source", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "created_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 5, name: "updated_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SessionLink {
+    return new SessionLink().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SessionLink {
+    return new SessionLink().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SessionLink {
+    return new SessionLink().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: SessionLink | PlainMessage<SessionLink> | undefined, b: SessionLink | PlainMessage<SessionLink> | undefined): boolean {
+    return proto3.util.equals(SessionLink, a, b);
+  }
+}
+
+/**
+ * @generated from message clientpb.SessionLinkRequest
+ */
+export class SessionLinkRequest extends Message<SessionLinkRequest> {
+  /**
+   * @generated from field: string parent_session_id = 1;
+   */
+  parentSessionId = "";
+
+  /**
+   * @generated from field: string child_session_id = 2;
+   */
+  childSessionId = "";
+
+  constructor(data?: PartialMessage<SessionLinkRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "clientpb.SessionLinkRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "parent_session_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "child_session_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SessionLinkRequest {
+    return new SessionLinkRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SessionLinkRequest {
+    return new SessionLinkRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SessionLinkRequest {
+    return new SessionLinkRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: SessionLinkRequest | PlainMessage<SessionLinkRequest> | undefined, b: SessionLinkRequest | PlainMessage<SessionLinkRequest> | undefined): boolean {
+    return proto3.util.equals(SessionLinkRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message clientpb.SessionLinks
+ */
+export class SessionLinks extends Message<SessionLinks> {
+  /**
+   * @generated from field: repeated clientpb.SessionLink links = 1;
+   */
+  links: SessionLink[] = [];
+
+  constructor(data?: PartialMessage<SessionLinks>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "clientpb.SessionLinks";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "links", kind: "message", T: SessionLink, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SessionLinks {
+    return new SessionLinks().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SessionLinks {
+    return new SessionLinks().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SessionLinks {
+    return new SessionLinks().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: SessionLinks | PlainMessage<SessionLinks> | undefined, b: SessionLinks | PlainMessage<SessionLinks> | undefined): boolean {
+    return proto3.util.equals(SessionLinks, a, b);
+  }
+}
+

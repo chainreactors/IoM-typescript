@@ -1632,3 +1632,38 @@ export const ArtifactChunk = /*@__PURE__*/ proto3.makeMessageType(
   ],
 );
 
+/**
+ * @generated from message clientpb.SessionLink
+ */
+export const SessionLink = /*@__PURE__*/ proto3.makeMessageType(
+  "clientpb.SessionLink",
+  () => [
+    { no: 1, name: "parent_session_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "child_session_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "source", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "created_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 5, name: "updated_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+  ],
+);
+
+/**
+ * @generated from message clientpb.SessionLinkRequest
+ */
+export const SessionLinkRequest = /*@__PURE__*/ proto3.makeMessageType(
+  "clientpb.SessionLinkRequest",
+  () => [
+    { no: 1, name: "parent_session_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "child_session_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ],
+);
+
+/**
+ * @generated from message clientpb.SessionLinks
+ */
+export const SessionLinks = /*@__PURE__*/ proto3.makeMessageType(
+  "clientpb.SessionLinks",
+  () => [
+    { no: 1, name: "links", kind: "message", T: SessionLink, repeated: true },
+  ],
+);
+

@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { AcmeConfig, AcmeRequest, Artifact, ArtifactChunk, Artifacts, Audits, Basic, BasicUpdateSession, Bin, Cert, Certs, Client, Clients, Context, ContextChunk, Contexts, CreateProjectRequest, DeleteProjectRequest, DLL2Shellcode, Empty, Event, EventEnvelope, Events, EventSubscription, EXE2Shellcode, Files, ForwardListenerConnect, ForwardListenerStatus, ForwardListenerStatuses, GithubActionBuildConfig, Int, Jobs, LicenseInfo, Listener, ListenerRetire, Listeners, LoginReq, MutantSigforgeRequest, MutantSrdiRequest, MutantStripRequest, MutantToolRequest, MutantToolResponse, Notify, On, Pipelines, Polling, PollingState, Profile, Profiles, Project, Projects, SaasConfig, Session, SessionCount, SessionRequest, Sessions, ShellcodeEncode, Sync, Task, TaskContext, TaskContexts, TaskDetails, TaskQuery, TaskRequest, Tasks, TasksContext, TLS, UpdateProjectRequest, UploadChunkRequest, UploadChunkResponse } from "../../client/clientpb/client_pb";
+import { AcmeConfig, AcmeRequest, Artifact, ArtifactChunk, Artifacts, Audits, Basic, BasicUpdateSession, Bin, Cert, Certs, Client, Clients, Context, ContextChunk, Contexts, CreateProjectRequest, DeleteProjectRequest, DLL2Shellcode, Empty, Event, EventEnvelope, Events, EventSubscription, EXE2Shellcode, Files, ForwardListenerConnect, ForwardListenerStatus, ForwardListenerStatuses, GithubActionBuildConfig, Int, Jobs, LicenseInfo, Listener, ListenerRetire, Listeners, LoginReq, MutantSigforgeRequest, MutantSrdiRequest, MutantStripRequest, MutantToolRequest, MutantToolResponse, Notify, On, Pipelines, Polling, PollingState, Profile, Profiles, Project, Projects, SaasConfig, Session, SessionCount, SessionLink, SessionLinkRequest, SessionLinks, SessionRequest, Sessions, ShellcodeEncode, Sync, Task, TaskContext, TaskContexts, TaskDetails, TaskQuery, TaskRequest, Tasks, TasksContext, TLS, UpdateProjectRequest, UploadChunkRequest, UploadChunkResponse } from "../../client/clientpb/client_pb";
 import { MethodKind } from "@bufbuild/protobuf";
 import { BridgeAgentRequest, BypassRequest, ChownRequest, CommonBody, CurlRequest, DownloadRequest, ExecRequest, ExecuteAddon, ExecuteBinary, FFmpegRequest, LoadAddon, LoadModule, Ping, PipeRequest, PtyRequest, RegistryRequest, RegistryWriteRequest, Request, RunAsRequest, ServiceRequest, Switch, TaskCtrl, TaskScheduleRequest, Timer, UploadRequest, WmiMethodRequest, WmiQueryRequest } from "../../implant/implantpb/module_pb";
 import { ExecuteModuleRequest } from "../../implant/implantpb/implant_pb";
@@ -1614,6 +1614,35 @@ export const MaliceRPC = {
       I: EventSubscription,
       O: EventEnvelope,
       kind: MethodKind.ServerStreaming,
+    },
+    /**
+     * manual session topology; appended to preserve legacy method ordering
+     *
+     * @generated from rpc clientrpc.MaliceRPC.ListSessionLinks
+     */
+    listSessionLinks: {
+      name: "ListSessionLinks",
+      I: SessionLinkRequest,
+      O: SessionLinks,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc clientrpc.MaliceRPC.SetSessionLink
+     */
+    setSessionLink: {
+      name: "SetSessionLink",
+      I: SessionLinkRequest,
+      O: SessionLink,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc clientrpc.MaliceRPC.RemoveSessionLink
+     */
+    removeSessionLink: {
+      name: "RemoveSessionLink",
+      I: SessionLinkRequest,
+      O: Empty,
+      kind: MethodKind.Unary,
     },
   }
 } as const;
