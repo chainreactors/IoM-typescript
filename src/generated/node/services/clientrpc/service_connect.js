@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { AcmeConfig, AcmeRequest, Artifact, ArtifactChunk, Artifacts, Audits, Basic, BasicUpdateSession, Bin, Cert, Certs, Client, Clients, Context, ContextChunk, Contexts, CreateProjectRequest, DeleteProjectRequest, DLL2Shellcode, Empty, Event, EventEnvelope, Events, EventSubscription, EXE2Shellcode, Files, ForwardListenerConnect, ForwardListenerStatus, ForwardListenerStatuses, GithubActionBuildConfig, Int, Jobs, LicenseInfo, Listener, ListenerRetire, Listeners, LoginReq, MutantSigforgeRequest, MutantSrdiRequest, MutantStripRequest, MutantToolRequest, MutantToolResponse, Notify, On, Pipelines, Polling, PollingState, Profile, Profiles, Project, Projects, SaasConfig, Session, SessionCount, SessionLink, SessionLinkRequest, SessionLinks, SessionRequest, Sessions, ShellcodeEncode, Sync, Task, TaskContext, TaskContexts, TaskDetails, TaskQuery, TaskRequest, Tasks, TasksContext, TLS, UpdateProjectRequest, UploadChunkRequest, UploadChunkResponse } from "../../client/clientpb/client_pb.js";
+import { AcmeConfig, AcmeRequest, Artifact, ArtifactChunk, Artifacts, Audits, Basic, BasicUpdateSession, Bin, Cert, Certs, Client, Clients, Context, ContextChunk, Contexts, CreateProjectRequest, DeleteProjectRequest, DLL2Shellcode, Empty, Event, EventEnvelope, Events, EventSubscription, EXE2Shellcode, Files, ForwardListenerConnect, ForwardListenerStatus, ForwardListenerStatuses, GithubActionBuildConfig, Int, Jobs, LicenseInfo, Listener, ListenerRetire, Listeners, ListSessionsRequest, ListSessionsResponse, LoginReq, MutantSigforgeRequest, MutantSrdiRequest, MutantStripRequest, MutantToolRequest, MutantToolResponse, Notify, On, Pipelines, Polling, PollingState, Profile, Profiles, Project, Projects, SaasConfig, Session, SessionCount, SessionGroups, SessionLink, SessionLinkRequest, SessionLinks, SessionRequest, Sessions, SessionStats, SessionStatsRequest, SessionTrend, ShellcodeEncode, Sync, Task, TaskContext, TaskContexts, TaskDetails, TaskQuery, TaskRequest, Tasks, TasksContext, TLS, UpdateProjectRequest, UploadChunkRequest, UploadChunkResponse } from "../../client/clientpb/client_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 import { BridgeAgentRequest, BypassRequest, ChownRequest, CommonBody, CurlRequest, DownloadRequest, ExecRequest, ExecuteAddon, ExecuteBinary, FFmpegRequest, LoadAddon, LoadModule, Ping, PipeRequest, PtyRequest, RegistryRequest, RegistryWriteRequest, Request, RunAsRequest, ServiceRequest, Switch, TaskCtrl, TaskScheduleRequest, Timer, UploadRequest, WmiMethodRequest, WmiQueryRequest } from "../../implant/implantpb/module_pb.js";
 import { ExecuteModuleRequest } from "../../implant/implantpb/implant_pb.js";
@@ -1642,6 +1642,55 @@ export const MaliceRPC = {
       name: "RemoveSessionLink",
       I: SessionLinkRequest,
       O: Empty,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * Rebuild from the immutable configuration snapshot of an existing artifact.
+     *
+     * @generated from rpc clientrpc.MaliceRPC.ReplayArtifact
+     */
+    replayArtifact: {
+      name: "ReplayArtifact",
+      I: Artifact,
+      O: Artifact,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * Bounded, server-side filtered Session list for management UIs.
+     *
+     * @generated from rpc clientrpc.MaliceRPC.ListSessions
+     */
+    listSessions: {
+      name: "ListSessions",
+      I: ListSessionsRequest,
+      O: ListSessionsResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc clientrpc.MaliceRPC.GetSessionStats
+     */
+    getSessionStats: {
+      name: "GetSessionStats",
+      I: SessionStatsRequest,
+      O: SessionStats,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc clientrpc.MaliceRPC.ListSessionGroups
+     */
+    listSessionGroups: {
+      name: "ListSessionGroups",
+      I: Empty,
+      O: SessionGroups,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc clientrpc.MaliceRPC.GetSessionTrend
+     */
+    getSessionTrend: {
+      name: "GetSessionTrend",
+      I: Empty,
+      O: SessionTrend,
       kind: MethodKind.Unary,
     },
   }

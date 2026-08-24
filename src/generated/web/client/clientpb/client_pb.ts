@@ -41,6 +41,138 @@ proto3.util.setEnumType(TLSUpdateMode, "clientpb.TLSUpdateMode", [
 ]);
 
 /**
+ * @generated from enum clientpb.SessionListStatus
+ */
+export enum SessionListStatus {
+  /**
+   * @generated from enum value: SESSION_LIST_STATUS_ALL = 0;
+   */
+  ALL = 0,
+
+  /**
+   * @generated from enum value: SESSION_LIST_STATUS_ALIVE = 1;
+   */
+  ALIVE = 1,
+
+  /**
+   * @generated from enum value: SESSION_LIST_STATUS_OFFLINE = 2;
+   */
+  OFFLINE = 2,
+}
+// Retrieve enum metadata with: proto3.getEnumType(SessionListStatus)
+proto3.util.setEnumType(SessionListStatus, "clientpb.SessionListStatus", [
+  { no: 0, name: "SESSION_LIST_STATUS_ALL" },
+  { no: 1, name: "SESSION_LIST_STATUS_ALIVE" },
+  { no: 2, name: "SESSION_LIST_STATUS_OFFLINE" },
+]);
+
+/**
+ * @generated from enum clientpb.SessionListSortField
+ */
+export enum SessionListSortField {
+  /**
+   * @generated from enum value: SESSION_LIST_SORT_FIELD_OPERATIONAL = 0;
+   */
+  OPERATIONAL = 0,
+
+  /**
+   * @generated from enum value: SESSION_LIST_SORT_FIELD_STATUS = 1;
+   */
+  STATUS = 1,
+
+  /**
+   * @generated from enum value: SESSION_LIST_SORT_FIELD_SESSION_ID = 2;
+   */
+  SESSION_ID = 2,
+
+  /**
+   * @generated from enum value: SESSION_LIST_SORT_FIELD_GROUP_NAME = 3;
+   */
+  GROUP_NAME = 3,
+
+  /**
+   * @generated from enum value: SESSION_LIST_SORT_FIELD_NOTE = 4;
+   */
+  NOTE = 4,
+
+  /**
+   * @generated from enum value: SESSION_LIST_SORT_FIELD_LISTENER_ID = 5;
+   */
+  LISTENER_ID = 5,
+
+  /**
+   * @generated from enum value: SESSION_LIST_SORT_FIELD_PIPELINE_ID = 6;
+   */
+  PIPELINE_ID = 6,
+
+  /**
+   * @generated from enum value: SESSION_LIST_SORT_FIELD_TARGET = 7;
+   */
+  TARGET = 7,
+
+  /**
+   * @generated from enum value: SESSION_LIST_SORT_FIELD_CREATED_AT = 8;
+   */
+  CREATED_AT = 8,
+
+  /**
+   * @generated from enum value: SESSION_LIST_SORT_FIELD_LAST_CHECKIN = 9;
+   */
+  LAST_CHECKIN = 9,
+
+  /**
+   * @generated from enum value: SESSION_LIST_SORT_FIELD_PROFILE_NAME = 10;
+   */
+  PROFILE_NAME = 10,
+
+  /**
+   * @generated from enum value: SESSION_LIST_SORT_FIELD_TYPE = 11;
+   */
+  TYPE = 11,
+}
+// Retrieve enum metadata with: proto3.getEnumType(SessionListSortField)
+proto3.util.setEnumType(SessionListSortField, "clientpb.SessionListSortField", [
+  { no: 0, name: "SESSION_LIST_SORT_FIELD_OPERATIONAL" },
+  { no: 1, name: "SESSION_LIST_SORT_FIELD_STATUS" },
+  { no: 2, name: "SESSION_LIST_SORT_FIELD_SESSION_ID" },
+  { no: 3, name: "SESSION_LIST_SORT_FIELD_GROUP_NAME" },
+  { no: 4, name: "SESSION_LIST_SORT_FIELD_NOTE" },
+  { no: 5, name: "SESSION_LIST_SORT_FIELD_LISTENER_ID" },
+  { no: 6, name: "SESSION_LIST_SORT_FIELD_PIPELINE_ID" },
+  { no: 7, name: "SESSION_LIST_SORT_FIELD_TARGET" },
+  { no: 8, name: "SESSION_LIST_SORT_FIELD_CREATED_AT" },
+  { no: 9, name: "SESSION_LIST_SORT_FIELD_LAST_CHECKIN" },
+  { no: 10, name: "SESSION_LIST_SORT_FIELD_PROFILE_NAME" },
+  { no: 11, name: "SESSION_LIST_SORT_FIELD_TYPE" },
+]);
+
+/**
+ * @generated from enum clientpb.SessionListSortDirection
+ */
+export enum SessionListSortDirection {
+  /**
+   * @generated from enum value: SESSION_LIST_SORT_DIRECTION_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: SESSION_LIST_SORT_DIRECTION_ASC = 1;
+   */
+  ASC = 1,
+
+  /**
+   * @generated from enum value: SESSION_LIST_SORT_DIRECTION_DESC = 2;
+   */
+  DESC = 2,
+}
+// Retrieve enum metadata with: proto3.getEnumType(SessionListSortDirection)
+proto3.util.setEnumType(SessionListSortDirection, "clientpb.SessionListSortDirection", [
+  { no: 0, name: "SESSION_LIST_SORT_DIRECTION_UNSPECIFIED" },
+  { no: 1, name: "SESSION_LIST_SORT_DIRECTION_ASC" },
+  { no: 2, name: "SESSION_LIST_SORT_DIRECTION_DESC" },
+]);
+
+/**
  * @generated from message clientpb.Empty
  */
 export class Empty extends Message<Empty> {
@@ -7214,6 +7346,349 @@ export class SessionLinks extends Message<SessionLinks> {
 
   static equals(a: SessionLinks | PlainMessage<SessionLinks> | undefined, b: SessionLinks | PlainMessage<SessionLinks> | undefined): boolean {
     return proto3.util.equals(SessionLinks, a, b);
+  }
+}
+
+/**
+ * @generated from message clientpb.ListSessionsRequest
+ */
+export class ListSessionsRequest extends Message<ListSessionsRequest> {
+  /**
+   * @generated from field: int32 page = 1;
+   */
+  page = 0;
+
+  /**
+   * @generated from field: int32 page_size = 2;
+   */
+  pageSize = 0;
+
+  /**
+   * @generated from field: clientpb.SessionListStatus status = 3;
+   */
+  status = SessionListStatus.ALL;
+
+  /**
+   * @generated from field: string group = 4;
+   */
+  group = "";
+
+  /**
+   * @generated from field: string search = 5;
+   */
+  search = "";
+
+  /**
+   * @generated from field: clientpb.SessionListSortField sort_field = 6;
+   */
+  sortField = SessionListSortField.OPERATIONAL;
+
+  /**
+   * @generated from field: clientpb.SessionListSortDirection sort_direction = 7;
+   */
+  sortDirection = SessionListSortDirection.UNSPECIFIED;
+
+  constructor(data?: PartialMessage<ListSessionsRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "clientpb.ListSessionsRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "page", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 2, name: "page_size", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 3, name: "status", kind: "enum", T: proto3.getEnumType(SessionListStatus) },
+    { no: 4, name: "group", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "search", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "sort_field", kind: "enum", T: proto3.getEnumType(SessionListSortField) },
+    { no: 7, name: "sort_direction", kind: "enum", T: proto3.getEnumType(SessionListSortDirection) },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListSessionsRequest {
+    return new ListSessionsRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListSessionsRequest {
+    return new ListSessionsRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListSessionsRequest {
+    return new ListSessionsRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ListSessionsRequest | PlainMessage<ListSessionsRequest> | undefined, b: ListSessionsRequest | PlainMessage<ListSessionsRequest> | undefined): boolean {
+    return proto3.util.equals(ListSessionsRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message clientpb.ListSessionsResponse
+ */
+export class ListSessionsResponse extends Message<ListSessionsResponse> {
+  /**
+   * @generated from field: repeated clientpb.Session sessions = 1;
+   */
+  sessions: Session[] = [];
+
+  /**
+   * @generated from field: int64 filtered_total = 2;
+   */
+  filteredTotal = protoInt64.zero;
+
+  /**
+   * @generated from field: int32 page = 3;
+   */
+  page = 0;
+
+  /**
+   * @generated from field: int32 page_size = 4;
+   */
+  pageSize = 0;
+
+  /**
+   * @generated from field: clientpb.SessionStats stats = 5;
+   */
+  stats?: SessionStats;
+
+  constructor(data?: PartialMessage<ListSessionsResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "clientpb.ListSessionsResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "sessions", kind: "message", T: Session, repeated: true },
+    { no: 2, name: "filtered_total", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 3, name: "page", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 4, name: "page_size", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 5, name: "stats", kind: "message", T: SessionStats },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListSessionsResponse {
+    return new ListSessionsResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListSessionsResponse {
+    return new ListSessionsResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListSessionsResponse {
+    return new ListSessionsResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ListSessionsResponse | PlainMessage<ListSessionsResponse> | undefined, b: ListSessionsResponse | PlainMessage<ListSessionsResponse> | undefined): boolean {
+    return proto3.util.equals(ListSessionsResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message clientpb.SessionStatsRequest
+ */
+export class SessionStatsRequest extends Message<SessionStatsRequest> {
+  /**
+   * @generated from field: string group = 1;
+   */
+  group = "";
+
+  /**
+   * @generated from field: string search = 2;
+   */
+  search = "";
+
+  constructor(data?: PartialMessage<SessionStatsRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "clientpb.SessionStatsRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "group", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "search", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SessionStatsRequest {
+    return new SessionStatsRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SessionStatsRequest {
+    return new SessionStatsRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SessionStatsRequest {
+    return new SessionStatsRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: SessionStatsRequest | PlainMessage<SessionStatsRequest> | undefined, b: SessionStatsRequest | PlainMessage<SessionStatsRequest> | undefined): boolean {
+    return proto3.util.equals(SessionStatsRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message clientpb.SessionStats
+ */
+export class SessionStats extends Message<SessionStats> {
+  /**
+   * @generated from field: int64 total = 1;
+   */
+  total = protoInt64.zero;
+
+  /**
+   * @generated from field: int64 alive = 2;
+   */
+  alive = protoInt64.zero;
+
+  /**
+   * @generated from field: int64 offline = 3;
+   */
+  offline = protoInt64.zero;
+
+  constructor(data?: PartialMessage<SessionStats>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "clientpb.SessionStats";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "total", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 2, name: "alive", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 3, name: "offline", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SessionStats {
+    return new SessionStats().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SessionStats {
+    return new SessionStats().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SessionStats {
+    return new SessionStats().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: SessionStats | PlainMessage<SessionStats> | undefined, b: SessionStats | PlainMessage<SessionStats> | undefined): boolean {
+    return proto3.util.equals(SessionStats, a, b);
+  }
+}
+
+/**
+ * @generated from message clientpb.SessionGroups
+ */
+export class SessionGroups extends Message<SessionGroups> {
+  /**
+   * @generated from field: repeated string groups = 1;
+   */
+  groups: string[] = [];
+
+  constructor(data?: PartialMessage<SessionGroups>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "clientpb.SessionGroups";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "groups", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SessionGroups {
+    return new SessionGroups().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SessionGroups {
+    return new SessionGroups().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SessionGroups {
+    return new SessionGroups().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: SessionGroups | PlainMessage<SessionGroups> | undefined, b: SessionGroups | PlainMessage<SessionGroups> | undefined): boolean {
+    return proto3.util.equals(SessionGroups, a, b);
+  }
+}
+
+/**
+ * @generated from message clientpb.SessionTrendPoint
+ */
+export class SessionTrendPoint extends Message<SessionTrendPoint> {
+  /**
+   * @generated from field: int64 bucket_start_unix = 1;
+   */
+  bucketStartUnix = protoInt64.zero;
+
+  /**
+   * @generated from field: int64 count = 2;
+   */
+  count = protoInt64.zero;
+
+  constructor(data?: PartialMessage<SessionTrendPoint>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "clientpb.SessionTrendPoint";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "bucket_start_unix", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 2, name: "count", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SessionTrendPoint {
+    return new SessionTrendPoint().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SessionTrendPoint {
+    return new SessionTrendPoint().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SessionTrendPoint {
+    return new SessionTrendPoint().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: SessionTrendPoint | PlainMessage<SessionTrendPoint> | undefined, b: SessionTrendPoint | PlainMessage<SessionTrendPoint> | undefined): boolean {
+    return proto3.util.equals(SessionTrendPoint, a, b);
+  }
+}
+
+/**
+ * @generated from message clientpb.SessionTrend
+ */
+export class SessionTrend extends Message<SessionTrend> {
+  /**
+   * @generated from field: repeated clientpb.SessionTrendPoint points = 1;
+   */
+  points: SessionTrendPoint[] = [];
+
+  constructor(data?: PartialMessage<SessionTrend>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "clientpb.SessionTrend";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "points", kind: "message", T: SessionTrendPoint, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SessionTrend {
+    return new SessionTrend().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SessionTrend {
+    return new SessionTrend().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SessionTrend {
+    return new SessionTrend().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: SessionTrend | PlainMessage<SessionTrend> | undefined, b: SessionTrend | PlainMessage<SessionTrend> | undefined): boolean {
+    return proto3.util.equals(SessionTrend, a, b);
   }
 }
 

@@ -21,6 +21,51 @@ export const TLSUpdateMode = /*@__PURE__*/ proto3.makeEnum(
 );
 
 /**
+ * @generated from enum clientpb.SessionListStatus
+ */
+export const SessionListStatus = /*@__PURE__*/ proto3.makeEnum(
+  "clientpb.SessionListStatus",
+  [
+    {no: 0, name: "SESSION_LIST_STATUS_ALL", localName: "ALL"},
+    {no: 1, name: "SESSION_LIST_STATUS_ALIVE", localName: "ALIVE"},
+    {no: 2, name: "SESSION_LIST_STATUS_OFFLINE", localName: "OFFLINE"},
+  ],
+);
+
+/**
+ * @generated from enum clientpb.SessionListSortField
+ */
+export const SessionListSortField = /*@__PURE__*/ proto3.makeEnum(
+  "clientpb.SessionListSortField",
+  [
+    {no: 0, name: "SESSION_LIST_SORT_FIELD_OPERATIONAL", localName: "OPERATIONAL"},
+    {no: 1, name: "SESSION_LIST_SORT_FIELD_STATUS", localName: "STATUS"},
+    {no: 2, name: "SESSION_LIST_SORT_FIELD_SESSION_ID", localName: "SESSION_ID"},
+    {no: 3, name: "SESSION_LIST_SORT_FIELD_GROUP_NAME", localName: "GROUP_NAME"},
+    {no: 4, name: "SESSION_LIST_SORT_FIELD_NOTE", localName: "NOTE"},
+    {no: 5, name: "SESSION_LIST_SORT_FIELD_LISTENER_ID", localName: "LISTENER_ID"},
+    {no: 6, name: "SESSION_LIST_SORT_FIELD_PIPELINE_ID", localName: "PIPELINE_ID"},
+    {no: 7, name: "SESSION_LIST_SORT_FIELD_TARGET", localName: "TARGET"},
+    {no: 8, name: "SESSION_LIST_SORT_FIELD_CREATED_AT", localName: "CREATED_AT"},
+    {no: 9, name: "SESSION_LIST_SORT_FIELD_LAST_CHECKIN", localName: "LAST_CHECKIN"},
+    {no: 10, name: "SESSION_LIST_SORT_FIELD_PROFILE_NAME", localName: "PROFILE_NAME"},
+    {no: 11, name: "SESSION_LIST_SORT_FIELD_TYPE", localName: "TYPE"},
+  ],
+);
+
+/**
+ * @generated from enum clientpb.SessionListSortDirection
+ */
+export const SessionListSortDirection = /*@__PURE__*/ proto3.makeEnum(
+  "clientpb.SessionListSortDirection",
+  [
+    {no: 0, name: "SESSION_LIST_SORT_DIRECTION_UNSPECIFIED", localName: "UNSPECIFIED"},
+    {no: 1, name: "SESSION_LIST_SORT_DIRECTION_ASC", localName: "ASC"},
+    {no: 2, name: "SESSION_LIST_SORT_DIRECTION_DESC", localName: "DESC"},
+  ],
+);
+
+/**
  * @generated from message clientpb.Empty
  */
 export const Empty = /*@__PURE__*/ proto3.makeMessageType(
@@ -1664,6 +1709,90 @@ export const SessionLinks = /*@__PURE__*/ proto3.makeMessageType(
   "clientpb.SessionLinks",
   () => [
     { no: 1, name: "links", kind: "message", T: SessionLink, repeated: true },
+  ],
+);
+
+/**
+ * @generated from message clientpb.ListSessionsRequest
+ */
+export const ListSessionsRequest = /*@__PURE__*/ proto3.makeMessageType(
+  "clientpb.ListSessionsRequest",
+  () => [
+    { no: 1, name: "page", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 2, name: "page_size", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 3, name: "status", kind: "enum", T: proto3.getEnumType(SessionListStatus) },
+    { no: 4, name: "group", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "search", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "sort_field", kind: "enum", T: proto3.getEnumType(SessionListSortField) },
+    { no: 7, name: "sort_direction", kind: "enum", T: proto3.getEnumType(SessionListSortDirection) },
+  ],
+);
+
+/**
+ * @generated from message clientpb.ListSessionsResponse
+ */
+export const ListSessionsResponse = /*@__PURE__*/ proto3.makeMessageType(
+  "clientpb.ListSessionsResponse",
+  () => [
+    { no: 1, name: "sessions", kind: "message", T: Session, repeated: true },
+    { no: 2, name: "filtered_total", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 3, name: "page", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 4, name: "page_size", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 5, name: "stats", kind: "message", T: SessionStats },
+  ],
+);
+
+/**
+ * @generated from message clientpb.SessionStatsRequest
+ */
+export const SessionStatsRequest = /*@__PURE__*/ proto3.makeMessageType(
+  "clientpb.SessionStatsRequest",
+  () => [
+    { no: 1, name: "group", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "search", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ],
+);
+
+/**
+ * @generated from message clientpb.SessionStats
+ */
+export const SessionStats = /*@__PURE__*/ proto3.makeMessageType(
+  "clientpb.SessionStats",
+  () => [
+    { no: 1, name: "total", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 2, name: "alive", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 3, name: "offline", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+  ],
+);
+
+/**
+ * @generated from message clientpb.SessionGroups
+ */
+export const SessionGroups = /*@__PURE__*/ proto3.makeMessageType(
+  "clientpb.SessionGroups",
+  () => [
+    { no: 1, name: "groups", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+  ],
+);
+
+/**
+ * @generated from message clientpb.SessionTrendPoint
+ */
+export const SessionTrendPoint = /*@__PURE__*/ proto3.makeMessageType(
+  "clientpb.SessionTrendPoint",
+  () => [
+    { no: 1, name: "bucket_start_unix", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 2, name: "count", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+  ],
+);
+
+/**
+ * @generated from message clientpb.SessionTrend
+ */
+export const SessionTrend = /*@__PURE__*/ proto3.makeMessageType(
+  "clientpb.SessionTrend",
+  () => [
+    { no: 1, name: "points", kind: "message", T: SessionTrendPoint, repeated: true },
   ],
 );
 
