@@ -799,6 +799,8 @@ export const Artifact = /*@__PURE__*/ proto3.makeMessageType(
     { no: 18, name: "log_num", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
     { no: 19, name: "rdi", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 20, name: "comment", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 21, name: "build_config", kind: "message", T: BuildConfig },
+    { no: 22, name: "has_build_snapshot", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ],
 );
 

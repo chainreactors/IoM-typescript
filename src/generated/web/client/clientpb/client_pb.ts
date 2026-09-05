@@ -3321,6 +3321,16 @@ export class Artifact extends Message<Artifact> {
    */
   comment = "";
 
+  /**
+   * @generated from field: clientpb.BuildConfig build_config = 21;
+   */
+  buildConfig?: BuildConfig;
+
+  /**
+   * @generated from field: bool has_build_snapshot = 22;
+   */
+  hasBuildSnapshot = false;
+
   constructor(data?: PartialMessage<Artifact>) {
     super();
     proto3.util.initPartial(data, this);
@@ -3349,6 +3359,8 @@ export class Artifact extends Message<Artifact> {
     { no: 18, name: "log_num", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
     { no: 19, name: "rdi", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 20, name: "comment", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 21, name: "build_config", kind: "message", T: BuildConfig },
+    { no: 22, name: "has_build_snapshot", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Artifact {
